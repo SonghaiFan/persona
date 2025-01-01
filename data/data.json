@@ -1,0 +1,215 @@
+{
+  "summary": "PhD Researcher in Human-Centered Computing passionate about leveraging LLMs and AI for enhanced human-data interaction. Expertise in narrative visualization, immersive analytics, and data storytelling, with a focus on developing AI-augmented frameworks that bridge human understanding with complex data systems. Skilled in Python, React, D3.js, and advanced NLP techniques, combining technical proficiency with a deep interest in human-AI collaborative systems.",
+  "education": [
+    {
+      "degree": "PhD in Human-Centered Computing",
+      "institution": "Monash University, Australia",
+      "period": "Oct 2021 – Jul 2025 Expected",
+      "research": "Research: Narrative Visualization and Analytics",
+      "highlights": [
+        "Research focus: Narrative visualization frameworks, LLM text visualization, and human-centered data interfaces"
+      ]
+    },
+    {
+      "degree": "Master of Data Science",
+      "institution": "Monash University, Australia",
+      "period": "June 2019 – June 2021",
+      "gpa": "GPA: 3.7/4.0",
+      "highlights": [
+        "Key courses: Business Intelligence Modelling, Data Exploration & Visualisation, Statistical Data Modelling",
+        "Advanced topics: Big Data Processing, Data Wrangling, Applied Data Analysis, Data Warehousing"
+      ]
+    },
+    {
+      "degree": "Bachelor of Engineering (Honors)",
+      "institution": "Monash University, Australia",
+      "period": "March 2016 – Dec 2018"
+    }
+  ],
+  "phd_research": {
+    "sections": [
+      {
+        "title": "Time-Track Narrative Graph Model",
+        "highlights": [
+          "Developed TTNG to visualize narrative transitions in temporal data",
+          "Created a Graph-to-Text pipeline using LLMs to generate synthetic datasets",
+          "Conducted user studies to align algorithmic models with human narrative understanding",
+          "Applied NLP techniques: topic modeling, sentiment analysis, and text summarization"
+        ]
+      },
+      {
+        "title": "Scrollytelling and Immersive Analytics",
+        "highlights": [
+          "Researched scrollytelling methods to enhance user engagement with data narratives",
+          "Published findings on improving narrative coherence and interaction in visualization"
+        ]
+      }
+    ]
+  },
+  "technical_skills": {
+    "programming_languages": {
+      "title": "Programming Languages",
+      "items": [
+        {
+          "name": "Python",
+          "level": 5,
+          "keywords": ["NumPy", "Pandas", "Scikit-learn"]
+        },
+        {
+          "name": "JavaScript/TypeScript",
+          "level": 5,
+          "keywords": ["ES6+", "Node.js"]
+        },
+        { "name": "R", "level": 3, "keywords": ["tidyverse", "ggplot2"] },
+        { "name": "SQL", "level": 4, "keywords": ["PostgreSQL", "MySQL"] }
+      ]
+    },
+    "visualization": {
+      "title": "Data Visualization",
+      "items": [
+        { "name": "D3.js", "level": 5, "keywords": ["SVG", "Canvas", "WebGL"] },
+        {
+          "name": "Tableau",
+          "level": 4,
+          "keywords": ["Dashboard Design", "Data Stories"]
+        },
+        {
+          "name": "Observable",
+          "level": 4,
+          "keywords": ["Notebooks", "Interactive Viz"]
+        },
+        { "name": "Three.js", "level": 3, "keywords": ["3D Visualization"] }
+      ]
+    },
+    "web_technologies": {
+      "title": "Web Technologies",
+      "items": [
+        {
+          "name": "React",
+          "level": 5,
+          "keywords": ["Hooks", "Context", "Next.js"]
+        },
+        {
+          "name": "HTML/CSS",
+          "level": 5,
+          "keywords": ["Tailwind", "SCSS", "Responsive Design"]
+        },
+        {
+          "name": "Node.js",
+          "level": 4,
+          "keywords": ["Express", "API Development"]
+        }
+      ]
+    },
+    "ai_ml": {
+      "title": "AI & Machine Learning",
+      "items": [
+        {
+          "name": "NLP",
+          "level": 4,
+          "keywords": ["LangChain", "Transformers", "NLTK"]
+        },
+        {
+          "name": "Machine Learning",
+          "level": 4,
+          "keywords": ["Scikit-learn", "TensorFlow"]
+        },
+        {
+          "name": "LLM Integration",
+          "level": 5,
+          "keywords": ["OpenAI API", "Embeddings"]
+        }
+      ]
+    },
+    "developer_tools": {
+      "title": "Developer Tools",
+      "items": [
+        { "name": "Git", "level": 5, "keywords": ["GitHub", "CI/CD"] },
+        {
+          "name": "Docker",
+          "level": 4,
+          "keywords": ["Containerization", "Compose"]
+        },
+        { "name": "AWS", "level": 3, "keywords": ["EC2", "S3", "Lambda"] }
+      ]
+    },
+    "research_skills": {
+      "title": "Research Skills",
+      "items": [
+        {
+          "name": "User Research",
+          "level": 5,
+          "keywords": ["Interviews", "Usability Testing"]
+        },
+        {
+          "name": "Data Analysis",
+          "level": 5,
+          "keywords": ["Statistical Analysis", "Visualization"]
+        },
+        {
+          "name": "Academic Writing",
+          "level": 4,
+          "keywords": ["Publications", "Documentation"]
+        }
+      ]
+    }
+  },
+  "projects": [
+    {
+      "title": "Causal Relationship Network Visualization",
+      "highlights": [
+        "Built a React/TypeScript visualization tool for complex causal graphs",
+        "Implemented features for node categorization, centrality analysis, and advanced filtering"
+      ]
+    },
+    {
+      "title": "Perspectiva - P-CLD Analysis Tool",
+      "highlights": [
+        "Created a tool for documenting and visualizing Participatory Causal Loop Diagrams",
+        "Enhanced transparency in urban data governance decision-making processes"
+      ]
+    },
+    {
+      "title": "Interactive Data Storytelling Case Study",
+      "highlights": [
+        "Developed scrollytelling visualizations for COVID-19 trends and climate change impacts on disadvantaged communities",
+        "Built interactive narrative tools using D3.js and Python to enhance public understanding of complex social issues"
+      ]
+    }
+  ],
+  "certifications": [
+    "Data Storytelling for Business – Tableau (2023)",
+    "Machine Learning Specialist – Scikit-learn & PyTorch (2022)",
+    "Advanced JavaScript – CodeAcademy (2021)"
+  ],
+  "languages": [
+    {
+      "language": "Chinese",
+      "proficiency": "Native"
+    },
+    {
+      "language": "English",
+      "proficiency": "Fluent"
+    }
+  ],
+  "interests": [
+    "Music: Guitarist in a local band, participant in Melbourne Chinese Music Festival",
+    "Mentorship: Guiding students in data science and analytics projects"
+  ],
+  "publications": [
+    {
+      "title": "Discourse lines: visualising current policy and media storylines of opportunity and disadvantage with narrative exploration maps",
+      "authors": "S Angus, S Borgohain, S Fan, S Goodwin, A Kristanto, L O'Neill",
+      "venue": "NLVIZ 2024: Exploring Research Opportunities for Natural Language, Text, and Visualization",
+      "year": "2024",
+      "type": "Paper"
+    },
+    {
+      "title": "Understanding the Narrative: An Exploration of Narrative Structure and Visualisation Techniques in News Media",
+      "authors": "S Fan, Y Ying, S Goodwin, S Angus, H Purchase, T Dwyer",
+      "venue": "IEEE VIS 2023",
+      "year": "2023",
+      "type": "Poster"
+    }
+  ]
+}

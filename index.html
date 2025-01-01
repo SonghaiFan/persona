@@ -14,434 +14,98 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
       rel="stylesheet"
     />
-    <style>
-      @page {
-        size: A4 portrait;
-        margin: 1.27cm;
-        padding: 0;
-      }
-
-      :root {
-        --primary-color: #2d3748;
-        --secondary-color: #4a5568;
-        --accent-color: #3182ce;
-        --background-color: #ffffff;
-        --border-color: #e2e8f0;
-      }
-
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-
-      body {
-        width: 210mm;
-        min-height: 297mm;
-        font-family: "Inter", sans-serif;
-        line-height: 1.3;
-        color: var(--primary-color);
-        background-color: var(--background-color);
-        font-size: 9.5pt;
-        margin: 0 auto;
-        padding: 0;
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-      }
-
-      header {
-        margin-bottom: 0.6rem;
-      }
-
-      h1 {
-        font-size: 15pt;
-        font-weight: 700;
-        margin-bottom: 0.2rem;
-        color: var(--primary-color);
-      }
-
-      .contact-info {
-        display: flex;
-        gap: 0.8rem;
-        flex-wrap: wrap;
-        color: var(--secondary-color);
-        margin-bottom: 0.4rem;
-        font-size: 8.5pt;
-        align-items: center;
-      }
-
-      .contact-info-row {
-        display: flex;
-        gap: 0.8rem;
-        flex-wrap: wrap;
-        width: 100%;
-        align-items: center;
-      }
-
-      .contact-item {
-        display: flex;
-        align-items: center;
-        gap: 0.3rem;
-        white-space: nowrap;
-      }
-
-      .contact-item i {
-        font-size: 0.8rem;
-        color: var(--accent-color);
-      }
-
-      section {
-        margin-bottom: 0.6rem;
-      }
-
-      h2 {
-        display: flex;
-        align-items: center;
-        gap: 0.4rem;
-        font-size: 11pt;
-        color: var(--accent-color);
-        margin: 0.6rem 0 0.3rem 0;
-        padding-bottom: 0.2rem;
-        border-bottom: 1px solid var(--border-color);
-      }
-
-      h2 i {
-        font-size: 0.9rem;
-      }
-
-      h3 {
-        font-size: 9.5pt;
-        margin: 0.4rem 0 0.2rem 0;
-        color: var(--primary-color);
-      }
-
-      p {
-        font-size: 9pt;
-        margin-bottom: 0.3rem;
-      }
-
-      .education-item {
-        margin-bottom: 0.5rem;
-      }
-
-      .education-title {
-        font-weight: 600;
-        font-size: 9pt;
-        color: var(--primary-color);
-      }
-
-      .institution {
-        font-style: italic;
-        font-size: 8.5pt;
-        color: var(--secondary-color);
-      }
-
-      ul {
-        list-style-type: none;
-        padding-left: 0.7rem;
-        margin-bottom: 0.3rem;
-      }
-
-      ul li {
-        position: relative;
-        margin-bottom: 0.2rem;
-        font-size: 8.5pt;
-        line-height: 1.2;
-      }
-
-      ul li::before {
-        content: "•";
-        color: var(--accent-color);
-        position: absolute;
-        left: -0.8rem;
-      }
-
-      .skills-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 0.4rem;
-        margin-top: 0.3rem;
-      }
-
-      .skill-category {
-        display: flex;
-        align-items: center;
-        gap: 0.3rem;
-        margin-bottom: 0.3rem;
-        font-size: 8.5pt;
-        padding: 0.15rem;
-        background-color: #f7fafc;
-      }
-
-      .skill-category strong {
-        color: var(--accent-color);
-      }
-
-      .project-item {
-        margin-bottom: 0.5rem;
-      }
-
-      @media print {
-        body {
-          margin: 0;
-          padding: 0;
-          width: 210mm;
-          height: 297mm;
-          print-color-adjust: exact;
-          -webkit-print-color-adjust: exact;
-        }
-
-        section {
-          page-break-inside: avoid;
-        }
-
-        .skill-category {
-          background-color: transparent;
-          border: 1px solid var(--border-color);
-        }
-
-        @page {
-          size: A4;
-          margin: 1.27cm;
-        }
-      }
-
-      @media screen {
-        body {
-          max-width: 210mm;
-          margin: 20px auto;
-          padding: 1.27cm;
-          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-      }
-    </style>
+    <link href="styles/main.css" rel="stylesheet" />
+    <script src="js/main.js" defer></script>
   </head>
   <body>
     <header>
-      <h1>Songhai Fan (Frank)</h1>
-      <div class="contact-info">
-        <div class="contact-info-row">
-          <span class="contact-item"
-            ><i class="fas fa-map-marker-alt"></i> Melbourne, Australia</span
-          >
-          <span class="contact-item"
-            ><i class="fas fa-phone"></i> +61 0434 780 632</span
-          >
-          <span class="contact-item"
-            ><i class="fas fa-envelope"></i> fansonghai@hotmail.com</span
-          >
+      <div class="header-content">
+        <div class="header-text">
+          <h1>Songhai (Ocean) Fan</h1>
+          <div class="contact-info">
+            <div class="contact-info-row">
+              <span class="contact-item">
+                <i class="fas fa-map-marker-alt"></i> Melbourne, Australia
+              </span>
+              <span class="contact-item">
+                <i class="fas fa-phone"></i> +61 0434 780 632
+              </span>
+              <span class="contact-item">
+                <i class="fas fa-envelope"></i> fansonghai@hotmail.com
+              </span>
+            </div>
+            <div class="contact-info-row">
+              <span class="contact-item">
+                <i class="fab fa-github"></i>
+                <a
+                  href="https://github.com/SonghaiFan"
+                  target="_blank"
+                  class="contact-link"
+                >
+                  github.com/SonghaiFan
+                </a>
+              </span>
+              <span class="contact-item">
+                <i class="fas fa-globe"></i>
+                <a
+                  href="https://songhai.one"
+                  target="_blank"
+                  class="contact-link"
+                >
+                  songhai.one
+                </a>
+              </span>
+              <span class="contact-item">
+                <i class="fab fa-linkedin"></i>
+                <a
+                  href="https://www.linkedin.com/in/songhaifan"
+                  target="_blank"
+                  class="contact-link"
+                >
+                  linkedin.com/in/songhaifan
+                </a>
+              </span>
+            </div>
+          </div>
         </div>
-        <div class="contact-info-row">
-          <span class="contact-item"
-            ><i class="fab fa-github"></i>
-            <a
-              href="https://github.com/SonghaiFan"
-              target="_blank"
-              style="color: inherit; text-decoration: none"
-              >github.com/SonghaiFan</a
-            ></span
-          >
-          <span class="contact-item"
-            ><i class="fas fa-globe"></i>
-            <a
-              href="https://songhai.one"
-              target="_blank"
-              style="color: inherit; text-decoration: none"
-              >songhai.one</a
-            ></span
-          >
-          <span class="contact-item"
-            ><i class="fab fa-linkedin"></i>
-            <a
-              href="https://www.linkedin.com/in/songhaifan"
-              target="_blank"
-              style="color: inherit; text-decoration: none"
-              >linkedin.com/in/songhaifan</a
-            ></span
-          >
-        </div>
+        <!-- <div class="profile-photo">
+          <img src="data/Photo.jpg" alt="Profile Photo" />
+        </div> -->
       </div>
     </header>
 
-    <section>
-      <h2><i class="fas fa-user-circle"></i> Professional Summary</h2>
-      <p>
-        PhD Researcher in Human-Centered Computing passionate about leveraging
-        LLMs and AI for enhanced human-data interaction. Expertise in narrative
-        visualization, immersive analytics, and data storytelling, with a focus
-        on developing AI-augmented frameworks that bridge human understanding
-        with complex data systems. Skilled in Python, React, D3.js, and advanced
-        NLP techniques, combining technical proficiency with a deep interest in
-        human-AI collaborative systems.
-      </p>
-    </section>
+    <main>
+      <div class="main-column">
+        <section id="professional-summary">
+          <h2><i class="fas fa-user-circle"></i> Professional Summary</h2>
+          <p></p>
+        </section>
 
-    <section>
-      <h2><i class="fas fa-graduation-cap"></i> Education</h2>
-      <div class="education-item">
-        <div class="education-title">PhD in Human-Centered Computing</div>
-        <div class="institution">
-          Monash University, Australia (Oct 2021 – Jul 2025 Expected)
-        </div>
-        <div>Research: Narrative Visualization and Analytics</div>
-        <ul>
-          <li>
-            Research focus: Narrative visualization frameworks, LLM text
-            visualization, and human-centered data interfaces
-          </li>
-        </ul>
+        <section id="technical-skills">
+          <h2><i class="fas fa-laptop-code"></i> Technical Skills</h2>
+        </section>
+
+        <section id="education">
+          <h2><i class="fas fa-graduation-cap"></i> Education</h2>
+        </section>
+
+        <section id="phd-research">
+          <h2><i class="fas fa-microscope"></i> Research Focus</h2>
+        </section>
+
+        <section id="projects">
+          <h2><i class="fas fa-project-diagram"></i> Selected Projects</h2>
+        </section>
+
+        <section id="publications">
+          <h2><i class="fas fa-book"></i> Publications</h2>
+        </section>
+
+        <section id="certifications">
+          <h2><i class="fas fa-certificate"></i> Certifications</h2>
+          <ul></ul>
+        </section>
       </div>
-      <div class="education-item">
-        <div class="education-title">Master of Data Science</div>
-        <div class="institution">
-          Monash University, Australia (June 2019 – June 2021)
-        </div>
-        <div>GPA: 3.7/4.0</div>
-        <ul>
-          <li>
-            Key courses: Business Intelligence Modelling, Data Exploration &
-            Visualisation, Statistical Data Modelling
-          </li>
-          <li>
-            Advanced topics: Big Data Processing, Data Wrangling, Applied Data
-            Analysis, Data Warehousing
-          </li>
-        </ul>
-      </div>
-      <div class="education-item">
-        <div class="education-title">Bachelor of Engineering (Honors)</div>
-        <div class="institution">
-          Monash University, Australia (March 2016 – Dec 2018)
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <h2><i class="fas fa-microscope"></i> PhD Research</h2>
-      <h3>Time-Track Narrative Graph Model</h3>
-      <ul>
-        <li>
-          Developed TTNG to visualize narrative transitions in temporal data
-        </li>
-        <li>
-          Created a Graph-to-Text pipeline using LLMs to generate synthetic
-          datasets
-        </li>
-        <li>
-          Conducted user studies to align algorithmic models with human
-          narrative understanding
-        </li>
-        <li>
-          Applied NLP techniques: topic modeling, sentiment analysis, and text
-          summarization
-        </li>
-      </ul>
-
-      <h3>Scrollytelling and Immersive Analytics</h3>
-      <ul>
-        <li>
-          Researched scrollytelling methods to enhance user engagement with data
-          narratives
-        </li>
-        <li>
-          Published findings on improving narrative coherence and interaction in
-          visualization
-        </li>
-      </ul>
-    </section>
-
-    <section>
-      <h2><i class="fas fa-laptop-code"></i> Technical Skills</h2>
-      <div class="skills-grid">
-        <div class="skill-category">
-          <strong>Programming:</strong> Python, JavaScript, R, SQL
-        </div>
-        <div class="skill-category">
-          <strong>Visualization:</strong> D3.js, Tableau
-        </div>
-        <div class="skill-category">
-          <strong>NLP Techniques:</strong> Topic Modeling, Sentiment Analysis
-        </div>
-        <div class="skill-category">
-          <strong>Frontend:</strong> React, TypeScript, HTML/CSS
-        </div>
-        <div class="skill-category">
-          <strong>Tools:</strong> PySpark, Scikit-learn, MySQL
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <h2><i class="fas fa-project-diagram"></i> Selected Projects</h2>
-      <div class="project-item">
-        <h3>Causal Relationship Network Visualization</h3>
-        <ul>
-          <li>
-            Built a React/TypeScript visualization tool for complex causal
-            graphs,
-          </li>
-          <li>
-            Implemented features for node categorization, centrality analysis,
-            and advanced filtering
-          </li>
-        </ul>
-      </div>
-      <div class="project-item">
-        <h3>Perspectiva - P-CLD Analysis Tool</h3>
-        <ul>
-          <li>
-            Created a tool for documenting and visualizing Participatory Causal
-            Loop Diagrams
-          </li>
-          <li>
-            Enhanced transparency in urban data governance decision-making
-            processes
-          </li>
-        </ul>
-      </div>
-      <div class="project-item">
-        <h3>Interactive Data Storytelling Case Study</h3>
-        <ul>
-          <li>
-            Developed scrollytelling visualizations for COVID-19 trends and
-            climate change impacts on disadvantaged communities
-          </li>
-          <li>
-            Built interactive narrative tools using D3.js and Python to enhance
-            public understanding of complex social issues
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <section>
-      <h2><i class="fas fa-certificate"></i> Certifications</h2>
-      <ul>
-        <li>Data Storytelling for Business – Tableau (2023)</li>
-        <li>Machine Learning Specialist – Scikit-learn & PyTorch (2022)</li>
-        <li>Advanced JavaScript – CodeAcademy (2021)</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2><i class="fas fa-language"></i> Languages</h2>
-      <ul>
-        <li>Chinese: Native</li>
-        <li>English: Fluent</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2><i class="fas fa-heart"></i> Interests</h2>
-      <ul>
-        <li>
-          Music: Guitarist in a local band, participant in Melbourne Chinese
-          Music Festival
-        </li>
-        <li>
-          Mentorship: Guiding students in data science and analytics projects
-        </li>
-      </ul>
-    </section>
+    </main>
   </body>
 </html>
