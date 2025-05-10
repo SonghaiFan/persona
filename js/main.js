@@ -153,23 +153,18 @@ function renderTechnicalSkills(skills) {
                 <div class="skill-item">
                   <div class="skill-name-group">
                     <div class="skill-name">
-                      <span class="skill-name-text">${item.name}</span>
-                      <span class="skill-keywords">${item.keywords
+                      <span class="skill-name-text">${item.name || ""}</span>
+                      <span class="skill-keywords">${(item.keywords || [])
                         .slice(0, 2)
                         .join(", ")}${
-                item.keywords.length > 2 ? "..." : ""
+                (item.keywords || []).length > 2 ? "..." : ""
               }</span>
                     </div>
                   </div>
                   <div class="skill-level">
-                    ${Array.from(
-                      { length: 5 },
-                      (_, i) => `
-                      <div class="skill-circle${
-                        i < item.level ? " filled" : ""
-                      }"></div>
-                    `
-                    ).join("")}
+                    <span class="star-rating">${"★".repeat(
+                      item.level || 0
+                    )}${"☆".repeat(5 - (item.level || 0))}</span>
                   </div>
                 </div>
               `

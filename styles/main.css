@@ -260,6 +260,12 @@ ul li::before {
   flex-shrink: 0;
 }
 
+.star-rating {
+  color: var(--accent-color);
+  font-size: 0.5rem;
+  letter-spacing: -1px;
+}
+
 .skill-circle {
   width: 0.18rem;
   height: 0.18rem;

@@ -71,14 +71,14 @@
           "keywords": ["SVG", "Animation", "Canvas"]
         },
         {
+          "name": "Cytoscape.js",
+          "level": 4,
+          "keywords": ["Graph Visualization", "Network Analysis"]
+        },
+        {
           "name": "Tableau",
           "level": 4,
           "keywords": ["Dashboard Design", "Data Stories"]
-        },
-        {
-          "name": "Observable",
-          "level": 4,
-          "keywords": ["Notebooks", "Interactive Viz"]
         }
       ]
     },
@@ -96,9 +96,9 @@
           "keywords": ["Tailwind", "SCSS", "Responsive Design"]
         },
         {
-          "name": "Node.js",
+          "name": "Next.js",
           "level": 4,
-          "keywords": ["Express", "API Development"]
+          "keywords": ["Server-Side Rendering"]
         }
       ]
     },
@@ -127,11 +127,15 @@
       "items": [
         { "name": "Git", "level": 5, "keywords": ["GitHub", "CI/CD"] },
         {
-          "name": "Docker",
+          "name": "Google Analytics",
           "level": 4,
-          "keywords": ["Containerization", "Compose"]
+          "keywords": ["Tracking", "Reporting", "Insights"]
         },
-        { "name": "AWS", "level": 3, "keywords": ["EC2", "S3", "Lambda"] }
+        {
+          "name": "Firebase",
+          "level": 4,
+          "keywords": ["Authentication", "Firestore", "Hosting"]
+        }
       ]
     },
     "research_skills": {
@@ -199,11 +203,25 @@
   ],
   "publications": [
     {
+      "title": "A Directed Graph Model and Experimental Framework for Design and Study of News Narrative Visualisation",
+      "authors": "S Fan, T Dwyer, S Goodwin, H Purchase",
+      "venue": "IEEE VIS 2025",
+      "year": "2025",
+      "type": "Full Paper (Under Review)"
+    },
+    {
+      "title": "ACCESS: A Benchmark for Abstract Causal Event Discovery and Reasoning",
+      "authors": "G Haffari, V Vo, L Qu, T Feng, Y Hua, X Kang, S Fan, T Dwyer, L Soon",
+      "venue": "NAACL 2025",
+      "year": "2025",
+      "type": "Paper"
+    },
+    {
       "title": "Discourse lines: visualising current policy and media storylines of opportunity and disadvantage with narrative exploration maps",
       "authors": "S Angus, S Borgohain, S Fan, S Goodwin, A Kristanto, L O'Neill",
-      "venue": "NLVIZ 2024: Exploring Research Opportunities for Natural Language, Text, and Visualization",
+      "venue": "NLVIZ 2024",
       "year": "2024",
-      "type": "Paper"
+      "type": "Workshop Paper"
     },
     {
       "title": "Understanding the Narrative: An Exploration of Narrative Structure and Visualisation Techniques in News Media",
