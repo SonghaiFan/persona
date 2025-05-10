@@ -11,18 +11,16 @@
       ]
     },
     {
-      "degree": "Master of Data Science",
+      "degree": "Master of Data Science (Awarded with Distinction)",
       "institution": "Monash University, Australia",
       "period": "June 2019 – June 2021",
-      "gpa": "GPA: 3.7/4.0",
       "highlights": [
-        "Key courses: Business Intelligence Modelling, Data Exploration & Visualisation, Statistical Data Modelling",
-        "Advanced topics: Big Data Processing, Data Wrangling, Applied Data Analysis, Data Warehousing"
+        "Key courses: Business Intelligence Modelling, Data Exploration & Visualisation, Statistical Data Modelling, Big Data Processing, Data Wrangling, Applied Data Analysis, Data Warehousing"
       ]
     },
     {
       "degree": "Bachelor of Engineering (Honors)",
-      "institution": "Monash University, Australia",
+      "institution": "Monash University, Australia &",
       "period": "March 2016 – Dec 2018"
     }
   ],
@@ -61,13 +59,17 @@
           "keywords": ["ES6+", "Node.js"]
         },
         { "name": "R", "level": 3, "keywords": ["tidyverse", "ggplot2"] },
-        { "name": "SQL", "level": 4, "keywords": ["PostgreSQL", "MySQL"] }
+        { "name": "SQL", "level": 4, "keywords": ["MySQL", "MongoDB"] }
       ]
     },
     "visualization": {
       "title": "Data Visualization",
       "items": [
-        { "name": "D3.js", "level": 5, "keywords": ["SVG", "Canvas", "WebGL"] },
+        {
+          "name": "D3.js",
+          "level": 5,
+          "keywords": ["SVG", "Animation", "Canvas"]
+        },
         {
           "name": "Tableau",
           "level": 4,
@@ -77,8 +79,7 @@
           "name": "Observable",
           "level": 4,
           "keywords": ["Notebooks", "Interactive Viz"]
-        },
-        { "name": "Three.js", "level": 3, "keywords": ["3D Visualization"] }
+        }
       ]
     },
     "web_technologies": {
