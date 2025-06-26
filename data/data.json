@@ -27,134 +27,125 @@
   "phd_research": {
     "sections": [
       {
-        "title": "Time-Track Narrative Graph Model",
-        "highlights": [
-          "Developed TTNG to visualize narrative transitions in temporal data",
-          "Created a Graph-to-Text pipeline using LLMs to generate synthetic datasets",
-          "Conducted user studies to align algorithmic models with human narrative understanding",
-          "Applied NLP techniques: topic modeling, sentiment analysis, and text summarization"
-        ]
-      },
-      {
-        "title": "Scrollytelling and Immersive Analytics",
-        "highlights": [
-          "Researched scrollytelling methods to enhance user engagement with data narratives",
-          "Published findings on improving narrative coherence and interaction in visualization"
+        "title": "Narrative Visualization | NLP | Human-Centered AI",
+        "items": [
+          {
+            "point": "Developed the Time-Track Narrative Graph (TTNG) to visualize complex narrative transitions over time and theme dimensions."
+          },
+          {
+            "point": "Built a Graph-to-Text pipeline using LLMs (e.g., GPT) to generate synthetic news datasets for evaluating narrative comprehension."
+          },
+          {
+            "point": "Conducted user studies aligning algorithmic outputs with human understanding across cognitive tasks."
+          },
+          {
+            "point": "Applied advanced NLP techniques: topic modeling, sentiment analysis, and text summarization to structure and analyze news narratives."
+          },
+          {
+            "point": "Explored scrollytelling and immersive analytics to improve user engagement and comprehension in interactive storytelling."
+          }
         ]
       }
     ]
   },
   "technical_skills": {
-    "programming_languages": {
-      "title": "Programming Languages",
-      "items": [
-        {
-          "name": "Python",
-          "level": 5,
-          "keywords": ["NumPy", "Pandas", "Scikit-learn"]
-        },
-        {
-          "name": "JavaScript/TypeScript",
-          "level": 5,
-          "keywords": ["ES6+", "Node.js"]
-        },
-        { "name": "R", "level": 3, "keywords": ["tidyverse", "ggplot2"] },
-        { "name": "SQL", "level": 4, "keywords": ["MySQL", "MongoDB"] }
-      ]
-    },
-    "visualization": {
-      "title": "Data Visualization",
-      "items": [
-        {
-          "name": "D3.js",
-          "level": 5,
-          "keywords": ["SVG", "Animation", "Canvas"]
-        },
-        {
-          "name": "Cytoscape.js",
-          "level": 4,
-          "keywords": ["Graph Visualization", "Network Analysis"]
-        },
-        {
-          "name": "Tableau",
-          "level": 4,
-          "keywords": ["Dashboard Design", "Data Stories"]
-        }
-      ]
-    },
-    "web_technologies": {
-      "title": "Web Technologies",
-      "items": [
-        {
-          "name": "React",
-          "level": 5,
-          "keywords": ["Hooks", "Context", "Next.js"]
-        },
-        {
-          "name": "HTML/CSS",
-          "level": 5,
-          "keywords": ["Tailwind", "SCSS", "Responsive Design"]
-        },
-        {
-          "name": "Next.js",
-          "level": 4,
-          "keywords": ["Server-Side Rendering"]
-        }
-      ]
-    },
     "ai_ml": {
-      "title": "AI & Machine Learning",
+      "title": "AI & Language Technologies",
       "items": [
         {
-          "name": "NLP",
-          "level": 4,
-          "keywords": ["LangChain", "Transformers", "NLTK"]
+          "name": "LLM Integration",
+          "level": 5,
+          "keywords": ["OpenAI API", "LangChain", "Prompt Engineering"]
+        },
+        {
+          "name": "Natural Language Processing",
+          "level": 3,
+          "keywords": ["Transformers", "SpaCy", "Text Summarization"]
         },
         {
           "name": "Machine Learning",
           "level": 4,
-          "keywords": ["Scikit-learn", "TensorFlow"]
+          "keywords": ["Scikit-learn", "TensorFlow", "Feature Engineering"]
         },
         {
-          "name": "LLM Integration",
+          "name": "Programming Languages",
           "level": 5,
-          "keywords": ["OpenAI API", "Embeddings"]
+          "keywords": ["Python", "R", "SQL"]
         }
       ]
     },
-    "developer_tools": {
-      "title": "Developer Tools",
+
+    "data_science": {
+      "title": "Data Science & Analytics",
       "items": [
-        { "name": "Git", "level": 5, "keywords": ["GitHub", "CI/CD"] },
         {
-          "name": "Google Analytics",
+          "name": "Big Data Processing",
           "level": 4,
-          "keywords": ["Tracking", "Reporting", "Insights"]
+          "keywords": ["Hadoop", "Spark", "ETL"]
         },
         {
-          "name": "Firebase",
-          "level": 4,
-          "keywords": ["Authentication", "Firestore", "Hosting"]
-        }
-      ]
-    },
-    "research_skills": {
-      "title": "Research Skills",
-      "items": [
-        {
-          "name": "User Research",
-          "level": 5,
-          "keywords": ["Interviews", "Usability Testing"]
+          "name": "Data Engineering",
+          "level": 3,
+          "keywords": ["Data Warehousing", "Data Pipeline", "OLAP"]
         },
         {
           "name": "Data Analysis",
           "level": 5,
-          "keywords": ["Statistical Analysis", "Visualization"]
+          "keywords": ["Pandas", "R (tidyverse)", "Statistical testing"]
+        },
+        {
+          "name": "Visualization",
+          "level": 5,
+          "keywords": [
+            "D3.js",
+            "Tableau",
+            "Cytoscape.js",
+            "NetworkX",
+            "Scrollytelling"
+          ]
+        }
+      ]
+    },
+    "web_technologies": {
+      "title": "Web & Interface Development",
+      "items": [
+        {
+          "name": "Front-End",
+          "level": 5,
+          "keywords": ["React", "Next.js", "TailwindCSS"]
+        },
+        {
+          "name": "Back-End / Serverless",
+          "level": 3,
+          "keywords": ["Node.js", "Firebase", "API integration"]
+        },
+        {
+          "name": "Tooling & CI/CD",
+          "level": 4,
+          "keywords": ["GitHub", "Vercel", "Google Analytics"]
+        }
+      ]
+    },
+    "research_skills": {
+      "title": "Research & Human-Centered Skills",
+      "items": [
+        {
+          "name": "Human-Centered Design",
+          "level": 5,
+          "keywords": [
+            "Controlled User Study",
+            "A/B Test",
+            "Visualization Evaluation"
+          ]
         },
         {
           "name": "Academic Writing",
           "level": 4,
-          "keywords": ["Publications", "Documentation"]
+          "keywords": [
+            "LaTeX",
+            "Peer-reviewed Publications",
+            "Technical Documentation"
+          ]
         }
       ]
     }
@@ -162,23 +153,40 @@
   "projects": [
     {
       "title": "Causal Relationship Network Visualization",
-      "highlights": [
-        "Built a React/TypeScript visualization tool for complex causal graphs",
-        "Implemented features for node categorization, centrality analysis, and advanced filtering"
+      "description": "Built an interactive web app to visualize sentence-level causal networks using NLP and network analysis.",
+      "features": [
+        "Implemented topic clustering, centrality analysis, filtering, and search functionality."
       ]
     },
     {
-      "title": "Perspectiva - P-CLD Analysis Tool",
-      "highlights": [
-        "Created a tool for documenting and visualizing Participatory Causal Loop Diagrams",
-        "Enhanced transparency in urban data governance decision-making processes"
-      ]
+      "title": "Perspectiva – Participatory Causal Loop Diagram Tool",
+      "description": "Designed a system to document and visualize stakeholder-driven causal models for urban governance.",
+      "features": [
+        "Enhanced transparency in data-driven policy-making through participatory modeling."
+      ],
+      "tech_stack": ""
     },
     {
-      "title": "Interactive Data Storytelling Case Study",
-      "highlights": [
-        "Developed scrollytelling visualizations for COVID-19 trends and climate change impacts on disadvantaged communities",
-        "Built interactive narrative tools using D3.js and Python to enhance public understanding of complex social issues"
+      "title": "Data Storytelling Case Studies",
+      "description": "",
+      "features": [],
+      "tech_stack": "",
+      "case_studies": [
+        {
+          "title": "Disadvantage in the Media",
+          "details": [
+            "With the Paul Ramsay Foundation, analyzed 200+ news articles to uncover media framing of disadvantaged communities.",
+            "Visualized multivariate coded data through scrollytelling, using waffle charts, force-directed graphs, and Alluvial plots."
+          ]
+        },
+        {
+          "title": "Climate Change Awareness",
+          "details": [
+            "With the Monash Climate Change Communication Research Hub (MCCCRH), created a climate visualization platform.",
+            "Mapped extreme temperature events across 100+ years of data from 45 locations.",
+            "Developed a location-aware, interactive scrolling narrative with custom threshold controls and historical comparisons."
+          ]
+        }
       ]
     }
   ],

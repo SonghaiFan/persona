@@ -6,7 +6,7 @@
 
 :root {
   --primary-color: #2d3748;
-  --secondary-color: #4a5568;
+  --secondary-color: #94a3b8;
   --accent-color: #3182ce;
   --background-color: #ffffff;
   --border-color: #e2e8f0;
@@ -43,7 +43,7 @@ body {
 }
 
 header {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.3rem;
   padding: 0.2rem 0;
   /* border: 1px solid var(--separator-color); */
 }
@@ -51,7 +51,7 @@ header {
 h1 {
   font-size: 14pt;
   font-weight: 700;
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.15rem;
   color: var(--primary-color);
   line-height: 1.1;
 }
@@ -61,7 +61,7 @@ h1 {
   flex-direction: column;
   gap: 0.25rem;
   color: var(--secondary-color);
-  margin-top: 0.5rem;
+  margin-top: 0.3rem;
   font-size: 7.8pt;
 }
 
@@ -97,7 +97,7 @@ h1 {
 }
 
 section {
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.25rem;
   padding: 0.15rem 0;
   border: none;
   border-radius: 0;
@@ -109,7 +109,7 @@ h2 {
   gap: 0.3rem;
   font-size: 9pt;
   color: var(--accent-color);
-  margin: 0 0 0.3rem 0;
+  margin: 0 0 0.2rem 0;
   padding-bottom: 0.1rem;
   border-bottom: 1px solid var(--separator-color);
 }
@@ -176,7 +176,7 @@ ul li::before {
 
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 0.25rem;
   margin-top: 0.1rem;
 }
@@ -250,6 +250,8 @@ ul li::before {
   font-size: 6.5pt;
   font-weight: normal;
   font-style: italic;
+  white-space: normal;
+  word-break: break-word;
 }
 
 .skill-level {
@@ -314,9 +316,47 @@ ul li::before {
 }
 
 .project-description {
-  font-size: 7.8pt;
+  font-size: 8pt;
   margin-bottom: 0.2rem;
   color: var(--secondary-color);
+  line-height: 1.2;
+}
+
+.project-features {
+  margin-bottom: 0.2rem;
+}
+
+.project-tech-stack {
+  font-size: 7.5pt;
+  color: var(--accent-color);
+  font-style: italic;
+  margin-top: 0.2rem;
+  margin-bottom: 0.25rem;
+}
+
+.project-case-studies {
+  margin-top: 0.3rem;
+  padding-left: 0.2rem;
+  border-left: 2px solid var(--separator-color);
+}
+
+.case-study-item {
+  margin-bottom: 0.25rem;
+}
+
+.case-study-item h4 {
+  font-size: 8pt;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin: 0.15rem 0 0.1rem 0;
+}
+
+.case-study-item ul {
+  padding-left: 0.6rem;
+}
+
+.case-study-item ul li {
+  font-size: 7.8pt;
 }
 
 .two-col-list {
@@ -423,10 +463,16 @@ ul li::before {
 @media print {
   body {
     margin: 0;
-    width: var(--page-width);
-    height: var(--page-height);
+    width: auto;
+    height: auto;
+    overflow: visible;
     print-color-adjust: exact;
     -webkit-print-color-adjust: exact;
+  }
+
+  main {
+    height: auto;
+    overflow: visible;
   }
 
   section {
@@ -457,6 +503,17 @@ ul li::before {
     break-inside: avoid;
     background-color: transparent;
   }
+
+  p,
+  ul,
+  li,
+  h1,
+  h2,
+  h3,
+  h4 {
+    orphans: 3;
+    widows: 3;
+  }
 }
 
 @media screen {
@@ -480,8 +537,8 @@ main {
   }
 
   main {
-    height: calc(var(--page-height) - 2cm - 1rem);
-    overflow: hidden;
+    height: auto;
+    overflow: visible;
   }
 
   section {
@@ -537,4 +594,13 @@ main {
     print-color-adjust: exact;
     -webkit-print-color-adjust: exact;
   }
+}
+
+/* === In Research Focus (PhD Research) Section === */
+.research-item-detail {
+  font-size: 7.5pt;
+  color: var(--secondary-color);
+  padding-left: 0.8rem;
+  margin-top: 0.1rem;
+  line-height: 1.15;
 }

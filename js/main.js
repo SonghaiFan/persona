@@ -104,10 +104,17 @@ function renderPhDResearch(research) {
       (section) => `
     <h3>${section.title}</h3>
     <ul>
-      ${section.highlights
+      ${section.items
         .map(
-          (highlight) => `
-        <li>${highlight}</li>
+          (item) => `
+        <li>
+          ${item.point}
+          ${
+            item.detail
+              ? `<p class="research-item-detail">${item.detail}</p>`
+              : ""
+          }
+        </li>
       `
         )
         .join("")}
@@ -123,19 +130,10 @@ function renderTechnicalSkills(skills) {
 
   showSection("technical-skills");
 
-  // Sort categories by importance
-  const categoryOrder = [
-    "programming_languages",
-    "web_technologies",
-    "visualization",
-    "ai_ml",
-    "developer_tools",
-    "research_skills",
-  ];
-
-  const sortedCategories = categoryOrder
-    .map((key) => [key, skills[key]])
-    .filter(([_, value]) => value);
+  // Dynamically get all categories in the order they appear in the data
+  const sortedCategories = Object.entries(skills).filter(
+    ([_, value]) => value && value.items && value.items.length > 0
+  );
 
   const skillsGrid = document.createElement("div");
   skillsGrid.className = "skills-grid";
@@ -154,11 +152,9 @@ function renderTechnicalSkills(skills) {
                   <div class="skill-name-group">
                     <div class="skill-name">
                       <span class="skill-name-text">${item.name || ""}</span>
-                      <span class="skill-keywords">${(item.keywords || [])
-                        .slice(0, 2)
-                        .join(", ")}${
-                (item.keywords || []).length > 2 ? "..." : ""
-              }</span>
+                      <span class="skill-keywords">${(item.keywords || []).join(
+                        ", "
+                      )}</span>
                     </div>
                   </div>
                   <div class="skill-level">
@@ -193,15 +189,57 @@ function renderProjects(projects) {
       (project) => `
     <div class="project-item">
       <h3>${project.title}</h3>
-      <ul>
-        ${project.highlights
-          .map(
-            (highlight) => `
-          <li>${highlight}</li>
-        `
-          )
-          .join("")}
-      </ul>
+      ${
+        project.description
+          ? `<p class="project-description">${project.description}</p>`
+          : ""
+      }
+      ${
+        project.features && project.features.length > 0
+          ? `
+        <ul class="project-features">
+          ${project.features
+            .map(
+              (feature) => `
+            <li>${feature}</li>
+          `
+            )
+            .join("")}
+        </ul>
+      `
+          : ""
+      }
+      ${
+        project.tech_stack
+          ? `<p class="project-tech-stack">${project.tech_stack}</p>`
+          : ""
+      }
+      ${
+        project.case_studies && project.case_studies.length > 0
+          ? `
+        <div class="project-case-studies">
+          ${project.case_studies
+            .map(
+              (caseStudy) => `
+                <div class="case-study-item">
+                  <h4>${caseStudy.title}</h4>
+                  <ul>
+                    ${caseStudy.details
+                      .map(
+                        (detail) => `
+                          <li>${detail}</li>
+                        `
+                      )
+                      .join("")}
+                  </ul>
+                </div>
+              `
+            )
+            .join("")}
+        </div>
+      `
+          : ""
+      }
     </div>
   `
     )
