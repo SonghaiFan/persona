@@ -32,10 +32,8 @@
   --divider-color: var(--md-grey-200);
   --accent-color: var(--md-grey-800);
 
-  /* Version Theme Colors */
-  --data-viz-theme: #1976d2; /* Blue for Data Visualisation */
-  --ux-research-theme: #000000; /* black for UX Research */
-  --ai-consultant-theme: #008035; /* Green for AI Consultant */
+  /* Dynamic theme color - set by JavaScript */
+  --theme-color: var(--md-grey-800); /* fallback */
 
   /* Ultra Compact Typography */
   --xl-title: 16px; /* Name only */
@@ -102,20 +100,7 @@
   }
 }
 
-/* Version Theme Classes */
-body.theme-data-viz {
-  --theme-color: var(--data-viz-theme);
-}
-
-body.theme-ux-research {
-  --theme-color: var(--ux-research-theme);
-}
-
-body.theme-ai-consultant {
-  --theme-color: var(--ai-consultant-theme);
-}
-
-/* Apply theme color to specific elements */
+/* Apply theme color to specific elements - colors loaded dynamically from JSON */
 body[class*="theme-"] h1 {
   color: var(--theme-color);
 }
@@ -143,18 +128,7 @@ body[class*="theme-"] .version-select {
 
 body[class*="theme-"] .version-select:focus {
   border-color: var(--theme-color);
-}
-
-body.theme-data-viz .version-select:focus {
-  box-shadow: 0 0 0 2px rgba(25, 118, 210, 0.1);
-}
-
-body.theme-ux-research .version-select:focus {
-  box-shadow: 0 0 0 2px rgba(123, 31, 162, 0.1);
-}
-
-body.theme-ai-consultant .version-select:focus {
-  box-shadow: 0 0 0 2px rgba(245, 124, 0, 0.1);
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
 }
 
 :root {
@@ -439,11 +413,11 @@ ul li {
   font-size: var(--small-text);
   line-height: 1.1;
   color: var(--secondary-color);
-  padding-left: var(--space-2);
+  padding-left: var(--space-3);
 }
 
 ul li::before {
-  content: "•";
+  content: "-";
   color: var(--accent-color);
   position: absolute;
   left: 0;
@@ -533,7 +507,7 @@ ul li::before {
 /* Ultra Dense Project/Publication Styles */
 .project-description {
   font-size: var(--small-text);
-  margin-bottom: var(--space-1);
+  margin-top: var(--space-1);
   color: var(--secondary-color);
   line-height: 1.1;
 }
@@ -541,11 +515,10 @@ ul li::before {
 .project-tech-stack {
   font-size: var(--tiny-text);
   color: var(--accent-color);
-  font-weight: 500;
-  margin-top: var(--space-1);
   background: var(--surface-color);
   border-radius: var(--md-radius-small);
   display: inline-block;
+  padding-left: var(--space-3);
 }
 
 .project-case-studies {

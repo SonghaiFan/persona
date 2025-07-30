@@ -1,25 +1,30 @@
 // Main JavaScript file for resume rendering
 let resumeData = null;
-let versionManager = null;
-let dataLoader = null;
+let versionsData = null;
+let currentVersion = "data-viz";
 
 document.addEventListener("DOMContentLoaded", async () => {
   try {
-    // Initialize data loader
-    dataLoader = new DataLoader();
-    resumeData = await dataLoader.loadData();
+    // Load both data files
+    const [resumeResponse, versionsResponse] = await Promise.all([
+      fetch("data/profile.json"),
+      fetch("data/versions.json"),
+    ]);
 
-    // Initialize version manager
-    versionManager = new VersionManager();
-    versionManager.initialize(resumeData);
+    resumeData = await resumeResponse.json();
+    versionsData = await versionsResponse.json();
 
-    // Listen for version changes
-    document.addEventListener("versionChanged", (event) => {
-      handleVersionChange(event.detail.version);
-    });
+    // Set default version from config
+    currentVersion = versionsData.config.default_version;
+
+    // Initialize version switcher
+    initVersionSwitcher();
+
+    // Apply initial theme with dynamic colors
+    applyTheme(currentVersion);
 
     // Render initial version
-    renderResume(resumeData, versionManager.currentVersion);
+    renderResume(resumeData, versionsData, currentVersion);
 
     // 确保内容渲染完成后再执行分页
     setTimeout(() => {
@@ -41,15 +46,75 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 });
 
+function initVersionSwitcher() {
+  const versionSelect = document.getElementById("versionSelect");
+  if (versionSelect && versionsData) {
+    // Clear existing options
+    versionSelect.innerHTML = "";
+
+    // Add options from versions data
+    Object.keys(versionsData.versions).forEach((versionKey) => {
+      const version = versionsData.versions[versionKey];
+      const option = document.createElement("option");
+      option.value = versionKey;
+      option.textContent = version.display_name;
+      versionSelect.appendChild(option);
+    });
+
+    versionSelect.value = currentVersion;
+
+    versionSelect.addEventListener("change", (e) => {
+      currentVersion = e.target.value;
+      handleVersionChange(currentVersion);
+    });
+  } else {
+    console.warn("Version switcher not initialized - missing element or data");
+  }
+}
+
+function applyTheme(version) {
+  if (!versionsData || !versionsData.versions[version]) {
+    console.warn(
+      `Cannot apply theme - versionsData or version not found: ${version}`
+    );
+    return;
+  }
+
+  const versionConfig = versionsData.versions[version];
+  const themeColor = versionConfig.theme_color;
+
+  // Remove all existing theme classes
+  document.body.classList.remove(
+    "theme-data-viz",
+    "theme-ux-research",
+    "theme-ai-consultant"
+  );
+
+  // Add the new theme class
+  document.body.classList.add(`theme-${version}`);
+
+  // Dynamically set the theme color CSS custom property
+  document.documentElement.style.setProperty("--theme-color", themeColor);
+}
+
 function handleVersionChange(version) {
+  // Check if data is loaded
+  if (!versionsData || !resumeData) {
+    console.warn("Data not loaded yet, cannot change version");
+    return;
+  }
+
   // Show loading state during transition
   document.body.style.opacity = "0.8";
 
   // Clear all existing pages first
   resetPageLayout();
 
+  // Apply new theme with dynamic colors
+  applyTheme(version);
+
   // Re-render content
-  renderResume(resumeData, version);
+  renderResume(resumeData, versionsData, version);
 
   // Re-run pagination after content change
   setTimeout(() => {
@@ -85,7 +150,7 @@ function resetPageLayout() {
   }
 }
 
-function renderResume(data, version = "data-viz") {
+function renderResume(profileData, versionsData, version = "data-viz") {
   const page = document.querySelector(".page");
 
   // Preserve header before clearing
@@ -100,11 +165,25 @@ function renderResume(data, version = "data-viz") {
   }
 
   // Get version-specific configuration
-  const versionConfig = data.versions[version];
-  const sectionsOrder = versionConfig.sections_order;
+  if (
+    !versionsData ||
+    !versionsData.versions ||
+    !versionsData.versions[version]
+  ) {
+    console.error(
+      `Version configuration not found for: ${version}`,
+      "Available versions:",
+      versionsData?.versions ? Object.keys(versionsData.versions) : "none"
+    );
+    return;
+  }
+
+  const versionConfig = versionsData.versions[version];
+  const contentConfig = versionConfig.content_config;
+  const sectionsOrder = contentConfig.sections_order;
   const summary = versionConfig.summary;
-  const skillsFocus = versionConfig.skills_focus;
-  const projectsLimit = versionConfig.projects_limit;
+  const skillsFocus = contentConfig.skills_focus;
+  const projectsLimit = contentConfig.projects_limit;
 
   // Render sections in version-specific order
   sectionsOrder.forEach((sectionName) => {
@@ -116,38 +195,47 @@ function renderResume(data, version = "data-viz") {
         break;
       case "technical_skills":
         if (
-          data.technical_skills &&
-          Object.keys(data.technical_skills).length > 0
+          profileData.technical_skills &&
+          Object.keys(profileData.technical_skills).length > 0
         ) {
-          renderTechnicalSkills(data.technical_skills, page, skillsFocus);
+          renderTechnicalSkills(
+            profileData.technical_skills,
+            page,
+            skillsFocus
+          );
         }
         break;
       case "education":
-        if (data.education && data.education.length > 0) {
-          renderEducation(data.education, page);
+        if (profileData.education && profileData.education.length > 0) {
+          renderEducation(profileData.education, page);
         }
         break;
       case "phd_research":
-        if (data.phd_research && data.phd_research.sections.length > 0) {
-          renderPhDResearch(data.phd_research, page);
+        if (
+          profileData.phd_research &&
+          profileData.phd_research.sections.length > 0
+        ) {
+          renderPhDResearch(profileData.phd_research, page);
         }
         break;
       case "projects":
-        // Use dataLoader to get version-specific projects if available
-        let projectsToRender = data.projects || [];
-        if (dataLoader) {
-          projectsToRender = dataLoader.getVersionProjects(version);
-        } else if (data.projects && data.projects.length > 0) {
-          projectsToRender = data.projects.slice(0, projectsLimit);
-        }
-
-        if (projectsToRender.length > 0) {
-          renderProjects(projectsToRender, page, versionConfig.project_focus);
+        // Get version-specific projects
+        if (profileData.projects && profileData.projects.length > 0) {
+          const projectsToRender = profileData.projects.slice(0, projectsLimit);
+          renderProjects(projectsToRender, page, contentConfig.project_focus);
         }
         break;
       case "publications":
-        if (data.publications && data.publications.length > 0) {
-          renderPublications(data.publications, page);
+        if (profileData.publications && profileData.publications.length > 0) {
+          renderPublications(profileData.publications, page);
+        }
+        break;
+      case "certifications":
+        if (
+          profileData.certifications &&
+          profileData.certifications.length > 0
+        ) {
+          renderCertifications(profileData.certifications, page);
         }
         break;
       case "certifications":

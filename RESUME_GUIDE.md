@@ -386,14 +386,6 @@ versionManager.importConfiguration(config);
 
 ### Theme Color Customization
 
-Current theme colors in `styles/main.css`:
-
-```css
---data-viz-theme: #1976d2; /* Blue */
---ux-research-theme: #000000; /* Black */
---ai-consultant-theme: #008035; /* Green */
-```
-
 Elements that use theme colors:
 
 - Main heading (h1)
@@ -783,7 +775,7 @@ const githubStats = await fetch("/api/github-stats");
 // Merge with existing profile data
 ```
 
-## 
+##
 
 ## LLM Prompt for Data Generation
 
