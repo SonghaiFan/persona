@@ -17,6 +17,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Set default version from config
     currentVersion = versionsData.config.default_version;
 
+    // Render header from profile data
+    renderHeader(resumeData);
+
     // Initialize version switcher
     initVersionSwitcher();
 
@@ -45,6 +48,65 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.body.classList.add("loaded");
   }
 });
+
+function renderHeader(profileData) {
+  const personal = profileData.personal_info;
+
+  // Set the name
+  const nameElement = document.getElementById("headerName");
+  if (nameElement) {
+    nameElement.textContent = personal.name;
+  }
+
+  // Build contact info
+  const contactContainer = document.getElementById("headerContactInfo");
+  if (contactContainer) {
+    // Extract readable link text from URLs
+    const githubText = personal.links.github.replace(
+      "https://github.com/",
+      "github.com/"
+    );
+    const websiteText = personal.links.website.replace("https://", "");
+    const linkedinText = personal.links.linkedin.replace(
+      "https://www.linkedin.com/in/",
+      "linkedin.com/in/"
+    );
+
+    contactContainer.innerHTML = `
+      <div class="contact-info-row">
+        <span class="contact-item">
+          <i class="fas fa-map-marker-alt"></i> ${personal.location}
+        </span>
+        <span class="contact-item">
+          <i class="fas fa-phone"></i> ${personal.phone}
+        </span>
+        <span class="contact-item">
+          <i class="fas fa-envelope"></i> ${personal.email}
+        </span>
+      </div>
+      <div class="contact-info-row">
+        <span class="contact-item">
+          <i class="fab fa-github"></i>
+          <a href="${personal.links.github}" target="_blank" class="contact-link">
+            ${githubText}
+          </a>
+        </span>
+        <span class="contact-item">
+          <i class="fas fa-globe"></i>
+          <a href="${personal.links.website}" target="_blank" class="contact-link">
+            ${websiteText}
+          </a>
+        </span>
+        <span class="contact-item">
+          <i class="fab fa-linkedin"></i>
+          <a href="${personal.links.linkedin}" target="_blank" class="contact-link">
+            ${linkedinText}
+          </a>
+        </span>
+      </div>
+    `;
+  }
+}
 
 function initVersionSwitcher() {
   const versionSelect = document.getElementById("versionSelect");
@@ -357,7 +419,7 @@ function renderTechnicalSkills(skills, container, skillsFocus = null) {
   const section = createSection(
     "technical-skills",
     "Technical Skills",
-    "fas fa-laptop-code"
+    "fas fa-cubes"
   );
 
   let sortedCategories = Object.entries(skills).filter(
@@ -454,11 +516,7 @@ function renderTechnicalSkills(skills, container, skillsFocus = null) {
 }
 
 function renderProjects(projects, container, projectFocus = null) {
-  const section = createSection(
-    "projects",
-    "Selected Projects",
-    "fas fa-project-diagram"
-  );
+  const section = createSection("projects", "Selected Projects", "fas fa-star");
 
   projects.forEach((project) => {
     const projectItem = document.createElement("div");

@@ -36,7 +36,7 @@
   --theme-color: var(--md-grey-800); /* fallback */
 
   /* Ultra Compact Typography */
-  --xl-title: 16px; /* Name only */
+  --xl-title: 26px; /* Name only */
   --lg-title: 13px; /* Section headers */
   --md-title: 11px; /* Subsection titles */
   --sm-title: 10px; /* Item titles */
@@ -252,12 +252,11 @@ body.loaded .loading-indicator {
   header {
     margin-bottom: var(--space-2);
   }
-
   .header-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: var(--space-4);
-    align-items: start;
+    align-items: end;
   }
 
   .contact-info {
@@ -285,7 +284,7 @@ header {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--space-4);
-  align-items: start;
+  align-items: end;
 }
 
 .header-text {
