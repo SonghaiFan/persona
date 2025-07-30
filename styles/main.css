@@ -32,6 +32,11 @@
   --divider-color: var(--md-grey-200);
   --accent-color: var(--md-grey-800);
 
+  /* Version Theme Colors */
+  --data-viz-theme: #1976d2; /* Blue for Data Visualisation */
+  --ux-research-theme: #000000; /* black for UX Research */
+  --ai-consultant-theme: #008035; /* Green for AI Consultant */
+
   /* Ultra Compact Typography */
   --xl-title: 16px; /* Name only */
   --lg-title: 13px; /* Section headers */
@@ -48,6 +53,111 @@
   --space-3: 6px;
   --space-4: 8px;
   --space-6: 12px;
+}
+
+/* Version Switcher */
+.version-switcher {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: var(--background-color);
+  border: 1px solid var(--divider-color);
+  border-radius: 8px;
+  padding: var(--space-4);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--small-text);
+}
+
+.switcher-label {
+  color: var(--secondary-color);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.version-select {
+  background: var(--background-color);
+  border: 1px solid var(--divider-color);
+  border-radius: 4px;
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--small-text);
+  color: var(--primary-color);
+  cursor: pointer;
+  min-width: 150px;
+}
+
+.version-select:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 2px rgba(66, 66, 66, 0.1);
+}
+
+/* Hide version switcher in print */
+@media print {
+  .version-switcher {
+    display: none !important;
+  }
+}
+
+/* Version Theme Classes */
+body.theme-data-viz {
+  --theme-color: var(--data-viz-theme);
+}
+
+body.theme-ux-research {
+  --theme-color: var(--ux-research-theme);
+}
+
+body.theme-ai-consultant {
+  --theme-color: var(--ai-consultant-theme);
+}
+
+/* Apply theme color to specific elements */
+body[class*="theme-"] h1 {
+  color: var(--theme-color);
+}
+
+body[class*="theme-"] h2 {
+  color: var(--theme-color);
+  border-bottom: 1px solid var(--divider-color);
+}
+
+body[class*="theme-"] h2 i {
+  color: var(--theme-color);
+}
+
+body[class*="theme-"] .skill-dot.filled {
+  background-color: var(--theme-color);
+}
+
+body[class*="theme-"] .contact-link {
+  color: var(--theme-color);
+}
+
+body[class*="theme-"] .version-select {
+  border-color: var(--theme-color);
+}
+
+body[class*="theme-"] .version-select:focus {
+  border-color: var(--theme-color);
+}
+
+body.theme-data-viz .version-select:focus {
+  box-shadow: 0 0 0 2px rgba(25, 118, 210, 0.1);
+}
+
+body.theme-ux-research .version-select:focus {
+  box-shadow: 0 0 0 2px rgba(123, 31, 162, 0.1);
+}
+
+body.theme-ai-consultant .version-select:focus {
+  box-shadow: 0 0 0 2px rgba(245, 124, 0, 0.1);
+}
+
+:root {
   --space-8: 16px;
 
   /* Material Design Elevation Shadows */
@@ -83,6 +193,7 @@ body {
   print-color-adjust: exact;
   font-weight: 400;
   letter-spacing: 0.1px;
+  transition: opacity 0.2s ease-in-out;
 }
 
 /* 防止加载时闪动 */
@@ -177,6 +288,15 @@ body.loaded .loading-indicator {
 
   .contact-info {
     justify-self: end;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, auto);
+    gap: var(--space-1) var(--space-2);
+    text-align: right;
+  }
+
+  .contact-info-row {
+    display: contents;
   }
 }
 
@@ -208,17 +328,16 @@ h1 {
 }
 
 .contact-info {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, auto);
+  gap: var(--space-1) var(--space-2);
   justify-self: end;
+  text-align: right;
 }
 
 .contact-info-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-4);
-  justify-content: flex-end;
+  display: contents;
 }
 
 .contact-item {
@@ -434,7 +553,6 @@ ul li::before {
   padding: var(--space-1);
   background: var(--background-color);
   border-radius: var(--md-radius-small);
-  border-left: 1px solid var(--divider-color);
 }
 
 .case-study-item {

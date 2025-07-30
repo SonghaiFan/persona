@@ -10,6 +10,10 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/inter/3.19.3/inter.css" rel="stylesheet" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
   <link href="styles/main.css" rel="stylesheet" />
+  <script src="js/config-validator.js"></script>
+  <script src="js/theme-manager.js"></script>
+  <script src="js/data-loader.js"></script>
+  <script src="js/version-manager.js"></script>
   <script src="js/paginate.js"></script>
   <script src="js/main.js" defer></script>
 </head>
@@ -29,7 +33,7 @@
             <i class="fas fa-phone"></i> +61 0434 780 632
           </span>
           <span class="contact-item">
-            <i class="fas fa-envelope"></i> fansonghai@hotmail.com
+            <i class="fas fa-envelope"></i> songhai.fan2025@gmail.com
           </span>
         </div>
         <div class="contact-info-row">
@@ -58,6 +62,14 @@
         </div> -->
     </div>
   </header>
+
+  <!-- Version Switcher -->
+  <div class="version-switcher" id="versionSwitcher">
+    <div class="switcher-label">Resume Version:</div>
+    <select id="versionSelect" class="version-select">
+      <!-- Options will be dynamically generated from data.json -->
+    </select>
+  </div>
 
   <!-- 加载指示器 -->
   <div class="loading-indicator">

@@ -1,8 +1,12 @@
 // paginate.js - Auto-pagination script for A4 pages
 function autoPaginate() {
   const PAGE_SELECTOR = ".page";
+  const book = document.getElementById('book');
+  
+  // Reset pagination - remove all pages except the first one
+  resetPagination();
+  
   const pageHeight = document.querySelector(PAGE_SELECTOR).clientHeight;
-
   [...document.querySelectorAll(PAGE_SELECTOR)].forEach(splitPage);
   
   function splitPage(page) {
@@ -18,6 +22,16 @@ function autoPaginate() {
       // 如果新页还是溢出，递归继续拆
       if (newPage.scrollHeight > pageHeight) splitPage(newPage);
     }
+  }
+}
+
+function resetPagination() {
+  const book = document.getElementById('book');
+  const pages = book.querySelectorAll('.page');
+  
+  // Keep only the first page
+  for (let i = 1; i < pages.length; i++) {
+    pages[i].remove();
   }
 }
 

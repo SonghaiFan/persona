@@ -1,6 +1,6 @@
 # Songhai Fan (Frank)
 
-**Location:** Melbourne, Australia | **Phone:** +61 0434 780 632 | **Email:** fansonghai@hotmail.com  
+**Location:** Melbourne, Australia | **Phone:** +61 0434 780 632 | **Email:** songhai.fan2025@gmail.com  
 **GitHub:** [github.com/SonghaiFan](https://github.com/SonghaiFan) | **Website:** [songhai.one](https://songhai.one) | **LinkedIn:** [linkedin.com/in/songhaifan](https://www.linkedin.com/in/songhaifan)
 
 ## Professional Summary
