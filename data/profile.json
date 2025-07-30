@@ -18,7 +18,7 @@
       "period": "Oct 2021 – Jul 2025 Expected",
       "research": "Research: Narrative Visualization and Analytics",
       "highlights": [
-        "Research focus: Narrative visualization frameworks, LLM text visualization, and human-centered data interfaces"
+        "Narrative visualization frameworks, LLM text visualization, and human-centered data interfaces"
       ]
     },
     {
@@ -68,17 +68,12 @@
         {
           "name": "Generative AI & LLMs",
           "level": 5,
-          "keywords": [
-            "OpenAI API",
-            "LangChain",
-            "Prompt Engineering",
-            "GPT Integration"
-          ]
+          "keywords": ["OpenAI API", "LangChain", "Prompt Engineering"]
         },
         {
           "name": "Natural Language Processing",
           "level": 4,
-          "keywords": ["Transformers", "SpaCy", "Text Summarization", "BERT"]
+          "keywords": ["Topic Modelling", "BERT"]
         },
         {
           "name": "Machine Learning",
@@ -88,15 +83,6 @@
             "TensorFlow",
             "PyTorch",
             "Feature Engineering"
-          ]
-        },
-        {
-          "name": "AI Strategy & Consulting",
-          "level": 4,
-          "keywords": [
-            "AI Implementation",
-            "Digital Transformation",
-            "Business AI Solutions"
           ]
         },
         {
@@ -112,7 +98,7 @@
         {
           "name": "Big Data Processing",
           "level": 4,
-          "keywords": ["Hadoop", "Spark", "ETL"]
+          "keywords": ["Hadoop", "Spark", "Kafka"]
         },
         {
           "name": "Data Engineering",
@@ -122,20 +108,12 @@
         {
           "name": "Data Analysis",
           "level": 5,
-          "keywords": ["Pandas", "R (tidyverse)", "Statistical testing"]
+          "keywords": ["SQL", "tidyverse", "Statistical testing"]
         },
         {
           "name": "Data Visualization",
           "level": 5,
-          "keywords": [
-            "D3.js",
-            "Power BI",
-            "Tableau",
-            "Cytoscape.js",
-            "NetworkX",
-            "Plotly",
-            "Scrollytelling"
-          ]
+          "keywords": ["D3", "Tableau/Power BI", "Cytoscape", "NetworkX"]
         }
       ]
     },

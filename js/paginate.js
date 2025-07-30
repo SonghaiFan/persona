@@ -1,14 +1,14 @@
 // paginate.js - Auto-pagination script for A4 pages
 function autoPaginate() {
   const PAGE_SELECTOR = ".page";
-  const book = document.getElementById('book');
-  
+  const book = document.getElementById("book");
+
   // Reset pagination - remove all pages except the first one
   resetPagination();
-  
+
   const pageHeight = document.querySelector(PAGE_SELECTOR).clientHeight;
   [...document.querySelectorAll(PAGE_SELECTOR)].forEach(splitPage);
-  
+
   function splitPage(page) {
     while (page.scrollHeight > pageHeight) {
       // 新建空白页
@@ -26,9 +26,9 @@ function autoPaginate() {
 }
 
 function resetPagination() {
-  const book = document.getElementById('book');
-  const pages = book.querySelectorAll('.page');
-  
+  const book = document.getElementById("book");
+  const pages = book.querySelectorAll(".page");
+
   // Keep only the first page
   for (let i = 1; i < pages.length; i++) {
     pages[i].remove();
@@ -36,14 +36,17 @@ function resetPagination() {
 }
 
 // 在窗口resize时执行分页（初始分页由main.js调用）
-window.addEventListener("resize", debounce(() => {
-  // Resize时短暂隐藏内容，避免闪动
-  document.body.style.opacity = '0.7';
-  autoPaginate();
-  setTimeout(() => {
-    document.body.style.opacity = '1';
-  }, 100);
-}, 300));
+window.addEventListener(
+  "resize",
+  debounce(() => {
+    // Resize时短暂隐藏内容，避免闪动
+    document.body.style.opacity = "0.7";
+    autoPaginate();
+    setTimeout(() => {
+      document.body.style.opacity = "1";
+    }, 100);
+  }, 300)
+);
 
 // 防抖函数，避免频繁执行
 function debounce(func, wait) {
