@@ -163,6 +163,21 @@ body.loaded .loading-indicator {
     box-shadow: none;
     break-after: page;
   }
+
+  header {
+    margin-bottom: var(--space-2);
+  }
+
+  .header-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+    align-items: start;
+  }
+
+  .contact-info {
+    justify-self: end;
+  }
 }
 
 /* Ultra Compact Header */
@@ -170,6 +185,18 @@ header {
   margin-bottom: var(--space-3);
   padding-bottom: var(--space-2);
   border-bottom: 1px solid var(--divider-color);
+}
+
+.header-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+  align-items: start;
+}
+
+.header-text {
+  display: flex;
+  flex-direction: column;
 }
 
 h1 {
@@ -182,9 +209,16 @@ h1 {
 
 .contact-info {
   display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  justify-self: end;
+}
+
+.contact-info-row {
+  display: flex;
   flex-wrap: wrap;
   gap: var(--space-4);
-  margin-top: var(--space-2);
+  justify-content: flex-end;
 }
 
 .contact-item {
@@ -252,13 +286,6 @@ p {
   border-radius: var(--md-radius-small);
   padding: var(--space-2);
   margin-bottom: var(--space-2);
-  border: 1px solid var(--divider-color);
-}
-
-.education-item:hover,
-.project-item:hover,
-.publication-item:hover {
-  box-shadow: var(--md-elevation-1);
 }
 
 .education-item:last-child,
@@ -317,11 +344,6 @@ ul li::before {
   background: var(--surface-color);
   border-radius: var(--md-radius-small);
   padding: var(--space-2);
-  border: 1px solid var(--divider-color);
-}
-
-.skill-category:hover {
-  box-shadow: var(--md-elevation-1);
 }
 
 .skill-title {
@@ -504,7 +526,6 @@ ul li::before {
     break-inside: avoid;
     background-color: transparent;
     box-shadow: none;
-    border: 1px solid var(--divider-color);
   }
 
   h1 {
