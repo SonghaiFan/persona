@@ -267,6 +267,11 @@ function renderResume(profileData, versionsData, version = "data-viz") {
           );
         }
         break;
+      case "work_experience":
+        if (profileData.work_experience && profileData.work_experience.length > 0) {
+          renderWorkExperience(profileData.work_experience, page);
+        }
+        break;
       case "education":
         if (profileData.education && profileData.education.length > 0) {
           renderEducation(profileData.education, page);
@@ -651,5 +656,77 @@ function renderCertifications(certifications, container) {
   });
 
   section.appendChild(ul);
+  container.appendChild(section);
+}
+
+function renderWorkExperience(workExperience, container) {
+  const section = createSection(
+    "work-experience",
+    "Work Experience",
+    "fas fa-briefcase"
+  );
+
+  workExperience.forEach((job) => {
+    const jobItem = document.createElement("div");
+    jobItem.className = "work-experience-item";
+
+    const jobHeader = document.createElement("div");
+    jobHeader.className = "job-header";
+
+    const jobTitle = document.createElement("div");
+    jobTitle.className = "job-title";
+    jobTitle.textContent = job.title;
+    jobHeader.appendChild(jobTitle);
+
+    const jobMeta = document.createElement("div");
+    jobMeta.className = "job-meta";
+
+    const companyLocation = document.createElement("div");
+    companyLocation.className = "company-location";
+    companyLocation.textContent = `${job.company}, ${job.location}`;
+    jobMeta.appendChild(companyLocation);
+
+    const periodType = document.createElement("div");
+    periodType.className = "period-type";
+    periodType.textContent = `${job.period}${job.type ? ` • ${job.type}` : ''}`;
+    jobMeta.appendChild(periodType);
+
+    jobHeader.appendChild(jobMeta);
+    jobItem.appendChild(jobHeader);
+
+    if (job.responsibilities && job.responsibilities.length > 0) {
+      const responsibilitiesUl = document.createElement("ul");
+      responsibilitiesUl.className = "job-responsibilities";
+      job.responsibilities.forEach((responsibility) => {
+        const li = document.createElement("li");
+        li.textContent = responsibility;
+        responsibilitiesUl.appendChild(li);
+      });
+      jobItem.appendChild(responsibilitiesUl);
+    }
+
+    if (job.achievements && job.achievements.length > 0) {
+      const achievementsDiv = document.createElement("div");
+      achievementsDiv.className = "job-achievements";
+      
+      const achievementsTitle = document.createElement("div");
+      achievementsTitle.className = "achievements-title";
+      achievementsTitle.textContent = "Key Achievements:";
+      achievementsDiv.appendChild(achievementsTitle);
+
+      const achievementsUl = document.createElement("ul");
+      achievementsUl.className = "achievements-list";
+      job.achievements.forEach((achievement) => {
+        const li = document.createElement("li");
+        li.textContent = achievement;
+        achievementsUl.appendChild(li);
+      });
+      achievementsDiv.appendChild(achievementsUl);
+      jobItem.appendChild(achievementsDiv);
+    }
+
+    section.appendChild(jobItem);
+  });
+
   container.appendChild(section);
 }

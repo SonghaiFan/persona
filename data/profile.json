@@ -36,6 +36,26 @@
     }
   ],
 
+  "work_experience": [
+    {
+      "title": "Teaching Associate & Tutor",
+      "company": "Monash University",
+      "location": "Melbourne, Australia",
+      "period": "Oct 2021 – Present",
+      "type": "Part-time",
+      "responsibilities": [
+        "Tutored undergraduate and graduate students in data science, visualization, and human-computer interaction courses",
+        "Designed and delivered interactive workshops on D3.js, Python data analysis, and research methodologies",
+        "Mentored 200+ students in capstone projects involving data visualization and UX research",
+        "Supervised laboratory sessions and provided one-on-one academic support for complex technical projects"
+      ],
+      "achievements": [
+        "Received consistently high student evaluation scores (4.8/5.0 average)",
+        "Developed innovative teaching materials for interactive data visualization techniques"
+      ]
+    }
+  ],
+
   "phd_research": {
     "sections": [
       {
@@ -60,7 +80,6 @@
       }
     ]
   },
-
   "technical_skills": {
     "artificial_intelligence": {
       "title": "AI & Machine Learning",
@@ -68,12 +87,12 @@
         {
           "name": "Generative AI & LLMs",
           "level": 5,
-          "keywords": ["OpenAI API", "LangChain", "Prompt Engineering"]
+          "keywords": ["OpenAI API", "LangChain/Graph", "Prompt Engineering"]
         },
         {
           "name": "Natural Language Processing",
           "level": 4,
-          "keywords": ["Topic Modelling", "BERT"]
+          "keywords": ["BERT/GPT Fine-tuning", "NLTK、spaCy", "POS", "NER"]
         },
         {
           "name": "Machine Learning",
@@ -84,11 +103,6 @@
             "PyTorch",
             "Feature Engineering"
           ]
-        },
-        {
-          "name": "Programming Languages",
-          "level": 5,
-          "keywords": ["Python", "R", "SQL", "JavaScript"]
         }
       ]
     },
@@ -103,43 +117,38 @@
         {
           "name": "Data Engineering",
           "level": 3,
-          "keywords": ["Data Warehousing", "Data Pipeline", "OLAP"]
+          "keywords": [
+            "Data Wrangling",
+            "Data Warehousing",
+            "Data Pipeline",
+            "ETL"
+          ]
         },
         {
           "name": "Data Analysis",
           "level": 5,
-          "keywords": ["SQL", "tidyverse", "Statistical testing"]
+          "keywords": ["SQL", "R (tidyverse)", "Python (pandas, NumPy)"]
         },
         {
           "name": "Data Visualization",
           "level": 5,
-          "keywords": ["D3", "Tableau/Power BI", "Cytoscape", "NetworkX"]
+          "keywords": ["Tableau/Power BI", "D3.js", "Cytoscape.js/NetworkX"]
         }
       ]
     },
     "web_technologies": {
-      "title": "Web & Interface Development",
+      "title": "Web & UX Skills",
       "items": [
         {
           "name": "Front-End",
           "level": 5,
-          "keywords": ["React", "Next.js", "TailwindCSS"]
+          "keywords": ["JavaScript", "React", "TailwindCSS"]
         },
         {
           "name": "Back-End / Serverless",
           "level": 3,
-          "keywords": ["Node.js", "Firebase", "API integration"]
+          "keywords": ["Node.js", "Next.js", "Firebase", "API integration"]
         },
-        {
-          "name": "Tooling & CI/CD",
-          "level": 4,
-          "keywords": ["GitHub", "Vercel", "Google Analytics"]
-        }
-      ]
-    },
-    "research_skills": {
-      "title": "Research & UX Skills",
-      "items": [
         {
           "name": "UX Research Methods",
           "level": 5,
@@ -151,28 +160,33 @@
           ]
         },
         {
-          "name": "Research Design & Analysis",
+          "name": "Tooling & CI/CD",
+          "level": 4,
+          "keywords": ["GitHub", "Vercel", "Google Analytics"]
+        }
+      ]
+    },
+    "research_skills": {
+      "title": "Research ",
+      "items": [
+        {
+          "name": "Research Design & Methodology",
           "level": 5,
-          "keywords": [
-            "Controlled Studies",
-            "Qualitative Analysis",
-            "Statistical Testing",
-            "Survey Design"
-          ]
+          "keywords": ["Experimental Design", "Power Analysis", "Mixed Methods"]
         },
         {
-          "name": "Academic Writing",
+          "name": "Statistical Modeling & Analysis",
+          "level": 5,
+          "keywords": ["Regression", "ANOVA", "Bayesian Inference"]
+        },
+        {
+          "name": "Literature Review & Theory Building",
           "level": 4,
-          "keywords": [
-            "LaTeX",
-            "Peer-reviewed Publications",
-            "Technical Documentation"
-          ]
+          "keywords": ["Systematic Review", "Theory Development"]
         }
       ]
     }
   },
-
   "projects": [
     {
       "id": "causal-network-viz",

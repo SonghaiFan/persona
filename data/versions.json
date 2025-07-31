@@ -4,6 +4,7 @@
     "theme_base": "theme-",
     "available_sections": [
       "summary",
+      "work_experience",
       "technical_skills",
       "projects",
       "phd_research",
@@ -35,6 +36,7 @@
         ],
         "sections_order": [
           "summary",
+          "work_experience",
           "technical_skills",
           "projects",
           "phd_research",
@@ -74,6 +76,7 @@
         ],
         "sections_order": [
           "summary",
+          "work_experience",
           "phd_research",
           "technical_skills",
           "projects",
@@ -113,6 +116,7 @@
         ],
         "sections_order": [
           "summary",
+          "work_experience",
           "technical_skills",
           "phd_research",
           "projects",

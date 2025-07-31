@@ -41,6 +41,23 @@ I need you to generate JSON data for a dynamic resume system. Please create two 
       "highlights": ["Key achievements or coursework"]
     }
   ],
+  "work_experience": [
+    {
+      "title": "Job Title",
+      "company": "Company Name",
+      "location": "City, Country",
+      "period": "Start Date – End Date",
+      "type": "Full-time/Part-time",
+      "responsibilities": [
+        "Key responsibility or achievement",
+        "Another important task or project"
+      ],
+      "achievements": [
+        "Quantifiable achievement with metrics",
+        "Recognition or award received"
+      ]
+    }
+  ],
   "technical_skills": {
     "programming": {
       "title": "Programming & Development",
@@ -94,6 +111,7 @@ I need you to generate JSON data for a dynamic resume system. Please create two 
         "skills_focus": ["programming", "tools_platforms"],
         "sections_order": [
           "summary",
+          "work_experience", 
           "technical_skills",
           "projects",
           "education",
@@ -148,9 +166,27 @@ python -m http.server 8000
 
   "education": [
     {
-      "degree": "Your Degree",
+      "degree": "Your Degree", 
       "institution": "University Name",
       "period": "2020-2024"
+    }
+  ],
+
+  "work_experience": [
+    {
+      "title": "Software Developer",
+      "company": "Tech Company Inc",
+      "location": "San Francisco, CA",
+      "period": "2022 – Present",
+      "type": "Full-time",
+      "responsibilities": [
+        "Developed and maintained web applications using React and Node.js",
+        "Collaborated with cross-functional teams to deliver features on time"
+      ],
+      "achievements": [
+        "Improved application performance by 40% through code optimization",
+        "Led a team of 3 developers on major product feature"
+      ]
     }
   ],
 
@@ -213,6 +249,7 @@ python -m http.server 8000
         "skills_focus": ["programming", "tools"],
         "sections_order": [
           "summary",
+          "work_experience",
           "technical_skills",
           "projects",
           "education"
@@ -229,6 +266,7 @@ python -m http.server 8000
         "skills_focus": ["programming", "tools"],
         "sections_order": [
           "summary",
+          "work_experience",
           "technical_skills",
           "projects",
           "education"
@@ -245,6 +283,7 @@ python -m http.server 8000
         "skills_focus": ["programming", "tools"],
         "sections_order": [
           "summary",
+          "work_experience",
           "technical_skills",
           "projects",
           "education"
@@ -305,6 +344,7 @@ You can use **any category names**:
 
 Add any of these to your `profile.json`:
 
+- `work_experience`: Professional work history with responsibilities and achievements
 - `publications`: Academic papers
 - `certifications`: Professional certifications
 - `phd_research`: Research experience

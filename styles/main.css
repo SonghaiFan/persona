@@ -56,35 +56,40 @@
 /* Version Switcher */
 .version-switcher {
   position: fixed;
-  top: 20px;
-  right: 20px;
+  top: 15px;
+  right: 15px;
   background: var(--background-color);
   border: 1px solid var(--divider-color);
-  border-radius: 8px;
-  padding: var(--space-4);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  padding: var(--space-2);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
   z-index: 1000;
   display: flex;
-  align-items: center;
-  gap: var(--space-3);
-  font-size: var(--small-text);
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--space-1);
+  font-size: var(--tiny-text);
+  min-width: 80px;
+  max-width: 100px;
 }
 
 .switcher-label {
   color: var(--secondary-color);
   font-weight: 500;
-  white-space: nowrap;
+  font-size: var(--tiny-text);
+  text-align: center;
+  margin-bottom: var(--space-1);
 }
 
 .version-select {
   background: var(--background-color);
   border: 1px solid var(--divider-color);
-  border-radius: 4px;
-  padding: var(--space-2) var(--space-3);
-  font-size: var(--small-text);
+  border-radius: 3px;
+  padding: var(--space-1) var(--space-2);
+  font-size: var(--tiny-text);
   color: var(--primary-color);
   cursor: pointer;
-  min-width: 150px;
+  width: 100%;
 }
 
 .version-select:focus {
@@ -372,6 +377,7 @@ p {
 
 /* Compact Material Design Cards */
 .education-item,
+.work-experience-item,
 .project-item,
 .publication-item {
   background: var(--surface-color);
@@ -381,6 +387,7 @@ p {
 }
 
 .education-item:last-child,
+.work-experience-item:last-child,
 .project-item:last-child,
 .publication-item:last-child {
   margin-bottom: 0;
@@ -397,6 +404,63 @@ p {
   font-size: var(--small-text);
   color: var(--tertiary-color);
   margin-bottom: var(--space-1);
+}
+
+/* Work Experience Styling */
+.job-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--space-2);
+}
+
+.job-title {
+  font-weight: 600;
+  font-size: var(--sm-title);
+  color: var(--primary-color);
+  flex: 1;
+}
+
+.job-meta {
+  text-align: right;
+  flex-shrink: 0;
+  margin-left: var(--space-2);
+}
+
+.company-location {
+  font-size: var(--small-text);
+  color: var(--tertiary-color);
+  margin-bottom: var(--space-1);
+}
+
+.period-type {
+  font-size: var(--small-text);
+  color: var(--accent-color);
+  font-weight: 500;
+}
+
+.job-responsibilities {
+  margin-bottom: var(--space-2);
+}
+
+.job-achievements {
+  margin-top: var(--space-2);
+}
+
+.achievements-title {
+  font-size: var(--small-text);
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-bottom: var(--space-1);
+}
+
+.achievements-list {
+  margin: 0;
+}
+
+.achievements-list li {
+  color: var(--accent-color);
+  font-weight: 500;
 }
 
 /* Ultra Dense Lists */
@@ -610,6 +674,7 @@ ul li::before {
   }
 
   .education-item,
+  .work-experience-item,
   .project-item,
   .publication-item,
   .skill-category {
