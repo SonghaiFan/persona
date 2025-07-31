@@ -406,7 +406,7 @@ p {
   margin-bottom: var(--space-1);
 }
 
-/* Work Experience Styling */
+/* Work Styling */
 .job-header {
   display: flex;
   justify-content: space-between;
@@ -529,12 +529,6 @@ ul li::before {
   font-size: var(--sm-title);
 }
 
-.skill-keywords {
-  color: var(--tertiary-color);
-  font-size: var(--tiny-text);
-  line-height: 1.1;
-}
-
 /* New skill subcategories styling */
 .skill-details {
   margin-top: var(--space-1);
@@ -579,7 +573,7 @@ ul li::before {
 
 .unselected-title {
   color: var(--primary-color);
-  font-weight: 600;
+  font-weight: 500;
   font-size: var(--sm-title);
   margin-bottom: var(--space-1);
   border-bottom: 1px solid var(--divider-color);
@@ -606,13 +600,9 @@ ul li::before {
 }
 
 .unselected-skill-name {
-  font-weight: 700;
+  font-weight: 500;
   color: var(--primary-color);
   font-size: var(--sm-title);
-}
-
-.unselected-skill-details {
-  margin-top: var(--space-1);
 }
 
 /* Ultra Compact Skill Rating */
@@ -668,7 +658,7 @@ ul li::before {
 
 .case-item {
   margin-bottom: var(--space-1);
-  margin-left: var(--space-4);
+  margin-left: var(--space-1);
 }
 
 .case-item h4 {
@@ -753,7 +743,7 @@ ul li::before {
   .work-experience-item,
   .project-item,
   .publication-item,
-  .skill-category {
+  .skill-item {
     break-inside: avoid;
     background-color: transparent;
     box-shadow: none;

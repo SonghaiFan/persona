@@ -9,6 +9,7 @@ This is a static web-based resume/portfolio site for Songhai Fan (Frank), a PhD 
 ## Architecture
 
 ### Core Structure
+
 - **index.html**: Main HTML structure with page template and content source container
 - **js/main.js**: JavaScript module with pagination system that renders resume data across multiple A4 pages
 - **styles/main.css**: Comprehensive CSS with A4 print optimization and multi-page support
@@ -16,6 +17,7 @@ This is a static web-based resume/portfolio site for Songhai Fan (Frank), a PhD 
 - **data/Photo.jpg**: Profile photo (currently commented out in HTML)
 
 ### Key Design Patterns
+
 - **Pagination System**: Automatic content distribution across A4-sized pages with height calculations
 - **Data-Driven Rendering**: All content is loaded from `data.json` and rendered via JavaScript
 - **Template-Based Pages**: Uses HTML template element to create consistent page structure
@@ -27,10 +29,11 @@ This is a static web-based resume/portfolio site for Songhai Fan (Frank), a PhD 
 This is a static website with no build process. Development workflow:
 
 1. **Local Development**: Open `index.html` in a browser or use a local server:
+
    ```bash
    # Using Python 3
    python -m http.server 8000
-   
+
    # Using Node.js (if http-server is installed)
    npx http-server
    ```
@@ -42,6 +45,7 @@ This is a static website with no build process. Development workflow:
 ## Key Technical Features
 
 ### Pagination System
+
 - **PaginationManager Class**: Handles automatic content distribution across pages
 - **Height Calculation**: Converts pixel measurements to millimeters for accurate page fitting
 - **Dynamic Page Creation**: Creates new pages when content exceeds available space
@@ -49,6 +53,7 @@ This is a static website with no build process. Development workflow:
 - **Content Overflow Prevention**: Ensures no content is cut off between pages
 
 ### CSS Architecture
+
 - **Multi-Page Layout**: Each `.page` element is exactly A4 size (210mm x 297mm)
 - **Print Media Queries**: Perfect page breaks with `page-break-after: always`
 - **Screen Preview**: Gray background and shadows to visualize individual pages
@@ -56,6 +61,7 @@ This is a static website with no build process. Development workflow:
 - **Grid Layouts**: Skills section uses 2-column grid, publications use flex layouts
 
 ### JavaScript Architecture
+
 - **PaginationManager**: Core class managing page creation and content distribution
 - **Async Data Loading**: Fetches JSON data on DOM content loaded
 - **DOM Element Creation**: All content is created programmatically for better control
@@ -63,8 +69,10 @@ This is a static website with no build process. Development workflow:
 - **Modular Rendering**: Separate functions for each resume section with pagination support
 
 ### Data Structure
+
 The JSON follows a specific schema:
-- `summary`: Professional summary text
+
+- `summary`: Summary text
 - `education`: Array of degree objects with institution, period, highlights
 - `technical_skills`: Nested object with skill categories and proficiency levels
 - `projects`: Array with case studies sub-structure
@@ -74,6 +82,7 @@ The JSON follows a specific schema:
 ## Content Management
 
 To update resume content:
+
 1. Edit `data/data.json` following the existing schema
 2. Skills use 1-5 star rating system (`level` property)
 3. Publications auto-sort by year (descending) then type (Papers before Posters)
@@ -82,6 +91,7 @@ To update resume content:
 ## Print Considerations
 
 The design is optimized for A4 printing:
+
 - Fixed page dimensions prevent content overflow
 - Print media queries adjust margins and spacing
 - Page break controls prevent awkward section splits

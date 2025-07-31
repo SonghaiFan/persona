@@ -109,7 +109,7 @@ Contains **version-specific settings** and content overrides:
       "display_name": "Human Readable Name",
       "theme_color": "#1976d2",
       "icon": "fas fa-icon-name",
-      "summary": "Version-specific professional summary",
+      "summary": "Version-specific Summary",
 
       "content_config": {
         "skills_focus": ["category1", "category2"],
@@ -131,7 +131,7 @@ Contains **version-specific settings** and content overrides:
 
 #### Version Configuration Fields:
 
-- **`summary`**: Professional summary tailored for this version
+- **`summary`**: Summary tailored for this version
 - **`skills_focus`**: Array defining skill category display order
 - **`sections_order`**: Array defining resume section order
 - **`projects_limit`**: Number of projects to display
@@ -170,7 +170,7 @@ Contains **version-specific settings** and content overrides:
 }
 ```
 
-#### Technical Skills (Fully Flexible Categories)
+#### Skills (Fully Flexible Categories)
 
 ```json
 "technical_skills": {
@@ -302,7 +302,7 @@ The system now supports **fully dynamic version management**! No code changes ne
        "display_name": "New Version Name",
        "theme_color": "#e91e63",
        "icon": "fas fa-briefcase",
-       "summary": "Version-specific professional summary",
+       "summary": "Version-specific Summary",
 
        "content_config": {
          "skills_focus": ["ai_ml", "data_science"],
@@ -343,7 +343,7 @@ The system now supports **fully dynamic version management**! No code changes ne
       "display_name": "Human Readable Name", // Required
       "theme_color": "#1976d2", // Required (hex format)
       "icon": "fas fa-icon-name", // Optional
-      "summary": "Professional summary text", // Required
+      "summary": "Summary text", // Required
       "skills_focus": ["category1", "category2"], // Required (array)
       "sections_order": ["summary", "skills"], // Required (array)
       "projects_limit": 4, // Optional (default: 5)
@@ -397,14 +397,14 @@ Elements that use theme colors:
 
 ### Content Guidelines
 
-#### Professional Summary
+#### Summary
 
 - 2-3 sentences maximum
 - Include specific technologies relevant to the version
 - Highlight unique value proposition
 - Use action words and measurable achievements
 
-#### Technical Skills
+#### Skills
 
 - Use 1-5 rating scale consistently
 - Include 3-5 relevant keywords per skill
@@ -813,7 +813,7 @@ I need you to generate JSON data for a dynamic resume system. Please create two 
       "degree": "Degree Name",
       "institution": "University Name, Country",
       "period": "Start Date – End Date",
-      "research": "Research focus (if applicable)",
+      "research": "Research (if applicable)",
       "highlights": ["Key achievements or coursework"]
     }
   ],
@@ -899,7 +899,7 @@ I need you to generate JSON data for a dynamic resume system. Please create two 
       "display_name": "Data Visualisation",
       "theme_color": "#1976d2",
       "icon": "fas fa-chart-bar",
-      "summary": "Version-specific professional summary for data visualization roles",
+      "summary": "Version-specific Summary for data visualization roles",
       "content_config": {
         "skills_focus": [
           "data_analysis",
@@ -948,7 +948,7 @@ I need you to generate JSON data for a dynamic resume system. Please create two 
       },
       "content_overrides": {
         "project_descriptions": {
-          "project-1-id": "UX research focused description emphasizing user studies and design"
+          "project-1-id": "UX Researched description emphasizing user studies and design"
         }
       }
     },

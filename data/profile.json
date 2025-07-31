@@ -31,8 +31,8 @@
     },
     {
       "degree": "Bachelor of Engineering (Honors)",
-      "institution": "Monash University, Australia",
-      "period": "March 2016 – Dec 2018"
+      "institution": "Monash University, Australia / Central South University, China",
+      "period": "March 2014 – Dec 2018"
     }
   ],
 
@@ -147,7 +147,7 @@
         "Feature Engineering",
         "Prompt Engineering"
       ],
-      "methodology": ["Classification", "POS/NER Tagging", "Language Modeling"],
+      "methodology": ["Topic Modeling", "Classification", "POS/NER Tagging"],
       "use_scenario": [
         "Text Classification",
         "Generative Dialogue Systems",
@@ -225,7 +225,6 @@
       "use_scenario": [
         "User Behavior Tracking",
         "Dynamic Dashboard Development",
-        "UX Experiments",
         "Interactive Data Visualization"
       ]
     }

@@ -267,8 +267,8 @@ class ConfigValidator {
   }
 
   /**
-   * Validate technical skills section
-   * @param {Object} technicalSkills - Technical skills object
+   * Validate Skills section
+   * @param {Object} technicalSkills - Skills object
    */
   validateTechnicalSkills(technicalSkills) {
     if (typeof technicalSkills !== "object") {

@@ -331,7 +331,7 @@ function createSection(id, title, icon) {
 function renderSummary(summary, container) {
   const section = createSection(
     "professional-summary",
-    "Professional Summary",
+    "Summary",
     "fas fa-user-circle"
   );
 
@@ -394,7 +394,7 @@ function renderEducation(education, container) {
 function renderPhDResearch(research, container) {
   const section = createSection(
     "phd-research",
-    "Research Focus",
+    "Research",
     "fas fa-microscope"
   );
 
@@ -429,11 +429,7 @@ function renderTechnicalSkills(
   container,
   selectedSkillIds = []
 ) {
-  const section = createSection(
-    "technical-skills",
-    "Technical Skills",
-    "fas fa-cubes"
-  );
+  const section = createSection("technical-skills", "Skills", "fas fa-cubes");
 
   // Group ALL skills by category, mark which are selected
   const skillsByCategory = {};
@@ -692,7 +688,7 @@ function renderTechnicalSkills(
 }
 
 function renderProjects(projects, container, projectFocus = null) {
-  const section = createSection("projects", "Selected Projects", "fas fa-star");
+  const section = createSection("projects", "Projects", "fas fa-star");
 
   projects.forEach((project) => {
     const projectItem = document.createElement("div");
@@ -837,11 +833,7 @@ function renderCertifications(certifications, container) {
 }
 
 function renderWorkExperience(workExperience, container) {
-  const section = createSection(
-    "work-experience",
-    "Work Experience",
-    "fas fa-briefcase"
-  );
+  const section = createSection("work-experience", "Work", "fas fa-briefcase");
 
   workExperience.forEach((job) => {
     const jobItem = document.createElement("div");

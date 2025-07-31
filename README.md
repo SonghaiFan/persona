@@ -3,7 +3,7 @@
 **Location:** Melbourne, Australia | **Phone:** +61 0434 780 632 | **Email:** songhai.fan2025@gmail.com  
 **GitHub:** [github.com/SonghaiFan](https://github.com/SonghaiFan) | **Website:** [songhai.one](https://songhai.one) | **LinkedIn:** [linkedin.com/in/songhaifan](https://www.linkedin.com/in/songhaifan)
 
-## Professional Summary
+## Summary
 
 PhD Researcher in Human-Centered Computing passionate about leveraging LLMs and AI for enhanced human-data interaction. Expertise in narrative visualization, immersive analytics, and data storytelling, with a focus on developing AI-augmented frameworks that bridge human understanding with complex data systems. Skilled in Python, React, D3.js, and advanced NLP techniques, combining technical proficiency with a deep interest in human-AI collaborative systems.
 
@@ -42,7 +42,7 @@ GPA: 3.7/4.0
 - Researched scrollytelling methods to enhance user engagement with data narratives
 - Published findings on improving narrative coherence and interaction in visualization
 
-## Technical Skills
+## Skills
 
 - **Programming:** Python, JavaScript, R, SQL
 - **Visualization:** D3.js, React, Tableau, Power BI
@@ -50,7 +50,7 @@ GPA: 3.7/4.0
 - **Frontend:** React, Redux, HTML/CSS
 - **Tools:** PySpark, Scikit-learn, MySQL
 
-## Selected Projects
+## Projects
 
 ### GPT Storytale
 
