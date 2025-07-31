@@ -292,7 +292,9 @@ function renderResume(profileData, versionsData, version = "data-viz") {
         // Get version-specific projects
         if (profileData.projects && profileData.projects.length > 0) {
           const projectsToRender = profileData.projects.slice(0, projectsLimit);
-          renderProjects(projectsToRender, page, contentConfig.project_focus);
+          const projectOverrides =
+            versionConfig.content_overrides?.project_descriptions;
+          renderProjects(projectsToRender, page, projectOverrides);
         }
         break;
       case "publications":
@@ -700,8 +702,8 @@ function renderProjects(projects, container, projectFocus = null) {
 
     // Use version-specific project focus if available, otherwise use original description
     const descriptionText =
-      projectFocus && projectFocus[project.title]
-        ? projectFocus[project.title]
+      projectFocus && projectFocus[project.id]
+        ? projectFocus[project.id]
         : project.description;
 
     if (descriptionText || project.tech_stack) {

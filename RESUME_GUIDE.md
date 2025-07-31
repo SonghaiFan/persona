@@ -19,7 +19,7 @@ This is a highly extensible, dynamic resume system that generates A4-optimized, 
 The system comes with three pre-configured professional versions:
 
 - **🎨 Data Visualisation** (Blue theme) - Focus on D3.js, Power BI, interactive dashboards
-- **👥 UX Research** (Black theme) - Emphasis on user studies, usability testing, HCI
+- **👥 UX** (Black theme) - Emphasis on user studies, usability testing, HCI
 - **🤖 AI Consultant** (Green theme) - Highlighting LLMs, generative AI, business AI solutions
 
 ## Quick Start
@@ -42,7 +42,7 @@ open http://localhost:8000
 ### 2. Switch Versions
 
 - Use the dropdown in the top-right corner
-- Select between Data Visualisation, UX Research, or AI Consultant
+- Select between Data Visualisation, UX, or AI Consultant
 - Content automatically reorganizes for the selected audience
 
 ### 3. Print to PDF
@@ -829,7 +829,7 @@ I need you to generate JSON data for a dynamic resume system. Please create two 
       ]
     },
     "data_analysis": {
-      "title": "Data Science & Analytics",
+      "title": "Data Analysis & Storytelling",
       "items": [...]
     },
     "software_development": {
@@ -925,10 +925,10 @@ I need you to generate JSON data for a dynamic resume system. Please create two 
       }
     },
     "ux-research": {
-      "display_name": "UX Research",
+      "display_name": "UX",
       "theme_color": "#000000",
       "icon": "fas fa-users",
-      "summary": "Version-specific summary for UX research roles",
+      "summary": "Version-specific summary for UX roles",
       "content_config": {
         "skills_focus": [
           "user_research",
@@ -948,7 +948,7 @@ I need you to generate JSON data for a dynamic resume system. Please create two 
       },
       "content_overrides": {
         "project_descriptions": {
-          "project-1-id": "UX Researched description emphasizing user studies and design"
+          "project-1-id": "UXed description emphasizing user studies and design"
         }
       }
     },

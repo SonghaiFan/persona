@@ -46,7 +46,7 @@
       "responsibilities": [
         "Tutored undergraduate and graduate students in data science, visualization, and human-computer interaction courses",
         "Designed and delivered interactive workshops on D3.js, Python data analysis, and research methodologies",
-        "Mentored 200+ students in capstone projects involving data visualization and UX research"
+        "Mentored 200+ students in capstone projects involving data visualization and UX"
       ],
       "achievements": [
         "Received consistently high student evaluation scores (4.8/5.0 average)",
@@ -81,7 +81,7 @@
   },
   "skill_categories": {
     "data_science": {
-      "title": "Data Science & Analytics"
+      "title": "Data Analysis & Storytelling"
     },
     "artificial_intelligence": {
       "title": "AI & Machine Learning"
@@ -100,8 +100,8 @@
     }
   },
   "skills_pool": {
-    "data_science_analytics": {
-      "name": "Data Science & Analytics",
+    "data_analysis": {
+      "name": "Data Analysis & Storytelling",
       "category": "data_science",
       "level": 5,
       "tech_stack": [
@@ -112,76 +112,76 @@
         "Power BI"
       ],
       "core_skill": [
-        "Data Wrangling",
-        "Data Exploration",
-        "Dashboard Design",
+        "Data Cleaning & Wrangling",
+        "EDA",
+        "Data Storytelling",
         "Business Intelligence"
       ],
       "methodology": [
         "Statistical Modelling (Regression, ANOVA)",
-        "A/B Testing"
+        "Time-Series Decomposition"
       ],
       "use_scenario": [
         "User Behavior Analysis",
-        "Business Strategy Optimization",
-        "Interactive Report Generation"
+        "Business Strategy Optimization"
       ]
     },
-    "machine_learning_nlp": {
-      "name": "Machine Learning & NLP",
+    "data_science_ai": {
+      "name": "Data Science & AI",
       "category": "artificial_intelligence",
-      "level": 4,
+      "level": 3,
       "tech_stack": [
         "scikit-learn",
         "PyTorch",
         "TensorFlow",
-        "spaCy",
         "NLTK",
         "HuggingFace",
         "OpenAI API"
       ],
       "core_skill": [
-        "Model Training",
-        "BERT/GPT Fine-tuning",
         "Feature Engineering",
-        "Prompt Engineering"
-      ],
-      "methodology": ["Topic Modeling", "Classification", "POS/NER Tagging"],
-      "use_scenario": [
-        "Text Classification",
-        "Generative Dialogue Systems",
-        "Intelligent Q&A",
-        "Semantic Search"
-      ]
-    },
-    "research_design_evaluation": {
-      "name": "Research Design & Evaluation",
-      "category": "research",
-      "level": 5,
-      "tech_stack": ["LaTeX", "R", "Python (statsmodels)", "Excel", "JASP"],
-      "core_skill": [
-        "Experimental Design",
-        "Power Analysis",
-        "Survey Design",
-        "Mixed Methods"
+        "Model Development & Evaluation",
+        "Prompt Engineering (LLMs)"
       ],
       "methodology": [
-        "Statistical Testing (t-test, ANOVA)",
-        "Thematic Analysis",
-        "Grounded Theory"
+        "Regression & Classification",
+        "Topic Modeling",
+        "Fine-Tuning"
       ],
       "use_scenario": [
-        "User Research",
-        "Behavioral Experiments",
-        "Product Iteration Validation",
-        "Academic Publishing"
+        "Demand Forecasting",
+        "Recommendation Systems",
+        "Text Classification",
+        "Intelligent Q&A"
+      ]
+    },
+    "research_evaluation": {
+      "name": "Research & Evaluation",
+      "category": "research",
+      "level": 4,
+      "core_skill": [
+        "Problem Framing",
+        "Hypothesis Generation",
+        "Insight Synthesis",
+        "Prototyping & Iteration"
+      ],
+      "methodology": [
+        "Mixed Methods (Quant + Qual)",
+        "Controlled Experiments",
+        "Statistical Testing (t-test, ANOVA)"
+      ],
+      "use_scenario": [
+        "User Behavior Investigation",
+        "AI Product Evaluation",
+        "Design Pattern Derivation",
+        "Insight-to-Strategy Translation"
       ]
     },
     "big_data_engineering": {
       "name": "Big Data & Data Engineering",
       "category": "data_engineering",
-      "level": 4,
-      "tech_stack": ["Hadoop", "Spark", "Kafka", "SQL", "Airflow", "Firebase"],
+      "level": 3,
+      "tech_stack": ["Hadoop", "Spark", "Kafka", "SQL", "Firebase"],
       "core_skill": [
         "ETL Pipeline",
         "Data Warehousing",
@@ -192,14 +192,10 @@
         "Schema Design",
         "Data Quality Validation"
       ],
-      "use_scenario": [
-        "Large-scale Log Processing",
-        "Data Lake Construction",
-        "System Integration"
-      ]
+      "use_scenario": ["Large-scale Log Processing", "Data Lake Construction"]
     },
     "web_development_ux": {
-      "name": "Web Development & UX Research",
+      "name": "Web Development & UX",
       "category": "user_experience",
       "level": 5,
       "tech_stack": [
@@ -215,11 +211,6 @@
         "Frontend Data Viz",
         "A/B Testing",
         "UX Flow Design"
-      ],
-      "methodology": [
-        "HCI Principles",
-        "Usability Testing",
-        "Information Architecture"
       ],
       "use_scenario": [
         "User Behavior Tracking",
@@ -313,7 +304,7 @@
     "Power BI Data Analyst Associate – Microsoft (2023)",
     "Machine Learning Specialist – Scikit-learn & PyTorch (2022)",
     "Advanced JavaScript – CodeAcademy (2021)",
-    "UX Research Methods – Google UX Design Certificate (2022)"
+    "UX Methods – Google UX Design Certificate (2022)"
   ],
 
   "languages": [
