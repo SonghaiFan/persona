@@ -244,7 +244,6 @@ function renderResume(profileData, versionsData, version = "data-viz") {
   const contentConfig = versionConfig.content_config;
   const sectionsOrder = contentConfig.sections_order;
   const summary = versionConfig.summary;
-  const skillsFocus = contentConfig.skills_focus;
   const projectsLimit = contentConfig.projects_limit;
 
   // Render sections in version-specific order
@@ -257,18 +256,22 @@ function renderResume(profileData, versionsData, version = "data-viz") {
         break;
       case "technical_skills":
         if (
-          profileData.technical_skills &&
-          Object.keys(profileData.technical_skills).length > 0
+          profileData.skills_pool &&
+          Object.keys(profileData.skills_pool).length > 0
         ) {
           renderTechnicalSkills(
-            profileData.technical_skills,
+            profileData.skills_pool,
+            profileData.skill_categories,
             page,
-            skillsFocus
+            contentConfig.selected_skills
           );
         }
         break;
       case "work_experience":
-        if (profileData.work_experience && profileData.work_experience.length > 0) {
+        if (
+          profileData.work_experience &&
+          profileData.work_experience.length > 0
+        ) {
           renderWorkExperience(profileData.work_experience, page);
         }
         break;
@@ -420,101 +423,269 @@ function renderPhDResearch(research, container) {
   container.appendChild(section);
 }
 
-function renderTechnicalSkills(skills, container, skillsFocus = null) {
+function renderTechnicalSkills(
+  skillsPool,
+  skillCategories,
+  container,
+  selectedSkillIds = []
+) {
   const section = createSection(
     "technical-skills",
     "Technical Skills",
     "fas fa-cubes"
   );
 
-  let sortedCategories = Object.entries(skills).filter(
-    ([_, value]) => value && value.items && value.items.length > 0
-  );
+  // Group ALL skills by category, mark which are selected
+  const skillsByCategory = {};
 
-  // Sort categories based on skills focus if provided
-  if (skillsFocus && skillsFocus.length > 0) {
-    sortedCategories.sort((a, b) => {
-      const indexA = skillsFocus.indexOf(a[0]);
-      const indexB = skillsFocus.indexOf(b[0]);
-
-      // If both are in focus list, sort by focus order
-      if (indexA !== -1 && indexB !== -1) {
-        return indexA - indexB;
-      }
-      // If only A is in focus, A comes first
-      if (indexA !== -1 && indexB === -1) return -1;
-      // If only B is in focus, B comes first
-      if (indexA === -1 && indexB !== -1) return 1;
-      // If neither are in focus, maintain original order
-      return 0;
+  Object.entries(skillsPool).forEach(([skillId, skill]) => {
+    const categoryId = skill.category;
+    if (!skillsByCategory[categoryId]) {
+      skillsByCategory[categoryId] = [];
+    }
+    skillsByCategory[categoryId].push({
+      ...skill,
+      id: skillId,
+      isSelected: selectedSkillIds.includes(skillId),
     });
-  }
+  });
+
+  // Sort skills within each category: selected first, then by level (highest first)
+  Object.keys(skillsByCategory).forEach((categoryId) => {
+    skillsByCategory[categoryId].sort((a, b) => {
+      // First sort by selection status (selected skills first)
+      if (a.isSelected && !b.isSelected) return -1;
+      if (!a.isSelected && b.isSelected) return 1;
+      // Then sort by level (highest first)
+      return b.level - a.level;
+    });
+  });
 
   const skillsGrid = document.createElement("div");
   skillsGrid.className = "skills-grid";
 
-  sortedCategories.forEach(([_, category]) => {
-    const skillCategory = document.createElement("div");
-    skillCategory.className = "skill-category";
+  // Sort categories by number of selected skills (most selected first)
+  const sortedCategories = Object.entries(skillsByCategory).sort(
+    ([, skillsA], [, skillsB]) => {
+      const selectedCountA = skillsA.filter((skill) => skill.isSelected).length;
+      const selectedCountB = skillsB.filter((skill) => skill.isSelected).length;
+      return selectedCountB - selectedCountA;
+    }
+  );
 
-    const skillTitle = document.createElement("div");
-    skillTitle.className = "skill-title";
-    skillTitle.textContent = category.title;
-    skillCategory.appendChild(skillTitle);
+  // Separate selected and unselected skills
+  const selectedSkills = [];
+  const unselectedSkills = [];
 
-    const skillItems = document.createElement("div");
-    skillItems.className = "skill-items";
-
-    category.items
-      .sort((a, b) => b.level - a.level)
-      .forEach((item) => {
-        const skillItem = document.createElement("div");
-        skillItem.className = "skill-item";
-
-        const skillNameGroup = document.createElement("div");
-        skillNameGroup.className = "skill-name-group";
-
-        const skillName = document.createElement("div");
-        skillName.className = "skill-name";
-
-        const skillNameText = document.createElement("span");
-        skillNameText.className = "skill-name-text";
-        skillNameText.textContent = item.name || "";
-
-        const skillKeywords = document.createElement("span");
-        skillKeywords.className = "skill-keywords";
-        skillKeywords.textContent = (item.keywords || []).join(", ");
-
-        skillName.appendChild(skillNameText);
-        skillName.appendChild(skillKeywords);
-        skillNameGroup.appendChild(skillName);
-
-        const skillLevel = document.createElement("div");
-        skillLevel.className = "skill-level";
-
-        const skillRating = document.createElement("div");
-        skillRating.className = "skill-rating";
-
-        // Create 5 dots for Material Design rating
-        for (let i = 1; i <= 5; i++) {
-          const dot = document.createElement("div");
-          dot.className = "skill-dot";
-          if (i <= (item.level || 0)) {
-            dot.classList.add("filled");
-          }
-          skillRating.appendChild(dot);
-        }
-
-        skillLevel.appendChild(skillRating);
-
-        skillItem.appendChild(skillNameGroup);
-        skillItem.appendChild(skillLevel);
-        skillItems.appendChild(skillItem);
-      });
-
-    skillCategory.appendChild(skillItems);
-    skillsGrid.appendChild(skillCategory);
+  Object.entries(skillsByCategory).forEach(([categoryId, skills]) => {
+    skills.forEach((skill) => {
+      if (skill.isSelected) {
+        selectedSkills.push(skill);
+      } else {
+        unselectedSkills.push(skill);
+      }
+    });
   });
+
+  // Sort selected skills by level (highest first)
+  selectedSkills.sort((a, b) => b.level - a.level);
+
+  // Sort unselected skills by level (highest first)
+  unselectedSkills.sort((a, b) => b.level - a.level);
+
+  // Render selected skills in the first 3 grid positions
+  selectedSkills.forEach((skill) => {
+    const skillItem = document.createElement("div");
+    skillItem.className = "skill-item skill-selected";
+
+    const skillHeader = document.createElement("div");
+    skillHeader.className = "skill-header";
+
+    const skillNameGroup = document.createElement("div");
+    skillNameGroup.className = "skill-name-group";
+
+    const skillName = document.createElement("div");
+    skillName.className = "skill-name";
+
+    const skillNameText = document.createElement("span");
+    skillNameText.className = "skill-name-text";
+    skillNameText.textContent = skill.name || "";
+
+    skillName.appendChild(skillNameText);
+    skillNameGroup.appendChild(skillName);
+
+    const skillLevel = document.createElement("div");
+    skillLevel.className = "skill-level";
+
+    const skillRating = document.createElement("div");
+    skillRating.className = "skill-rating";
+
+    // Create 5 dots for Material Design rating
+    for (let i = 1; i <= 5; i++) {
+      const dot = document.createElement("div");
+      dot.className = "skill-dot";
+      if (i <= (skill.level || 0)) {
+        dot.classList.add("filled");
+      }
+      skillRating.appendChild(dot);
+    }
+
+    skillLevel.appendChild(skillRating);
+    skillHeader.appendChild(skillNameGroup);
+    skillHeader.appendChild(skillLevel);
+    skillItem.appendChild(skillHeader);
+
+    // Show all 4 subcategories for selected skills
+    const skillDetails = document.createElement("div");
+    skillDetails.className = "skill-details";
+
+    // Tech Stack
+    if (skill.tech_stack && skill.tech_stack.length > 0) {
+      const techStackDiv = document.createElement("div");
+      techStackDiv.className = "skill-subcategory";
+      const techStackContent = document.createElement("span");
+      techStackContent.className = "skill-content";
+      techStackContent.textContent = skill.tech_stack.join(", ");
+      techStackDiv.appendChild(techStackContent);
+      const techStackLabel = document.createElement("span");
+      techStackLabel.className = "skill-label";
+      techStackLabel.textContent = "TECH STACK";
+      techStackDiv.appendChild(techStackLabel);
+      skillDetails.appendChild(techStackDiv);
+    }
+
+    // Core Skills
+    if (skill.core_skill && skill.core_skill.length > 0) {
+      const coreSkillDiv = document.createElement("div");
+      coreSkillDiv.className = "skill-subcategory";
+      const coreSkillContent = document.createElement("span");
+      coreSkillContent.className = "skill-content";
+      coreSkillContent.textContent = skill.core_skill.join(", ");
+      coreSkillDiv.appendChild(coreSkillContent);
+      const coreSkillLabel = document.createElement("span");
+      coreSkillLabel.className = "skill-label";
+      coreSkillLabel.textContent = "CORE SKILLS";
+      coreSkillDiv.appendChild(coreSkillLabel);
+      skillDetails.appendChild(coreSkillDiv);
+    }
+
+    // Methodology
+    if (skill.methodology && skill.methodology.length > 0) {
+      const methodologyDiv = document.createElement("div");
+      methodologyDiv.className = "skill-subcategory";
+      const methodologyContent = document.createElement("span");
+      methodologyContent.className = "skill-content";
+      methodologyContent.textContent = skill.methodology.join(", ");
+      methodologyDiv.appendChild(methodologyContent);
+      const methodologyLabel = document.createElement("span");
+      methodologyLabel.className = "skill-label";
+      methodologyLabel.textContent = "METHODOLOGY";
+      methodologyDiv.appendChild(methodologyLabel);
+      skillDetails.appendChild(methodologyDiv);
+    }
+
+    // Use Scenarios
+    if (skill.use_scenario && skill.use_scenario.length > 0) {
+      const useScenarioDiv = document.createElement("div");
+      useScenarioDiv.className = "skill-subcategory";
+      const useScenarioContent = document.createElement("span");
+      useScenarioContent.className = "skill-content";
+      useScenarioContent.textContent = skill.use_scenario.join(", ");
+      useScenarioDiv.appendChild(useScenarioContent);
+      const useScenarioLabel = document.createElement("span");
+      useScenarioLabel.className = "skill-label";
+      useScenarioLabel.textContent = "USE SCENARIOS";
+      useScenarioDiv.appendChild(useScenarioLabel);
+      skillDetails.appendChild(useScenarioDiv);
+    }
+
+    skillItem.appendChild(skillDetails);
+    skillsGrid.appendChild(skillItem);
+  });
+
+  // Create a combined cell for unselected skills in the bottom-right position
+  if (unselectedSkills.length > 0) {
+    const unselectedContainer = document.createElement("div");
+    unselectedContainer.className = "skill-item skill-unselected-container";
+    unselectedContainer.style.gridColumn = "2";
+    unselectedContainer.style.gridRow = "2";
+
+    const unselectedList = document.createElement("div");
+    unselectedList.className = "unselected-skills-list";
+
+    unselectedSkills.forEach((skill) => {
+      const unselectedSkill = document.createElement("div");
+      unselectedSkill.className = "unselected-skill-item";
+
+      const skillHeader = document.createElement("div");
+      skillHeader.className = "unselected-skill-header";
+
+      const skillName = document.createElement("span");
+      skillName.className = "unselected-skill-name";
+      skillName.textContent = skill.name || "";
+
+      const skillLevel = document.createElement("div");
+      skillLevel.className = "skill-level";
+
+      const skillRating = document.createElement("div");
+      skillRating.className = "skill-rating";
+
+      // Create 5 dots for Material Design rating
+      for (let i = 1; i <= 5; i++) {
+        const dot = document.createElement("div");
+        dot.className = "skill-dot";
+        if (i <= (skill.level || 0)) {
+          dot.classList.add("filled");
+        }
+        skillRating.appendChild(dot);
+      }
+
+      skillLevel.appendChild(skillRating);
+      skillHeader.appendChild(skillName);
+      skillHeader.appendChild(skillLevel);
+      unselectedSkill.appendChild(skillHeader);
+
+      // Show only Tech Stack and Core Skills for unselected skills
+      const skillDetails = document.createElement("div");
+      skillDetails.className = "unselected-skill-details";
+
+      // Tech Stack
+      if (skill.tech_stack && skill.tech_stack.length > 0) {
+        const techStackDiv = document.createElement("div");
+        techStackDiv.className = "skill-subcategory";
+        const techStackContent = document.createElement("span");
+        techStackContent.className = "skill-content";
+        techStackContent.textContent = skill.tech_stack.join(", ");
+        techStackDiv.appendChild(techStackContent);
+        const techStackLabel = document.createElement("span");
+        techStackLabel.className = "skill-label";
+        techStackLabel.textContent = "TECH STACK";
+        techStackDiv.appendChild(techStackLabel);
+        skillDetails.appendChild(techStackDiv);
+      }
+
+      // Core Skills
+      if (skill.core_skill && skill.core_skill.length > 0) {
+        const coreSkillDiv = document.createElement("div");
+        coreSkillDiv.className = "skill-subcategory";
+        const coreSkillContent = document.createElement("span");
+        coreSkillContent.className = "skill-content";
+        coreSkillContent.textContent = skill.core_skill.join(", ");
+        coreSkillDiv.appendChild(coreSkillContent);
+        const coreSkillLabel = document.createElement("span");
+        coreSkillLabel.className = "skill-label";
+        coreSkillLabel.textContent = "CORE SKILLS";
+        coreSkillDiv.appendChild(coreSkillLabel);
+        skillDetails.appendChild(coreSkillDiv);
+      }
+
+      unselectedSkill.appendChild(skillDetails);
+      unselectedList.appendChild(unselectedSkill);
+    });
+
+    unselectedContainer.appendChild(unselectedList);
+    skillsGrid.appendChild(unselectedContainer);
+  }
 
   section.appendChild(skillsGrid);
   container.appendChild(section);
@@ -537,10 +708,23 @@ function renderProjects(projects, container, projectFocus = null) {
         ? projectFocus[project.title]
         : project.description;
 
-    if (descriptionText) {
+    if (descriptionText || project.tech_stack) {
       const description = document.createElement("p");
       description.className = "project-description";
-      description.textContent = descriptionText;
+
+      if (descriptionText) {
+        const descriptionTextSpan = document.createElement("span");
+        descriptionTextSpan.textContent = descriptionText;
+        description.appendChild(descriptionTextSpan);
+      }
+
+      if (project.tech_stack) {
+        const techStack = document.createElement("span");
+        techStack.className = "project-tech-stack";
+        techStack.textContent = project.tech_stack;
+        description.appendChild(techStack);
+      }
+
       projectItem.appendChild(description);
     }
 
@@ -555,20 +739,13 @@ function renderProjects(projects, container, projectFocus = null) {
       projectItem.appendChild(featuresUl);
     }
 
-    if (project.tech_stack) {
-      const techStack = document.createElement("p");
-      techStack.className = "project-tech-stack";
-      techStack.textContent = project.tech_stack;
-      projectItem.appendChild(techStack);
-    }
-
     if (project.items && project.items.length > 0) {
       const caseStudiesDiv = document.createElement("div");
-      caseStudiesDiv.className = "project-case-studies";
+      caseStudiesDiv.className = "project-case";
 
       project.items.forEach((caseStudy) => {
         const caseStudyItem = document.createElement("div");
-        caseStudyItem.className = "case-study-item";
+        caseStudyItem.className = "case-item";
 
         const caseTitle = document.createElement("h4");
         caseTitle.textContent = caseStudy.title;
@@ -688,7 +865,7 @@ function renderWorkExperience(workExperience, container) {
 
     const periodType = document.createElement("div");
     periodType.className = "period-type";
-    periodType.textContent = `${job.period}${job.type ? ` • ${job.type}` : ''}`;
+    periodType.textContent = `${job.period}${job.type ? ` • ${job.type}` : ""}`;
     jobMeta.appendChild(periodType);
 
     jobHeader.appendChild(jobMeta);
@@ -708,7 +885,7 @@ function renderWorkExperience(workExperience, container) {
     if (job.achievements && job.achievements.length > 0) {
       const achievementsDiv = document.createElement("div");
       achievementsDiv.className = "job-achievements";
-      
+
       const achievementsTitle = document.createElement("div");
       achievementsTitle.className = "achievements-title";
       achievementsTitle.textContent = "Key Achievements:";

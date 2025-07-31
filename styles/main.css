@@ -42,7 +42,7 @@
   --sm-title: 10px; /* Item titles */
   --body-text: 9px; /* Main content */
   --small-text: 8px; /* Details/meta */
-  --tiny-text: 7px; /* Labels/tags */
+  --tiny-text: 6px; /* Labels/tags */
 
   /* Compact MD Spacing */
   --space-0: 0px;
@@ -496,26 +496,17 @@ ul li::before {
   margin-top: var(--space-2);
 }
 
-.skill-category {
-  background: var(--surface-color);
-  border-radius: var(--md-radius-small);
-  padding: var(--space-2);
-}
-
-.skill-title {
-  color: var(--primary-color);
-  font-weight: 600;
-  font-size: var(--sm-title);
-  margin-bottom: var(--space-1);
-}
-
-.skill-items {
+.skill-item {
   display: flex;
   flex-direction: column;
   gap: var(--space-1);
+  background: var(--surface-color);
+  border-radius: var(--md-radius-small);
+  padding: var(--space-2);
+  margin-bottom: var(--space-2);
 }
 
-.skill-item {
+.skill-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -533,15 +524,95 @@ ul li::before {
 }
 
 .skill-name-text {
-  font-weight: 500;
+  font-weight: 700;
   color: var(--primary-color);
-  font-size: var(--small-text);
+  font-size: var(--sm-title);
 }
 
 .skill-keywords {
   color: var(--tertiary-color);
   font-size: var(--tiny-text);
   line-height: 1.1;
+}
+
+/* New skill subcategories styling */
+.skill-details {
+  margin-top: var(--space-1);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.skill-subcategory {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: var(--space-1);
+  margin-bottom: var(--space-1);
+  justify-content: space-between;
+}
+
+.skill-label {
+  color: var(--accent-color);
+  font-weight: 500;
+  font-size: var(--tiny-text);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  flex-shrink: 0;
+  min-width: 60px;
+  text-align: right;
+}
+
+.skill-content {
+  color: var(--secondary-color);
+  font-size: var(--tiny-text);
+  line-height: 1.2;
+  flex: 1;
+}
+
+/* Unselected skills container styling */
+.skill-unselected-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.unselected-title {
+  color: var(--primary-color);
+  font-weight: 600;
+  font-size: var(--sm-title);
+  margin-bottom: var(--space-1);
+  border-bottom: 1px solid var(--divider-color);
+  padding-bottom: var(--space-1);
+}
+
+.unselected-skills-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.unselected-skill-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.unselected-skill-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-1);
+}
+
+.unselected-skill-name {
+  font-weight: 700;
+  color: var(--primary-color);
+  font-size: var(--sm-title);
+}
+
+.unselected-skill-details {
+  margin-top: var(--space-1);
 }
 
 /* Ultra Compact Skill Rating */
@@ -573,6 +644,10 @@ ul li::before {
   margin-top: var(--space-1);
   color: var(--secondary-color);
   line-height: 1.1;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-2);
 }
 
 .project-tech-stack {
@@ -580,22 +655,23 @@ ul li::before {
   color: var(--accent-color);
   background: var(--surface-color);
   border-radius: var(--md-radius-small);
-  display: inline-block;
-  padding-left: var(--space-3);
+  padding: var(--space-1) var(--space-2);
+  flex-shrink: 0;
 }
 
-.project-case-studies {
+.project-case {
   margin-top: var(--space-2);
   padding: var(--space-1);
   background: var(--background-color);
   border-radius: var(--md-radius-small);
 }
 
-.case-study-item {
+.case-item {
   margin-bottom: var(--space-1);
+  margin-left: var(--space-4);
 }
 
-.case-study-item h4 {
+.case-item h4 {
   font-size: var(--small-text);
   font-weight: 600;
   color: var(--primary-color);

@@ -1,6 +1,6 @@
 {
   "config": {
-    "default_version": "data-viz",
+    "default_version": "data-scientist",
     "theme_base": "theme-",
     "available_sections": [
       "summary",
@@ -21,18 +21,17 @@
   },
 
   "versions": {
-    "data-viz": {
-      "display_name": "Data Visualisation",
-      "theme_color": "#022395",
-      "icon": "fas fa-chart-bar",
-      "summary": "Data Visualisation Specialist with PhD expertise in narrative visualization and interactive analytics. Expert in creating compelling data stories using D3.js, React, Power BI, and advanced visualization techniques. Strong background in transforming complex datasets into intuitive, user-friendly dashboards and interactive experiences. Proven track record in building scalable visualization solutions and data storytelling frameworks.",
+    "data-scientist": {
+      "display_name": "Data Scientist / Analyst",
+      "theme_color": "#1f77b4",
+      "icon": "fas fa-chart-line",
+      "summary": "Data Scientist with PhD expertise in statistical modeling and data analytics. Expert in Python, R, SQL for comprehensive data analysis and business intelligence. Strong background in feature engineering, A/B testing, and turning complex datasets into actionable insights. Proven track record in building predictive models and data-driven solutions for business decision-making.",
 
       "content_config": {
-        "skills_focus": [
-          "data_science",
-          "web_technologies",
-          "artificial_intelligence",
-          "research_skills"
+        "selected_skills": [
+          "data_science_analytics",
+          "big_data_engineering",
+          "machine_learning_nlp"
         ],
         "sections_order": [
           "summary",
@@ -44,7 +43,7 @@
           "publications",
           "certifications"
         ],
-        "projects_limit": 4,
+        "projects_limit": 3,
         "include_projects": [
           "causal-network-viz",
           "perspectiva-tool",
@@ -54,25 +53,63 @@
 
       "content_overrides": {
         "project_descriptions": {
-          "causal-network-viz": "Interactive network visualization using D3.js and advanced data visualization techniques for complex causal relationship analysis.",
-          "perspectiva-tool": "Complex systems visualization platform with interactive dashboard design, focusing on stakeholder-driven data exploration.",
-          "data-storytelling-cases": "Comprehensive data visualization projects using scrollytelling, interactive charts, and Power BI-style dashboards for narrative-driven insights."
+          "causal-network-viz": "Statistical analysis and predictive modeling for causal relationship discovery, utilizing advanced regression techniques and feature engineering.",
+          "perspectiva-tool": "Business intelligence dashboard with statistical modeling for policy impact analysis and data-driven decision support.",
+          "data-storytelling-cases": "Comprehensive data analysis projects with statistical validation, A/B testing frameworks, and business intelligence reporting."
         }
       }
     },
 
-    "ux-research": {
-      "display_name": "UX Research",
-      "theme_color": "#000000",
-      "icon": "fas fa-users",
-      "summary": "UX Researcher with PhD in Human-Centered Computing, specializing in human-computer interaction and usability testing. Expert in conducting controlled user studies, A/B testing, and designing user-centered interfaces. Strong background in qualitative and quantitative research methods, with experience in translating user insights into actionable design recommendations and improving user experiences across digital platforms.",
+    "nlp-ai-engineer": {
+      "display_name": "NLP / AI Engineer",
+      "theme_color": "#ff7f0e",
+      "icon": "fas fa-robot",
+      "summary": "NLP/AI Engineer with PhD expertise in natural language processing and machine learning. Expert in Python, PyTorch, and advanced NLP techniques including BERT/GPT fine-tuning and prompt engineering. Strong background in developing AI systems for text analysis, language understanding, and generative AI applications. Proven experience in building scalable NLP pipelines and AI-powered solutions.",
 
       "content_config": {
-        "skills_focus": [
-          "research_skills",
-          "web_technologies",
-          "data_science",
-          "artificial_intelligence"
+        "selected_skills": [
+          "machine_learning_nlp",
+          "data_science_analytics",
+          "research_design_evaluation"
+        ],
+        "sections_order": [
+          "summary",
+          "work_experience",
+          "technical_skills",
+          "phd_research",
+          "projects",
+          "education",
+          "publications",
+          "certifications"
+        ],
+        "projects_limit": 3,
+        "include_projects": [
+          "causal-network-viz",
+          "perspectiva-tool",
+          "data-storytelling-cases"
+        ]
+      },
+
+      "content_overrides": {
+        "project_descriptions": {
+          "causal-network-viz": "NLP-powered system for automated text analysis and relationship extraction using BERT/GPT models and advanced language processing techniques.",
+          "perspectiva-tool": "AI-augmented text analysis platform with LLM integration for intelligent content understanding and automated insight generation.",
+          "data-storytelling-cases": "Generative AI applications for automated narrative generation and intelligent text analysis, showcasing advanced NLP capabilities."
+        }
+      }
+    },
+
+    "ux-researcher": {
+      "display_name": "UX Researcher",
+      "theme_color": "#2ca02c",
+      "icon": "fas fa-users",
+      "summary": "UX Researcher with PhD in Human-Centered Computing, specializing in experimental design and usability testing. Expert in conducting controlled user studies, A/B testing, and mixed-methods research. Strong background in human-computer interaction and translating user insights into actionable design recommendations. Proven experience in improving user experiences through rigorous research methodologies.",
+
+      "content_config": {
+        "selected_skills": [
+          "web_development_ux",
+          "research_design_evaluation",
+          "data_science_analytics"
         ],
         "sections_order": [
           "summary",
@@ -94,32 +131,31 @@
 
       "content_overrides": {
         "project_descriptions": {
-          "causal-network-viz": "User-centered interface design with focus on usability testing and human-computer interaction principles for complex data visualization.",
-          "perspectiva-tool": "Participatory design methodology with stakeholder engagement and user experience research for collaborative decision-making tools.",
-          "data-storytelling-cases": "User research and interface design for narrative experiences, focusing on user engagement and comprehension studies across diverse audiences."
+          "causal-network-viz": "User-centered design research with comprehensive usability testing and human-computer interaction analysis for complex data visualization interfaces.",
+          "perspectiva-tool": "Participatory design methodology with extensive user research and stakeholder engagement for collaborative decision-making tools.",
+          "data-storytelling-cases": "User experience research for narrative interfaces, focusing on user engagement studies and comprehension analysis across diverse audiences."
         }
       }
     },
 
-    "ai-consultant": {
-      "display_name": "AI Consultant",
-      "theme_color": "#008035",
-      "icon": "fas fa-robot",
-      "summary": "AI Consultant with PhD expertise in data & AI, specializing in generative AI and LLM integration. Expert in developing AI strategy, implementing large language models, and building AI-augmented systems for enhanced human-data interaction. Strong background in machine learning, NLP, and translating complex AI concepts into practical business solutions. Proven experience in guiding organizations through AI adoption and digital transformation.",
+    "data-viz-developer": {
+      "display_name": "Data Viz Developer",
+      "theme_color": "#d62728",
+      "icon": "fas fa-chart-bar",
+      "summary": "Data Visualization Developer with PhD expertise in interactive data visualization and web development. Expert in JavaScript, React, D3.js for creating compelling interactive dashboards and data stories. Strong background in translating complex datasets into intuitive visual experiences and building scalable visualization solutions. Proven track record in developing innovative data visualization frameworks.",
 
       "content_config": {
-        "skills_focus": [
-          "artificial_intelligence",
-          "data_science",
-          "research_skills",
-          "web_technologies"
+        "selected_skills": [
+          "web_development_ux",
+          "data_science_analytics",
+          "machine_learning_nlp"
         ],
         "sections_order": [
           "summary",
           "work_experience",
           "technical_skills",
-          "phd_research",
           "projects",
+          "phd_research",
           "education",
           "publications",
           "certifications"
@@ -134,9 +170,48 @@
 
       "content_overrides": {
         "project_descriptions": {
-          "causal-network-viz": "AI-powered NLP system with LLM integration for automated relationship extraction and analysis, demonstrating enterprise-scale AI implementation.",
-          "perspectiva-tool": "AI-augmented decision support system for strategic planning and organizational transformation, incorporating machine learning for pattern recognition.",
-          "data-storytelling-cases": "Generative AI applications for automated narrative generation and intelligent content analysis, showcasing AI's potential in communication and insight generation."
+          "causal-network-viz": "Interactive network visualization using D3.js and React for complex causal relationship analysis with advanced interactive features and real-time data processing.",
+          "perspectiva-tool": "Complex systems visualization platform with custom dashboard design, interactive data exploration tools, and responsive web interfaces.",
+          "data-storytelling-cases": "Comprehensive data visualization projects using scrollytelling, interactive charts, and custom visualization frameworks for narrative-driven insights."
+        }
+      }
+    },
+
+    "analytics-consultant": {
+      "display_name": "Analytics Consultant",
+      "theme_color": "#9467bd",
+      "icon": "fas fa-chart-pie",
+      "summary": "Analytics Consultant with PhD expertise in business intelligence and data strategy. Expert in Tableau, Power BI, and client-facing analytics solutions. Strong background in translating complex research into actionable business insights and strategic recommendations. Proven experience in consulting engagements and building data-driven decision-making frameworks for organizations.",
+
+      "content_config": {
+        "selected_skills": [
+          "data_science_analytics",
+          "research_design_evaluation",
+          "big_data_engineering"
+        ],
+        "sections_order": [
+          "summary",
+          "work_experience",
+          "technical_skills",
+          "phd_research",
+          "projects",
+          "education",
+          "publications",
+          "certifications"
+        ],
+        "projects_limit": 3,
+        "include_projects": [
+          "causal-network-viz",
+          "perspectiva-tool",
+          "data-storytelling-cases"
+        ]
+      },
+
+      "content_overrides": {
+        "project_descriptions": {
+          "causal-network-viz": "Strategic consulting project for causal analysis framework development, with client-facing dashboards and executive reporting solutions.",
+          "perspectiva-tool": "Organizational consulting engagement for participatory decision-making systems with strategic planning and stakeholder alignment tools.",
+          "data-storytelling-cases": "Client consulting projects focused on communication strategy and research translation for policy and organizational impact."
         }
       }
     }

@@ -80,113 +80,157 @@
       }
     ]
   },
-  "technical_skills": {
-    "artificial_intelligence": {
-      "title": "AI & Machine Learning",
-      "items": [
-        {
-          "name": "Generative AI & LLMs",
-          "level": 5,
-          "keywords": ["OpenAI API", "LangChain/Graph", "Prompt Engineering"]
-        },
-        {
-          "name": "Natural Language Processing",
-          "level": 4,
-          "keywords": ["BERT/GPT Fine-tuning", "NLTK、spaCy", "POS", "NER"]
-        },
-        {
-          "name": "Machine Learning",
-          "level": 4,
-          "keywords": [
-            "Scikit-learn",
-            "TensorFlow",
-            "PyTorch",
-            "Feature Engineering"
-          ]
-        }
-      ]
-    },
+  "skill_categories": {
     "data_science": {
-      "title": "Data Science & Analytics",
-      "items": [
-        {
-          "name": "Big Data Processing",
-          "level": 4,
-          "keywords": ["Hadoop", "Spark", "Kafka"]
-        },
-        {
-          "name": "Data Engineering",
-          "level": 3,
-          "keywords": [
-            "Data Wrangling",
-            "Data Warehousing",
-            "Data Pipeline",
-            "ETL"
-          ]
-        },
-        {
-          "name": "Data Analysis",
-          "level": 5,
-          "keywords": ["SQL", "R (tidyverse)", "Python (pandas, NumPy)"]
-        },
-        {
-          "name": "Data Visualization",
-          "level": 5,
-          "keywords": ["Tableau/Power BI", "D3.js", "Cytoscape.js/NetworkX"]
-        }
+      "title": "Data Science & Analytics"
+    },
+    "artificial_intelligence": {
+      "title": "AI & Machine Learning"
+    },
+    "data_engineering": {
+      "title": "Data Engineering"
+    },
+    "research": {
+      "title": "Research & Methods"
+    },
+    "user_experience": {
+      "title": "User Experience"
+    },
+    "software_engineering": {
+      "title": "Software Engineering"
+    }
+  },
+  "skills_pool": {
+    "data_science_analytics": {
+      "name": "Data Science & Analytics",
+      "category": "data_science",
+      "level": 5,
+      "tech_stack": [
+        "Python (pandas, NumPy)",
+        "R (tidyverse)",
+        "SQL",
+        "Tableau",
+        "Power BI"
+      ],
+      "core_skill": [
+        "Data Wrangling",
+        "Data Exploration",
+        "Dashboard Design",
+        "Business Intelligence"
+      ],
+      "methodology": [
+        "Statistical Modelling (Regression, ANOVA)",
+        "A/B Testing"
+      ],
+      "use_scenario": [
+        "User Behavior Analysis",
+        "Business Strategy Optimization",
+        "Interactive Report Generation"
       ]
     },
-    "web_technologies": {
-      "title": "Web & UX Skills",
-      "items": [
-        {
-          "name": "Front-End",
-          "level": 5,
-          "keywords": ["JavaScript", "React", "TailwindCSS"]
-        },
-        {
-          "name": "Back-End / Serverless",
-          "level": 3,
-          "keywords": ["Node.js", "Next.js", "Firebase", "API integration"]
-        },
-        {
-          "name": "UX Research Methods",
-          "level": 5,
-          "keywords": [
-            "User Studies",
-            "Usability Testing",
-            "A/B Testing",
-            "Human-Computer Interaction"
-          ]
-        },
-        {
-          "name": "Tooling & CI/CD",
-          "level": 4,
-          "keywords": ["GitHub", "Vercel", "Google Analytics"]
-        }
+    "machine_learning_nlp": {
+      "name": "Machine Learning & NLP",
+      "category": "artificial_intelligence",
+      "level": 4,
+      "tech_stack": [
+        "scikit-learn",
+        "PyTorch",
+        "TensorFlow",
+        "spaCy",
+        "NLTK",
+        "HuggingFace",
+        "OpenAI API"
+      ],
+      "core_skill": [
+        "Model Training",
+        "BERT/GPT Fine-tuning",
+        "Feature Engineering",
+        "Prompt Engineering"
+      ],
+      "methodology": ["Classification", "POS/NER Tagging", "Language Modeling"],
+      "use_scenario": [
+        "Text Classification",
+        "Generative Dialogue Systems",
+        "Intelligent Q&A",
+        "Semantic Search"
       ]
     },
-    "research_skills": {
-      "title": "Research ",
-      "items": [
-        {
-          "name": "Research Design & Methodology",
-          "level": 5,
-          "keywords": ["Experimental Design", "Power Analysis", "Mixed Methods"]
-        },
-        {
-          "name": "Statistical Modeling & Analysis",
-          "level": 5,
-          "keywords": ["Regression", "ANOVA", "Bayesian Inference"]
-        },
-        {
-          "name": "Literature Review & Theory Building",
-          "level": 4,
-          "keywords": ["Systematic Review", "Theory Development"]
-        }
+    "research_design_evaluation": {
+      "name": "Research Design & Evaluation",
+      "category": "research",
+      "level": 5,
+      "tech_stack": ["LaTeX", "R", "Python (statsmodels)", "Excel", "JASP"],
+      "core_skill": [
+        "Experimental Design",
+        "Power Analysis",
+        "Survey Design",
+        "Mixed Methods"
+      ],
+      "methodology": [
+        "Statistical Testing (t-test, ANOVA)",
+        "Thematic Analysis",
+        "Grounded Theory"
+      ],
+      "use_scenario": [
+        "User Research",
+        "Behavioral Experiments",
+        "Product Iteration Validation",
+        "Academic Publishing"
+      ]
+    },
+    "big_data_engineering": {
+      "name": "Big Data & Data Engineering",
+      "category": "data_engineering",
+      "level": 4,
+      "tech_stack": ["Hadoop", "Spark", "Kafka", "SQL", "Airflow", "Firebase"],
+      "core_skill": [
+        "ETL Pipeline",
+        "Data Warehousing",
+        "Real-time Data Processing"
+      ],
+      "methodology": [
+        "Batch vs Streaming Architecture",
+        "Schema Design",
+        "Data Quality Validation"
+      ],
+      "use_scenario": [
+        "Large-scale Log Processing",
+        "Data Lake Construction",
+        "System Integration"
+      ]
+    },
+    "web_development_ux": {
+      "name": "Web Development & UX Research",
+      "category": "user_experience",
+      "level": 5,
+      "tech_stack": [
+        "JavaScript",
+        "React",
+        "TailwindCSS",
+        "D3.js",
+        "Next.js",
+        "Google Analytics"
+      ],
+      "core_skill": [
+        "Interactive UI",
+        "Frontend Data Viz",
+        "A/B Testing",
+        "UX Flow Design"
+      ],
+      "methodology": [
+        "HCI Principles",
+        "Usability Testing",
+        "Information Architecture"
+      ],
+      "use_scenario": [
+        "User Behavior Tracking",
+        "Dynamic Dashboard Development",
+        "UX Experiments",
+        "Interactive Data Visualization"
       ]
     }
   },
+
   "projects": [
     {
       "id": "causal-network-viz",
