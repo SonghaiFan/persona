@@ -1,16 +1,26 @@
+/* ==========================================================================
+   RESUME STYLESHEET - ORGANIZED STRUCTURE
+   ========================================================================== */
+
+/* ==========================================================================
+   PRINT SETTINGS
+   ========================================================================== */
 @page {
   size: A4 portrait;
   margin: 0;
   padding: 0;
 }
 
+/* ==========================================================================
+   CSS VARIABLES & ROOT SETTINGS
+   ========================================================================== */
 :root {
-  /* A4 = 210 mm × 297 mm */
+  /* A4 Dimensions */
   --a4-w: 210mm;
   --a4-h: 297mm;
-  --page-margin: 8mm; /* Absolute minimum margins */
+  --page-margin: 8mm;
 
-  /* Compact Material Design Colors */
+  /* Material Design Color Palette */
   --md-grey-900: #121212;
   --md-grey-800: #1e1e1e;
   --md-grey-700: #2d2d2d;
@@ -24,6 +34,7 @@
   --md-white: #ffffff;
   --md-black: #000000;
 
+  /* Semantic Color Variables */
   --primary-color: var(--md-black);
   --secondary-color: var(--md-grey-600);
   --tertiary-color: var(--md-grey-400);
@@ -32,11 +43,11 @@
   --surface-color: var(--md-grey-50);
   --divider-color: var(--md-grey-200);
   --accent-color: var(--md-grey-800);
+  --theme-color: var(
+    --md-grey-800
+  ); /* Dynamic theme color - set by JavaScript */
 
-  /* Dynamic theme color - set by JavaScript */
-  --theme-color: var(--md-grey-800); /* fallback */
-
-  /* Ultra Compact Typography */
+  /* Typography Scale */
   --xl-title: 26px; /* Name only */
   --lg-title: 13px; /* Section headers */
   --md-title: 11px; /* Subsection titles */
@@ -45,16 +56,67 @@
   --small-text: 8px; /* Details/meta */
   --tiny-text: 6px; /* Labels/tags */
 
-  /* Compact MD Spacing */
+  /* Spacing Scale */
   --space-0: 0.5px;
   --space-1: 1px;
   --space-2: 2px;
   --space-3: 3px;
   --space-4: 4px;
   --space-6: 6px;
+  --space-8: 8px;
+
+  /* Material Design Elevation Shadows */
+  --md-elevation-1: 0px 1px 3px rgba(0, 0, 0, 0.12),
+    0px 1px 2px rgba(0, 0, 0, 0.24);
+  --md-elevation-2: 0px 3px 6px rgba(0, 0, 0, 0.16),
+    0px 3px 6px rgba(0, 0, 0, 0.23);
+  --md-elevation-3: 0px 10px 20px rgba(0, 0, 0, 0.19),
+    0px 6px 6px rgba(0, 0, 0, 0.23);
+
+  /* Material Design Border Radius */
+  --md-radius-small: 4px;
+  --md-radius-medium: 8px;
+  --md-radius-large: 12px;
 }
 
-/* Version Switcher */
+/* ==========================================================================
+   GLOBAL RESET & BASE STYLES
+   ========================================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+  line-height: 1.2;
+  color: var(--primary-color);
+  background-color: var(--surface-color);
+  font-size: var(--body-text);
+  margin: 0;
+  padding: var(--space-4) 0;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+  font-weight: 400;
+  letter-spacing: 0.1px;
+  transition: opacity 0.2s ease-in-out;
+}
+
+/* Loading States */
+body.loading {
+  opacity: 0;
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body.loaded {
+  opacity: 1;
+}
+
+/* ==========================================================================
+   VERSION SWITCHER COMPONENT
+   ========================================================================== */
 .version-switcher {
   position: fixed;
   top: 15px;
@@ -99,94 +161,9 @@
   box-shadow: 0 0 0 2px rgba(66, 66, 66, 0.1);
 }
 
-/* Hide version switcher in print */
-@media print {
-  .version-switcher {
-    display: none !important;
-  }
-}
-
-/* Apply theme color to specific elements - colors loaded dynamically from JSON */
-body[class*="theme-"] h1 {
-  color: var(--theme-color);
-}
-
-body[class*="theme-"] h2 {
-  color: var(--theme-color);
-  border-bottom: 1px solid var(--divider-color);
-}
-
-body[class*="theme-"] h2 i {
-  color: var(--theme-color);
-}
-
-body[class*="theme-"] .skill-dot.filled {
-  background-color: var(--theme-color);
-}
-
-body[class*="theme-"] .contact-link {
-  color: var(--secondary-color);
-}
-
-body[class*="theme-"] .version-select {
-  border-color: var(--theme-color);
-}
-
-body[class*="theme-"] .version-select:focus {
-  border-color: var(--theme-color);
-  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
-}
-
-:root {
-  --space-8: 8px;
-
-  /* Material Design Elevation Shadows */
-  --md-elevation-1: 0px 1px 3px rgba(0, 0, 0, 0.12),
-    0px 1px 2px rgba(0, 0, 0, 0.24);
-  --md-elevation-2: 0px 3px 6px rgba(0, 0, 0, 0.16),
-    0px 3px 6px rgba(0, 0, 0, 0.23);
-  --md-elevation-3: 0px 10px 20px rgba(0, 0, 0, 0.19),
-    0px 6px 6px rgba(0, 0, 0, 0.23);
-
-  /* Material Design Border Radius */
-  --md-radius-small: 4px;
-  --md-radius-medium: 8px;
-  --md-radius-large: 12px;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    sans-serif;
-  line-height: 1.2;
-  color: var(--primary-color);
-  background-color: var(--surface-color);
-  font-size: var(--body-text);
-  margin: 0;
-  padding: var(--space-4) 0;
-  -webkit-print-color-adjust: exact;
-  print-color-adjust: exact;
-  font-weight: 400;
-  letter-spacing: 0.1px;
-  transition: opacity 0.2s ease-in-out;
-}
-
-/* 防止加载时闪动 */
-body.loading {
-  opacity: 0;
-  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-body.loaded {
-  opacity: 1;
-}
-
-/* Material Design Loading Indicator */
+/* ==========================================================================
+   LOADING INDICATOR
+   ========================================================================== */
 .loading-indicator {
   position: fixed;
   top: 50%;
@@ -195,9 +172,9 @@ body.loaded {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--md-space-4);
+  gap: var(--space-4);
   color: var(--secondary-color);
-  font-size: var(--md-body-medium);
+  font-size: var(--body-text);
   z-index: 1000;
 }
 
@@ -223,7 +200,9 @@ body.loaded .loading-indicator {
   display: none;
 }
 
-/* Compact Material Design Page */
+/* ==========================================================================
+   PAGE LAYOUT
+   ========================================================================== */
 .page {
   width: var(--a4-w);
   height: var(--a4-h);
@@ -236,50 +215,9 @@ body.loaded .loading-indicator {
   border-radius: var(--md-radius-small);
 }
 
-/* Print Styles */
-@media print {
-  @page {
-    size: A4 portrait;
-    margin: var(--page-margin);
-  }
-
-  body {
-    margin: 0;
-    padding: 0;
-    background: white;
-  }
-
-  .page {
-    margin: 0;
-    box-shadow: none;
-    break-after: page;
-  }
-
-  header {
-    margin-bottom: var(--space-2);
-  }
-  .header-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-4);
-    align-items: end;
-  }
-
-  .contact-info {
-    justify-self: end;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, auto);
-    gap: var(--space-1) var(--space-2);
-    text-align: right;
-  }
-
-  .contact-info-row {
-    display: contents;
-  }
-}
-
-/* Ultra Compact Header */
+/* ==========================================================================
+   HEADER SECTION
+   ========================================================================== */
 header {
   margin-bottom: var(--space-3);
   padding-bottom: var(--space-2);
@@ -339,7 +277,9 @@ h1 {
   text-decoration: none;
 }
 
-/* Ultra Dense Sections */
+/* ==========================================================================
+   SECTION STYLES
+   ========================================================================== */
 section {
   margin-bottom: var(--space-3);
   padding: 0;
@@ -376,7 +316,9 @@ p {
   color: var(--secondary-color);
 }
 
-/* Compact Material Design Cards */
+/* ==========================================================================
+   CARD COMPONENTS
+   ========================================================================== */
 .education-item,
 .work-experience-item,
 .project-item,
@@ -387,57 +329,67 @@ p {
   margin-bottom: var(--space-2);
 }
 
-.education-item:last-child,
-.work-experience-item:last-child,
-.project-item:last-child,
-.publication-item:last-child {
-  margin-bottom: 0;
+/* Two-Column Grid Layout */
+.education-item,
+.work-experience-item,
+.publication-item {
+  display: grid;
+  grid-template-columns: 7fr auto;
+  gap: var(--space-2);
+  align-items: start;
 }
 
+/* ==========================================================================
+   TWO-COLUMN LAYOUT COMPONENTS
+   ========================================================================== */
+
+/* Left Column: Main content (degree, job title, publication title, etc.) */
+.education-left,
+.work-left,
+.publication-left {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+/* Right Column: Metadata (location, time, period, etc.) */
+.education-right,
+.work-right,
+.publication-right {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  text-align: right;
+  font-size: var(--tiny-text);
+}
+
+/* ==========================================================================
+   EDUCATION SECTION
+   ========================================================================== */
+
+/* Left Column Classes */
 .education-title {
   font-weight: 600;
-  font-size: var(--sm-title);
   color: var(--primary-color);
   margin-bottom: var(--space-1);
 }
 
+/* Right Column Classes */
+.education-period,
 .institution {
-  font-size: var(--small-text);
   color: var(--tertiary-color);
-  margin-bottom: var(--space-1);
 }
 
-/* Work Styling */
-.job-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: var(--space-2);
-}
+/* ==========================================================================
+   WORK EXPERIENCE SECTION
+   ========================================================================== */
 
+/* Left Column Classes */
 .job-title {
   font-weight: 600;
   font-size: var(--sm-title);
   color: var(--primary-color);
   flex: 1;
-}
-
-.job-meta {
-  text-align: right;
-  flex-shrink: 0;
-  margin-left: var(--space-2);
-}
-
-.company-location {
-  font-size: var(--small-text);
-  color: var(--tertiary-color);
-  margin-bottom: var(--space-1);
-}
-
-.period-type {
-  font-size: var(--small-text);
-  color: var(--accent-color);
-  font-weight: 500;
 }
 
 .job-responsibilities {
@@ -464,7 +416,55 @@ p {
   font-weight: 500;
 }
 
-/* Ultra Dense Lists */
+/* Right Column Classes */
+.company-location {
+  color: var(--tertiary-color);
+  margin-bottom: var(--space-1);
+}
+
+.period-type {
+  color: var(--accent-color);
+  font-weight: 500;
+}
+
+/* ==========================================================================
+   PUBLICATIONS SECTION
+   ========================================================================== */
+
+/* Left Column Classes */
+.publication-title {
+  font-weight: 500;
+  font-size: var(--body-text);
+  color: var(--primary-color);
+  margin-bottom: var(--space-1);
+  line-height: 1.1;
+}
+
+.publication-authors {
+  font-style: italic;
+  color: var(--secondary-color);
+  flex: 1;
+}
+
+/* Right Column Classes */
+.publication-venue {
+  color: var(--tertiary-color);
+  text-align: right;
+}
+
+.publication-type {
+  color: var(--accent-color);
+  font-size: var(--tiny-text);
+  font-weight: 600;
+  padding: var(--space-1);
+  background: var(--surface-color);
+  border-radius: var(--md-radius-small);
+  text-transform: uppercase;
+}
+
+/* ==========================================================================
+   LISTS
+   ========================================================================== */
 ul {
   list-style: none;
   padding-left: 0;
@@ -489,7 +489,9 @@ ul li::before {
   font-size: 6px;
 }
 
-/* Compact Material Design Skills Grid */
+/* ==========================================================================
+   SKILLS SECTION
+   ========================================================================== */
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -497,21 +499,37 @@ ul li::before {
   margin-top: var(--space-2);
 }
 
-.skill-item {
+.skill-item,
+.skill-item.unselected {
   display: flex;
   flex-direction: column;
-  gap: var(--space-1);
   background: var(--surface-color);
   border-radius: var(--md-radius-small);
-  padding: var(--space-2);
   margin-bottom: var(--space-2);
 }
 
-.skill-header {
+.skill-item {
+  gap: var(--space-1);
+  padding: var(--space-2);
+}
+
+.skill-item.unselected {
+  gap: var(--space-0);
+}
+
+.skill-header,
+.skill-item.unselected .skill-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.skill-header {
   gap: var(--space-1);
+}
+
+.skill-item.unselected .skill-header {
+  gap: var(--space-0);
 }
 
 .skill-name-group {
@@ -524,13 +542,13 @@ ul li::before {
   flex-direction: column;
 }
 
-.skill-name-text {
+.skill-name-text,
+.skill-item.unselected .skill-name-text {
   font-weight: 600;
   color: var(--primary-color);
   font-size: var(--sm-title);
 }
 
-/* New skill subcategories styling */
 .skill-details {
   margin-top: var(--space-0);
   display: flex;
@@ -540,6 +558,7 @@ ul li::before {
 
 .skill-subcategory {
   display: flex;
+  font-weight: 600;
   flex-direction: column;
   align-items: flex-start;
   gap: var(--space-0);
@@ -568,33 +587,13 @@ ul li::before {
   margin-bottom: var(--space-0);
 }
 
-/* Unselected skills styling */
-.skill-item.unselected {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-0);
-}
-
-.skill-item.unselected .skill-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-0);
-}
-
-.skill-item.unselected .skill-name-text {
-  font-weight: 600;
-  color: var(--primary-color);
-  font-size: var(--sm-title);
-}
-
 .unselected-skills-list {
   display: flex;
   flex-direction: column;
   gap: var(--space-0);
 }
 
-/* Ultra Compact Skill Rating */
+/* Skill Rating */
 .skill-level {
   display: flex;
   align-items: center;
@@ -617,7 +616,9 @@ ul li::before {
   background-color: var(--accent-color);
 }
 
-/* Ultra Dense Project/Publication Styles */
+/* ==========================================================================
+   PROJECTS SECTION
+   ========================================================================== */
 .project-description {
   font-size: var(--small-text);
   margin-top: var(--space-1);
@@ -657,45 +658,9 @@ ul li::before {
   margin: 0 0 var(--space-1) 0;
 }
 
-.publication-title {
-  font-weight: 500;
-  font-size: var(--body-text);
-  color: var(--primary-color);
-  margin-bottom: var(--space-1);
-  line-height: 1.1;
-}
-
-.publication-meta {
-  display: flex;
-  justify-content: space-between;
-  gap: var(--space-2);
-  font-size: var(--small-text);
-}
-
-.publication-authors {
-  font-style: italic;
-  color: var(--secondary-color);
-  flex: 1;
-}
-
-.publication-venue {
-  display: flex;
-  align-items: center;
-  gap: var(--space-1);
-  color: var(--tertiary-color);
-  flex-shrink: 0;
-}
-
-.publication-type {
-  color: var(--accent-color);
-  font-size: var(--tiny-text);
-  font-weight: 600;
-  padding: var(--space-1);
-  background: var(--surface-color);
-  border-radius: var(--md-radius-small);
-  text-transform: uppercase;
-}
-
+/* ==========================================================================
+   RESEARCH SECTION
+   ========================================================================== */
 .research-item-detail {
   font-size: var(--tiny-text);
   color: var(--tertiary-color);
@@ -705,7 +670,42 @@ ul li::before {
   font-style: italic;
 }
 
-/* Ultra Dense Print Optimizations */
+/* ==========================================================================
+   THEME VARIATIONS
+   ========================================================================== */
+body[class*="theme-"] h1 {
+  color: var(--theme-color);
+}
+
+body[class*="theme-"] h2 {
+  color: var(--theme-color);
+  border-bottom: 1px solid var(--divider-color);
+}
+
+body[class*="theme-"] h2 i {
+  color: var(--theme-color);
+}
+
+body[class*="theme-"] .skill-dot.filled {
+  background-color: var(--theme-color);
+}
+
+body[class*="theme-"] .contact-link {
+  color: var(--secondary-color);
+}
+
+body[class*="theme-"] .version-select {
+  border-color: var(--theme-color);
+}
+
+body[class*="theme-"] .version-select:focus {
+  border-color: var(--theme-color);
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+/* ==========================================================================
+   PRINT STYLES
+   ========================================================================== */
 @media print {
   @page {
     size: A4 portrait;
@@ -726,6 +726,34 @@ ul li::before {
     break-after: page;
     padding: var(--page-margin);
     border-radius: 0;
+  }
+
+  .version-switcher {
+    display: none !important;
+  }
+
+  header {
+    margin-bottom: var(--space-2);
+  }
+
+  .header-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+    align-items: end;
+  }
+
+  .contact-info {
+    justify-self: end;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, auto);
+    gap: var(--space-1) var(--space-2);
+    text-align: right;
+  }
+
+  .contact-info-row {
+    display: contents;
   }
 
   .education-item,

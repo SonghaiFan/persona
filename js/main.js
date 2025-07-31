@@ -355,26 +355,40 @@ function renderEducation(education, container) {
     const eduItem = document.createElement("div");
     eduItem.className = "education-item";
 
+    // Left column
+    const leftColumn = document.createElement("div");
+    leftColumn.className = "education-left";
+
     const title = document.createElement("div");
     title.className = "education-title";
     title.textContent = edu.degree;
-    eduItem.appendChild(title);
+    leftColumn.appendChild(title);
+
+    // Right column
+    const rightColumn = document.createElement("div");
+    rightColumn.className = "education-right";
 
     const institution = document.createElement("div");
     institution.className = "institution";
-    institution.textContent = `${edu.institution} (${edu.period})`;
-    eduItem.appendChild(institution);
+    institution.textContent = edu.institution;
+    rightColumn.appendChild(institution);
 
+    const period = document.createElement("div");
+    period.className = "education-period";
+    period.textContent = edu.period;
+    rightColumn.appendChild(period);
+
+    // Add additional content to left column
     if (edu.research) {
       const research = document.createElement("div");
       research.textContent = edu.research;
-      eduItem.appendChild(research);
+      leftColumn.appendChild(research);
     }
 
     if (edu.gpa) {
       const gpa = document.createElement("div");
       gpa.textContent = edu.gpa;
-      eduItem.appendChild(gpa);
+      leftColumn.appendChild(gpa);
     }
 
     if (edu.highlights && edu.highlights.length > 0) {
@@ -384,8 +398,11 @@ function renderEducation(education, container) {
         li.textContent = highlight;
         ul.appendChild(li);
       });
-      eduItem.appendChild(ul);
+      leftColumn.appendChild(ul);
     }
+
+    eduItem.appendChild(leftColumn);
+    eduItem.appendChild(rightColumn);
 
     section.appendChild(eduItem);
   });
@@ -758,33 +775,36 @@ function renderPublications(publications, container) {
     const pubItem = document.createElement("div");
     pubItem.className = "publication-item";
 
+    // Left column
+    const leftColumn = document.createElement("div");
+    leftColumn.className = "publication-left";
+
     const title = document.createElement("div");
     title.className = "publication-title";
     title.textContent = pub.title;
-    pubItem.appendChild(title);
-
-    const meta = document.createElement("div");
-    meta.className = "publication-meta";
+    leftColumn.appendChild(title);
 
     const authors = document.createElement("div");
     authors.className = "publication-authors";
     authors.textContent = pub.authors;
-    meta.appendChild(authors);
+    leftColumn.appendChild(authors);
+
+    // Right column
+    const rightColumn = document.createElement("div");
+    rightColumn.className = "publication-right";
 
     const venue = document.createElement("div");
     venue.className = "publication-venue";
+    venue.textContent = `${pub.venue} (${pub.year})`;
+    rightColumn.appendChild(venue);
 
-    const venueSpan = document.createElement("span");
-    venueSpan.textContent = `${pub.venue} (${pub.year})`;
-    venue.appendChild(venueSpan);
-
-    const typeSpan = document.createElement("span");
+    const typeSpan = document.createElement("div");
     typeSpan.className = "publication-type";
     typeSpan.textContent = pub.type;
-    venue.appendChild(typeSpan);
+    rightColumn.appendChild(typeSpan);
 
-    meta.appendChild(venue);
-    pubItem.appendChild(meta);
+    pubItem.appendChild(leftColumn);
+    pubItem.appendChild(rightColumn);
     section.appendChild(pubItem);
   });
 
@@ -816,30 +836,30 @@ function renderWorkExperience(workExperience, container) {
     const jobItem = document.createElement("div");
     jobItem.className = "work-experience-item";
 
-    const jobHeader = document.createElement("div");
-    jobHeader.className = "job-header";
+    // Left column
+    const leftColumn = document.createElement("div");
+    leftColumn.className = "work-left";
 
     const jobTitle = document.createElement("div");
     jobTitle.className = "job-title";
     jobTitle.textContent = job.title;
-    jobHeader.appendChild(jobTitle);
+    leftColumn.appendChild(jobTitle);
 
-    const jobMeta = document.createElement("div");
-    jobMeta.className = "job-meta";
+    // Right column
+    const rightColumn = document.createElement("div");
+    rightColumn.className = "work-right";
 
     const companyLocation = document.createElement("div");
     companyLocation.className = "company-location";
     companyLocation.textContent = `${job.company}, ${job.location}`;
-    jobMeta.appendChild(companyLocation);
+    rightColumn.appendChild(companyLocation);
 
     const periodType = document.createElement("div");
     periodType.className = "period-type";
     periodType.textContent = `${job.period}${job.type ? ` • ${job.type}` : ""}`;
-    jobMeta.appendChild(periodType);
+    rightColumn.appendChild(periodType);
 
-    jobHeader.appendChild(jobMeta);
-    jobItem.appendChild(jobHeader);
-
+    // Add responsibilities and achievements to left column
     if (job.responsibilities && job.responsibilities.length > 0) {
       const responsibilitiesUl = document.createElement("ul");
       responsibilitiesUl.className = "job-responsibilities";
@@ -848,7 +868,7 @@ function renderWorkExperience(workExperience, container) {
         li.textContent = responsibility;
         responsibilitiesUl.appendChild(li);
       });
-      jobItem.appendChild(responsibilitiesUl);
+      leftColumn.appendChild(responsibilitiesUl);
     }
 
     if (job.achievements && job.achievements.length > 0) {
@@ -868,8 +888,11 @@ function renderWorkExperience(workExperience, container) {
         achievementsUl.appendChild(li);
       });
       achievementsDiv.appendChild(achievementsUl);
-      jobItem.appendChild(achievementsDiv);
+      leftColumn.appendChild(achievementsDiv);
     }
+
+    jobItem.appendChild(leftColumn);
+    jobItem.appendChild(rightColumn);
 
     section.appendChild(jobItem);
   });
