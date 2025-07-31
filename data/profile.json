@@ -80,26 +80,6 @@
       }
     ]
   },
-  "skill_categories": {
-    "data_science": {
-      "title": "Data Analysis & Storytelling"
-    },
-    "artificial_intelligence": {
-      "title": "AI & Machine Learning"
-    },
-    "data_engineering": {
-      "title": "Data Engineering"
-    },
-    "research": {
-      "title": "Research & Methods"
-    },
-    "user_experience": {
-      "title": "User Experience"
-    },
-    "software_engineering": {
-      "title": "Software Engineering"
-    }
-  },
   "skills_pool": {
     "data_analysis": {
       "name": "Data Analysis & Storytelling",
