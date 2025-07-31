@@ -35,12 +35,12 @@
         ],
         "sections_order": [
           "summary",
-          "work_experience",
           "technical_skills",
           "projects",
           "phd_research",
           "education",
           "publications",
+          "work_experience",
           "certifications"
         ],
         "projects_limit": 3,
@@ -74,12 +74,12 @@
         ],
         "sections_order": [
           "summary",
-          "work_experience",
-          "technical_skills",
           "phd_research",
+          "technical_skills",
           "projects",
-          "education",
           "publications",
+          "education",
+          "work_experience",
           "certifications"
         ],
         "projects_limit": 3,
@@ -113,12 +113,12 @@
         ],
         "sections_order": [
           "summary",
-          "work_experience",
           "phd_research",
           "technical_skills",
+          "publications",
           "projects",
           "education",
-          "publications",
+          "work_experience",
           "certifications"
         ],
         "projects_limit": 3,
@@ -152,12 +152,12 @@
         ],
         "sections_order": [
           "summary",
-          "work_experience",
           "technical_skills",
           "projects",
           "phd_research",
           "education",
           "publications",
+          "work_experience",
           "certifications"
         ],
         "projects_limit": 4,
@@ -191,12 +191,12 @@
         ],
         "sections_order": [
           "summary",
-          "work_experience",
-          "technical_skills",
           "phd_research",
+          "publications",
+          "technical_skills",
           "projects",
           "education",
-          "publications",
+          "work_experience",
           "certifications"
         ],
         "projects_limit": 3,
