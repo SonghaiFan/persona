@@ -38,7 +38,6 @@
   --primary-color: var(--md-black);
   --secondary-color: var(--md-grey-600);
   --tertiary-color: var(--md-grey-400);
-  --quaternary-color: var(--md-grey-300);
   --background-color: var(--md-white);
   --surface-color: var(--md-grey-50);
   --divider-color: var(--md-grey-200);
@@ -54,16 +53,17 @@
   --sm-title: 10px; /* Item titles */
   --body-text: 9px; /* Main content */
   --small-text: 8px; /* Details/meta */
+  --xsmall-text: 7px; /* Details/meta */
   --tiny-text: 6px; /* Labels/tags */
 
-  /* Spacing Scale */
-  --space-0: 0.5px;
-  --space-1: 1px;
-  --space-2: 2px;
-  --space-3: 3px;
-  --space-4: 4px;
-  --space-6: 6px;
-  --space-8: 8px;
+  /* Compact MD Spacing */
+  --space-0: 0px;
+  --space-1: 2px;
+  --space-2: 4px;
+  --space-3: 6px;
+  --space-4: 8px;
+  --space-6: 12px;
+  --space-8: 16px;
 
   /* Material Design Elevation Shadows */
   --md-elevation-1: 0px 1px 3px rgba(0, 0, 0, 0.12),
@@ -159,6 +159,44 @@ body.loaded {
   outline: none;
   border-color: var(--accent-color);
   box-shadow: 0 0 0 2px rgba(66, 66, 66, 0.1);
+}
+
+/* Hide version switcher in print */
+@media print {
+  .version-switcher {
+    display: none !important;
+  }
+}
+
+/* Apply theme color to specific elements - colors loaded dynamically from JSON */
+body[class*="theme-"] h1 {
+  color: var(--theme-color);
+}
+
+body[class*="theme-"] h2 {
+  color: var(--theme-color);
+  border-bottom: 1px solid var(--divider-color);
+}
+
+body[class*="theme-"] h2 i {
+  color: var(--theme-color);
+}
+
+body[class*="theme-"] .skill-dot.filled {
+  background-color: var(--theme-color);
+}
+
+body[class*="theme-"] .contact-link {
+  color: var(--secondary-color);
+}
+
+body[class*="theme-"] .version-select {
+  border-color: var(--theme-color);
+}
+
+body[class*="theme-"] .version-select:focus {
+  border-color: var(--theme-color);
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
 }
 
 /* ==========================================================================
@@ -561,34 +599,37 @@ ul li::before {
   flex-direction: column;
 }
 
-.skill-name-text,
-.skill-item.unselected .skill-name-text {
-  font-weight: 600;
+.skill-name-text {
+  font-weight: 700;
   color: var(--primary-color);
   font-size: var(--sm-title);
 }
 
 .skill-details {
-  margin-top: var(--space-0);
+  margin-top: var(--space-1);
   display: flex;
   flex-direction: column;
-  gap: var(--space-0);
+  gap: var(--space-1);
 }
 
 .skill-subcategory {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: var(--space-0);
-  margin-bottom: var(--space-0);
+  flex-direction: row;
+  align-items: baseline;
+  gap: var(--space-1);
+  margin-bottom: var(--space-1);
+  justify-content: space-between;
 }
 
 .skill-label {
-  font-weight: 500;
-  color: var(--primary-color);
-  font-size: var(--small-text);
+  color: var(--divider-color);
+  font-weight: 300;
+  font-size: var(--tiny-text);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
   flex-shrink: 0;
-  text-align: left;
+  min-width: 60px;
+  text-align: right;
 }
 
 .tech-stack {
@@ -598,18 +639,52 @@ ul li::before {
   text-align: center;
 }
 
-.skill-label-container {
+.skill-content {
+  color: var(--secondary-color);
+  font-size: var(--xsmall-text);
+  line-height: 1.2;
+  flex: 1;
+}
+
+/* Unselected skills container styling */
+.skill-unselected-container {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  margin-bottom: var(--space-0);
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.unselected-title {
+  color: var(--primary-color);
+  font-weight: 500;
+  font-size: var(--sm-title);
+  margin-bottom: var(--space-1);
+  border-bottom: 1px solid var(--divider-color);
+  padding-bottom: var(--space-1);
 }
 
 .unselected-skills-list {
   display: flex;
   flex-direction: column;
-  gap: var(--space-0);
+  gap: var(--space-2);
+}
+
+.unselected-skill-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.unselected-skill-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-1);
+}
+
+.unselected-skill-name {
+  font-weight: 500;
+  color: var(--primary-color);
+  font-size: var(--sm-title);
 }
 
 /* Skill Rating */
