@@ -25,7 +25,7 @@
       "display_name": "Data Scientist / Analyst",
       "theme_color": "#1D4ED8",
       "icon": "fas fa-chart-line",
-      "summary": "PhD candidate in Human-Centered Computing with strong data science background. Skilled in Python, R, SQL for data analysis and statistical modeling. Experience in data visualization, A/B testing, and translating research insights into practical applications. Combines academic research with practical data science skills for evidence-based decision making.",
+      "summary": "PhD Researcher in Human-Centered Computing passionate about data science and analytics for enhanced human-data interaction. Expertise in statistical modeling, data visualization, and A/B testing, with a focus on developing data-driven insights that bridge human understanding with complex datasets. Skilled in Python, R, SQL, and Tableau, combining technical proficiency with a deep interest in evidence-based decision making.",
 
       "content_config": {
         "selected_skills": [
@@ -62,9 +62,9 @@
 
     "nlp-ai-engineer": {
       "display_name": "NLP / AI Engineer",
-      "theme_color": "#22C55E",
+      "theme_color": "#377446",
       "icon": "fas fa-robot",
-      "summary": "PhD candidate in Human-Centered Computing with focus on NLP and AI applications. Skilled in Python, PyTorch, and natural language processing techniques. Research experience in text analysis, language modeling, and developing AI-powered visualization systems. Combines theoretical understanding with practical implementation of NLP and machine learning solutions.",
+      "summary": "PhD Researcher in Human-Centered Computing passionate about leveraging LLMs and AI for enhanced human-data interaction. Expertise in natural language processing, machine learning, and text analysis, with a focus on developing AI-augmented frameworks that bridge human understanding with complex language systems. Skilled in Python, PyTorch, and advanced NLP techniques, combining technical proficiency with a deep interest in human-AI collaborative systems.",
 
       "content_config": {
         "selected_skills": [
@@ -103,7 +103,7 @@
       "display_name": "UX Research",
       "theme_color": "#000000",
       "icon": "fas fa-users",
-      "summary": "PhD candidate in Human-Centered Computing specializing in UX research and human-computer interaction. Experience in experimental design, usability testing, and mixed-methods research. Strong background in user-centered design and translating research insights into practical design recommendations. Combines academic rigor with practical UX research methodologies.",
+      "summary": "PhD Researcher in Human-Centered Computing passionate about user experience research and human-computer interaction. Expertise in experimental design, usability testing, and mixed-methods research, with a focus on developing user-centered frameworks that bridge human needs with technology systems. Skilled in research methodologies and design thinking, combining academic rigor with a deep interest in creating intuitive human-computer interfaces.",
 
       "content_config": {
         "selected_skills": [
@@ -142,7 +142,7 @@
       "display_name": "Data Viz Developer",
       "theme_color": "#F97316",
       "icon": "fas fa-chart-bar",
-      "summary": "PhD candidate in Human-Centered Computing with focus on data visualization and web development. Skilled in JavaScript, React, D3.js for creating interactive data visualizations and web applications. Research experience in narrative visualization and translating complex datasets into intuitive visual experiences. Combines academic research with practical web development and visualization skills.",
+      "summary": "PhD Researcher in Human-Centered Computing passionate about data visualization and web development for enhanced human-data interaction. Expertise in narrative visualization, interactive design, and data storytelling, with a focus on developing visual frameworks that bridge human understanding with complex data systems. Skilled in JavaScript, React, D3.js, and visualization techniques, combining technical proficiency with a deep interest in immersive analytics.",
 
       "content_config": {
         "selected_skills": [
@@ -181,7 +181,7 @@
       "display_name": "Data Engineer",
       "theme_color": "#331D38",
       "icon": "fas fa-database",
-      "summary": "PhD candidate in Human-Centered Computing with data engineering background. Skilled in building data pipelines, ETL processes, and data infrastructure. Experience with big data technologies and real-time data processing for research applications. Combines academic research with practical data engineering skills for scalable data solutions.",
+      "summary": "PhD Researcher in Human-Centered Computing passionate about data engineering and infrastructure for enhanced human-data interaction. Expertise in data pipelines, ETL processes, and big data technologies, with a focus on developing scalable frameworks that bridge human understanding with complex data systems. Skilled in Python, SQL, and data infrastructure tools, combining technical proficiency with a deep interest in real-time data processing and analytics.",
 
       "content_config": {
         "selected_skills": [

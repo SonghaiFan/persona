@@ -42,6 +42,7 @@
   --sm-title: 10px; /* Item titles */
   --body-text: 9px; /* Main content */
   --small-text: 8px; /* Details/meta */
+  --xsmall-text: 7px; /* Details/meta */
   --tiny-text: 6px; /* Labels/tags */
 
   /* Compact MD Spacing */
@@ -124,7 +125,7 @@ body[class*="theme-"] .skill-dot.filled {
 }
 
 body[class*="theme-"] .contact-link {
-  color: var(--theme-color);
+  color: var(--secondary-color);
 }
 
 body[class*="theme-"] .version-select {
@@ -329,7 +330,7 @@ h1 {
 
 .contact-item i {
   font-size: 8px;
-  color: var(--tertiary-color);
+  color: var(--theme-color);
   width: 10px;
 }
 
@@ -547,8 +548,8 @@ ul li::before {
 }
 
 .skill-label {
-  color: var(--accent-color);
-  font-weight: 500;
+  color: var(--divider-color);
+  font-weight: 300;
   font-size: var(--tiny-text);
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -559,7 +560,7 @@ ul li::before {
 
 .skill-content {
   color: var(--secondary-color);
-  font-size: var(--tiny-text);
+  font-size: var(--xsmall-text);
   line-height: 1.2;
   flex: 1;
 }
