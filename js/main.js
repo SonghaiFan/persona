@@ -494,7 +494,7 @@ function renderTechnicalSkills(
   // Render selected skills in the first 3 grid positions
   selectedSkills.forEach((skill) => {
     const skillItem = document.createElement("div");
-    skillItem.className = "skill-item skill-selected";
+    skillItem.className = "skill-item";
 
     const skillHeader = document.createElement("div");
     skillHeader.className = "skill-header";
@@ -512,89 +512,57 @@ function renderTechnicalSkills(
     skillName.appendChild(skillNameText);
     skillNameGroup.appendChild(skillName);
 
-    const skillLevel = document.createElement("div");
-    skillLevel.className = "skill-level";
-
-    const skillRating = document.createElement("div");
-    skillRating.className = "skill-rating";
-
-    // Create 5 dots for Material Design rating
-    for (let i = 1; i <= 5; i++) {
-      const dot = document.createElement("div");
-      dot.className = "skill-dot";
-      if (i <= (skill.level || 0)) {
-        dot.classList.add("filled");
-      }
-      skillRating.appendChild(dot);
-    }
-
-    skillLevel.appendChild(skillRating);
     skillHeader.appendChild(skillNameGroup);
-    skillHeader.appendChild(skillLevel);
     skillItem.appendChild(skillHeader);
 
-    // Show all 4 subcategories for selected skills
+    // Show core skills as subcategories with tech stack as sub-subcategories
     const skillDetails = document.createElement("div");
     skillDetails.className = "skill-details";
 
-    // Tech Stack
-    if (skill.tech_stack && skill.tech_stack.length > 0) {
-      const techStackDiv = document.createElement("div");
-      techStackDiv.className = "skill-subcategory";
-      const techStackContent = document.createElement("span");
-      techStackContent.className = "skill-content";
-      techStackContent.textContent = skill.tech_stack.join(", ");
-      techStackDiv.appendChild(techStackContent);
-      const techStackLabel = document.createElement("span");
-      techStackLabel.className = "skill-label";
-      techStackLabel.textContent = "TECH STACK";
-      techStackDiv.appendChild(techStackLabel);
-      skillDetails.appendChild(techStackDiv);
-    }
+    if (skill.core_skills) {
+      Object.entries(skill.core_skills).forEach(
+        ([coreSkillName, coreSkillData]) => {
+          const coreSkillDiv = document.createElement("div");
+          coreSkillDiv.className = "skill-subcategory";
 
-    // Core Skills
-    if (skill.core_skill && skill.core_skill.length > 0) {
-      const coreSkillDiv = document.createElement("div");
-      coreSkillDiv.className = "skill-subcategory";
-      const coreSkillContent = document.createElement("span");
-      coreSkillContent.className = "skill-content";
-      coreSkillContent.textContent = skill.core_skill.join(", ");
-      coreSkillDiv.appendChild(coreSkillContent);
-      const coreSkillLabel = document.createElement("span");
-      coreSkillLabel.className = "skill-label";
-      coreSkillLabel.textContent = "CORE SKILLS";
-      coreSkillDiv.appendChild(coreSkillLabel);
-      skillDetails.appendChild(coreSkillDiv);
-    }
+          // Create label container with level indicator
+          const labelContainer = document.createElement("div");
+          labelContainer.className = "skill-label-container";
 
-    // Methodology
-    if (skill.methodology && skill.methodology.length > 0) {
-      const methodologyDiv = document.createElement("div");
-      methodologyDiv.className = "skill-subcategory";
-      const methodologyContent = document.createElement("span");
-      methodologyContent.className = "skill-content";
-      methodologyContent.textContent = skill.methodology.join(", ");
-      methodologyDiv.appendChild(methodologyContent);
-      const methodologyLabel = document.createElement("span");
-      methodologyLabel.className = "skill-label";
-      methodologyLabel.textContent = "METHODOLOGY";
-      methodologyDiv.appendChild(methodologyLabel);
-      skillDetails.appendChild(methodologyDiv);
-    }
+          const coreSkillLabel = document.createElement("span");
+          coreSkillLabel.className = "skill-label";
+          coreSkillLabel.textContent = coreSkillName;
+          labelContainer.appendChild(coreSkillLabel);
 
-    // Use Scenarios
-    if (skill.use_scenario && skill.use_scenario.length > 0) {
-      const useScenarioDiv = document.createElement("div");
-      useScenarioDiv.className = "skill-subcategory";
-      const useScenarioContent = document.createElement("span");
-      useScenarioContent.className = "skill-content";
-      useScenarioContent.textContent = skill.use_scenario.join(", ");
-      useScenarioDiv.appendChild(useScenarioContent);
-      const useScenarioLabel = document.createElement("span");
-      useScenarioLabel.className = "skill-label";
-      useScenarioLabel.textContent = "USE SCENARIOS";
-      useScenarioDiv.appendChild(useScenarioLabel);
-      skillDetails.appendChild(useScenarioDiv);
+          // Add level indicator inline with label
+          const subcategoryLevel = document.createElement("div");
+          subcategoryLevel.className = "skill-level";
+
+          const subcategoryRating = document.createElement("div");
+          subcategoryRating.className = "skill-rating";
+
+          // Create 5 dots for the subcategory level
+          for (let i = 1; i <= 5; i++) {
+            const dot = document.createElement("div");
+            dot.className = "skill-dot";
+            if (i <= (coreSkillData.level || 0)) {
+              dot.classList.add("filled");
+            }
+            subcategoryRating.appendChild(dot);
+          }
+
+          subcategoryLevel.appendChild(subcategoryRating);
+          labelContainer.appendChild(subcategoryLevel);
+          coreSkillDiv.appendChild(labelContainer);
+
+          const coreSkillContent = document.createElement("span");
+          coreSkillContent.className = "skill-content";
+          coreSkillContent.textContent = coreSkillData.tech_stack.join(", ");
+          coreSkillDiv.appendChild(coreSkillContent);
+
+          skillDetails.appendChild(coreSkillDiv);
+        }
+      );
     }
 
     skillItem.appendChild(skillDetails);
@@ -604,7 +572,7 @@ function renderTechnicalSkills(
   // Create a combined cell for unselected skills in the bottom-right position
   if (unselectedSkills.length > 0) {
     const unselectedContainer = document.createElement("div");
-    unselectedContainer.className = "skill-item skill-unselected-container";
+    unselectedContainer.className = "skill-item unselected";
     unselectedContainer.style.gridColumn = "2";
     unselectedContainer.style.gridRow = "2";
 
@@ -613,68 +581,75 @@ function renderTechnicalSkills(
 
     unselectedSkills.forEach((skill) => {
       const unselectedSkill = document.createElement("div");
-      unselectedSkill.className = "unselected-skill-item";
+      unselectedSkill.className = "skill-item unselected";
 
       const skillHeader = document.createElement("div");
-      skillHeader.className = "unselected-skill-header";
+      skillHeader.className = "skill-header";
 
-      const skillName = document.createElement("span");
-      skillName.className = "unselected-skill-name";
-      skillName.textContent = skill.name || "";
+      const skillNameGroup = document.createElement("div");
+      skillNameGroup.className = "skill-name-group";
 
-      const skillLevel = document.createElement("div");
-      skillLevel.className = "skill-level";
+      const skillName = document.createElement("div");
+      skillName.className = "skill-name";
 
-      const skillRating = document.createElement("div");
-      skillRating.className = "skill-rating";
+      const skillNameText = document.createElement("span");
+      skillNameText.className = "skill-name-text";
+      skillNameText.textContent = skill.name || "";
 
-      // Create 5 dots for Material Design rating
-      for (let i = 1; i <= 5; i++) {
-        const dot = document.createElement("div");
-        dot.className = "skill-dot";
-        if (i <= (skill.level || 0)) {
-          dot.classList.add("filled");
-        }
-        skillRating.appendChild(dot);
-      }
-
-      skillLevel.appendChild(skillRating);
-      skillHeader.appendChild(skillName);
-      skillHeader.appendChild(skillLevel);
+      skillName.appendChild(skillNameText);
+      skillNameGroup.appendChild(skillName);
+      skillHeader.appendChild(skillNameGroup);
       unselectedSkill.appendChild(skillHeader);
 
-      // Show only Tech Stack and Core Skills for unselected skills
+      // Show only first 2 core skills for unselected skills
       const skillDetails = document.createElement("div");
-      skillDetails.className = "unselected-skill-details";
+      skillDetails.className = "skill-details";
 
-      // Tech Stack
-      if (skill.tech_stack && skill.tech_stack.length > 0) {
-        const techStackDiv = document.createElement("div");
-        techStackDiv.className = "skill-subcategory";
-        const techStackContent = document.createElement("span");
-        techStackContent.className = "skill-content";
-        techStackContent.textContent = skill.tech_stack.join(", ");
-        techStackDiv.appendChild(techStackContent);
-        const techStackLabel = document.createElement("span");
-        techStackLabel.className = "skill-label";
-        techStackLabel.textContent = "TECH STACK";
-        techStackDiv.appendChild(techStackLabel);
-        skillDetails.appendChild(techStackDiv);
-      }
+      if (skill.core_skills) {
+        const coreSkillsEntries = Object.entries(skill.core_skills);
+        const limitedSkills = coreSkillsEntries.slice(0, 2); // Show only first 2 core skills
 
-      // Core Skills
-      if (skill.core_skill && skill.core_skill.length > 0) {
-        const coreSkillDiv = document.createElement("div");
-        coreSkillDiv.className = "skill-subcategory";
-        const coreSkillContent = document.createElement("span");
-        coreSkillContent.className = "skill-content";
-        coreSkillContent.textContent = skill.core_skill.join(", ");
-        coreSkillDiv.appendChild(coreSkillContent);
-        const coreSkillLabel = document.createElement("span");
-        coreSkillLabel.className = "skill-label";
-        coreSkillLabel.textContent = "CORE SKILLS";
-        coreSkillDiv.appendChild(coreSkillLabel);
-        skillDetails.appendChild(coreSkillDiv);
+        limitedSkills.forEach(([coreSkillName, coreSkillData]) => {
+          const coreSkillDiv = document.createElement("div");
+          coreSkillDiv.className = "skill-subcategory";
+
+          // Create label container with level indicator
+          const labelContainer = document.createElement("div");
+          labelContainer.className = "skill-label-container";
+
+          const coreSkillLabel = document.createElement("span");
+          coreSkillLabel.className = "skill-label";
+          coreSkillLabel.textContent = coreSkillName;
+          labelContainer.appendChild(coreSkillLabel);
+
+          // Add level indicator inline with label
+          const subcategoryLevel = document.createElement("div");
+          subcategoryLevel.className = "skill-level";
+
+          const subcategoryRating = document.createElement("div");
+          subcategoryRating.className = "skill-rating";
+
+          // Create 5 dots for the subcategory level
+          for (let i = 1; i <= 5; i++) {
+            const dot = document.createElement("div");
+            dot.className = "skill-dot";
+            if (i <= (coreSkillData.level || 0)) {
+              dot.classList.add("filled");
+            }
+            subcategoryRating.appendChild(dot);
+          }
+
+          subcategoryLevel.appendChild(subcategoryRating);
+          labelContainer.appendChild(subcategoryLevel);
+          coreSkillDiv.appendChild(labelContainer);
+
+          const coreSkillContent = document.createElement("span");
+          coreSkillContent.className = "skill-content";
+          coreSkillContent.textContent = coreSkillData.tech_stack.join(", ");
+          coreSkillDiv.appendChild(coreSkillContent);
+
+          skillDetails.appendChild(coreSkillDiv);
+        });
       }
 
       unselectedSkill.appendChild(skillDetails);

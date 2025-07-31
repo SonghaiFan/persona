@@ -105,119 +105,154 @@
       "name": "Data Analysis & Storytelling",
       "category": "data_science",
       "level": 5,
-      "tech_stack": [
-        "Python (pandas, NumPy)",
-        "R (tidyverse)",
-        "SQL",
-        "Tableau",
-        "Power BI"
-      ],
-      "core_skill": [
-        "Data Cleaning & Wrangling",
-        "EDA",
-        "Data Storytelling",
-        "Business Intelligence"
-      ],
-      "methodology": [
-        "Statistical Modelling (Regression, ANOVA)",
-        "Time-Series Decomposition"
-      ],
-      "use_scenario": [
-        "User Behavior Analysis",
-        "Business Strategy Optimization"
-      ]
+      "core_skills": {
+        "Data Cleaning & Wrangling": {
+          "level": 5,
+          "tech_stack": ["Python (pandas, NumPy)", "R (tidyverse)", "SQL"]
+        },
+        "Data Visualization": {
+          "level": 5,
+          "tech_stack": ["Tableau", "Power BI", "D3.js"]
+        },
+        "Statistical Analysis": {
+          "level": 4,
+          "tech_stack": [
+            "R (tidyverse)",
+            "Python (statsmodels)",
+            "Statistical Testing"
+          ]
+        },
+        "Business Intelligence": {
+          "level": 4,
+          "tech_stack": ["Tableau", "Power BI", "SQL", "Dashboard Design"]
+        }
+      }
     },
     "data_science_ai": {
       "name": "Data Science & AI",
       "category": "artificial_intelligence",
       "level": 3,
-      "tech_stack": [
-        "scikit-learn",
-        "PyTorch",
-        "TensorFlow",
-        "NLTK",
-        "HuggingFace",
-        "OpenAI API"
-      ],
-      "core_skill": [
-        "Feature Engineering",
-        "Model Development & Evaluation",
-        "Prompt Engineering (LLMs)"
-      ],
-      "methodology": [
-        "Regression & Classification",
-        "Topic Modeling",
-        "Fine-Tuning"
-      ],
-      "use_scenario": [
-        "Demand Forecasting",
-        "Recommendation Systems",
-        "Text Classification",
-        "Intelligent Q&A"
-      ]
+      "core_skills": {
+        "Machine Learning": {
+          "level": 3,
+          "tech_stack": [
+            "scikit-learn",
+            "PyTorch",
+            "TensorFlow",
+            "Feature Engineering"
+          ]
+        },
+        "Natural Language Processing": {
+          "level": 4,
+          "tech_stack": ["NLTK", "HuggingFace", "Transformers", "Text Analysis"]
+        },
+        "LLM Integration": {
+          "level": 5,
+          "tech_stack": [
+            "OpenAI API",
+            "LangChain",
+            "Prompt Engineering",
+            "Fine-tuning"
+          ]
+        },
+        "Model Evaluation": {
+          "level": 3,
+          "tech_stack": ["Cross-validation", "Metrics Analysis", "A/B Testing"]
+        }
+      }
     },
     "research_evaluation": {
       "name": "Research & Evaluation",
       "category": "research",
       "level": 4,
-      "core_skill": [
-        "Problem Framing",
-        "Hypothesis Generation",
-        "Insight Synthesis",
-        "Prototyping & Iteration"
-      ],
-      "methodology": [
-        "Mixed Methods (Quant + Qual)",
-        "Controlled Experiments",
-        "Statistical Testing (t-test, ANOVA)"
-      ],
-      "use_scenario": [
-        "User Behavior Investigation",
-        "AI Product Evaluation",
-        "Design Pattern Derivation",
-        "Insight-to-Strategy Translation"
-      ]
+      "core_skills": {
+        "Experimental Design": {
+          "level": 5,
+          "tech_stack": [
+            "Controlled Experiments",
+            "A/B Testing",
+            "Statistical Testing"
+          ]
+        },
+        "Mixed Methods Research": {
+          "level": 4,
+          "tech_stack": [
+            "Quantitative Analysis",
+            "Qualitative Analysis",
+            "Survey Design"
+          ]
+        },
+        "User Research": {
+          "level": 4,
+          "tech_stack": [
+            "Usability Testing",
+            "User Interviews",
+            "Behavioral Analysis"
+          ]
+        },
+        "Data Analysis": {
+          "level": 5,
+          "tech_stack": [
+            "R",
+            "Python (statsmodels)",
+            "Statistical Testing (t-test, ANOVA)"
+          ]
+        }
+      }
     },
     "big_data_engineering": {
       "name": "Big Data & Data Engineering",
       "category": "data_engineering",
       "level": 3,
-      "tech_stack": ["Hadoop", "Spark", "Kafka", "SQL", "Firebase"],
-      "core_skill": [
-        "ETL Pipeline",
-        "Data Warehousing",
-        "Real-time Data Processing"
-      ],
-      "methodology": [
-        "Batch vs Streaming Architecture",
-        "Schema Design",
-        "Data Quality Validation"
-      ],
-      "use_scenario": ["Large-scale Log Processing", "Data Lake Construction"]
+      "core_skills": {
+        "ETL Pipeline": {
+          "level": 3,
+          "tech_stack": ["Hadoop", "Spark", "Kafka", "Data Processing"]
+        },
+        "Data Warehousing": {
+          "level": 4,
+          "tech_stack": ["SQL", "Database Design", "Schema Design"]
+        },
+        "Real-time Processing": {
+          "level": 3,
+          "tech_stack": [
+            "Kafka",
+            "Streaming Architecture",
+            "Real-time Analytics"
+          ]
+        },
+        "Data Infrastructure": {
+          "level": 3,
+          "tech_stack": ["Firebase", "Cloud Storage", "Data Quality Validation"]
+        }
+      }
     },
     "web_development_ux": {
       "name": "Web Development & UX",
       "category": "user_experience",
       "level": 5,
-      "tech_stack": [
-        "JavaScript",
-        "React",
-        "TailwindCSS",
-        "D3.js",
-        "Next.js",
-        "Google Analytics"
-      ],
-      "core_skill": [
-        "Interactive UI",
-        "Frontend Data Viz",
-        "A/B Testing",
-        "UX Flow Design"
-      ],
-      "use_scenario": [
-        "User Behavior Tracking",
-        "Dynamic Dashboard Development",
-        "Interactive Data Visualization"
-      ]
+      "core_skills": {
+        "Frontend Development": {
+          "level": 5,
+          "tech_stack": ["JavaScript", "React", "Next.js", "TailwindCSS"]
+        },
+        "Data Visualization": {
+          "level": 5,
+          "tech_stack": ["D3.js", "Interactive Charts", "Scrollytelling"]
+        },
+        "UX Design": {
+          "level": 4,
+          "tech_stack": ["User Flow Design", "A/B Testing", "Usability Testing"]
+        },
+        "Analytics": {
+          "level": 4,
+          "tech_stack": [
+            "Google Analytics",
+            "User Behavior Tracking",
+            "Performance Monitoring"
+          ]
+        }
+      }
     }
   },
 

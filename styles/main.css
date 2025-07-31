@@ -27,6 +27,7 @@
   --primary-color: var(--md-black);
   --secondary-color: var(--md-grey-600);
   --tertiary-color: var(--md-grey-400);
+  --quaternary-color: var(--md-grey-300);
   --background-color: var(--md-white);
   --surface-color: var(--md-grey-50);
   --divider-color: var(--md-grey-200);
@@ -42,16 +43,15 @@
   --sm-title: 10px; /* Item titles */
   --body-text: 9px; /* Main content */
   --small-text: 8px; /* Details/meta */
-  --xsmall-text: 7px; /* Details/meta */
   --tiny-text: 6px; /* Labels/tags */
 
   /* Compact MD Spacing */
-  --space-0: 0px;
-  --space-1: 2px;
-  --space-2: 4px;
-  --space-3: 6px;
-  --space-4: 8px;
-  --space-6: 12px;
+  --space-0: 0.5px;
+  --space-1: 1px;
+  --space-2: 2px;
+  --space-3: 3px;
+  --space-4: 4px;
+  --space-6: 6px;
 }
 
 /* Version Switcher */
@@ -138,7 +138,7 @@ body[class*="theme-"] .version-select:focus {
 }
 
 :root {
-  --space-8: 16px;
+  --space-8: 8px;
 
   /* Material Design Elevation Shadows */
   --md-elevation-1: 0px 1px 3px rgba(0, 0, 0, 0.12),
@@ -525,85 +525,73 @@ ul li::before {
 }
 
 .skill-name-text {
-  font-weight: 700;
+  font-weight: 600;
   color: var(--primary-color);
   font-size: var(--sm-title);
 }
 
 /* New skill subcategories styling */
 .skill-details {
-  margin-top: var(--space-1);
+  margin-top: var(--space-0);
   display: flex;
   flex-direction: column;
-  gap: var(--space-1);
+  gap: var(--space-0);
 }
 
 .skill-subcategory {
   display: flex;
-  flex-direction: row;
-  align-items: baseline;
-  gap: var(--space-1);
-  margin-bottom: var(--space-1);
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-0);
+  margin-bottom: var(--space-0);
 }
 
 .skill-label {
-  color: var(--divider-color);
-  font-weight: 300;
-  font-size: var(--tiny-text);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  color: var(--primary-color);
+  font-size: var(--small-text);
   flex-shrink: 0;
-  min-width: 60px;
-  text-align: right;
+  text-align: left;
 }
 
 .skill-content {
-  color: var(--secondary-color);
-  font-size: var(--xsmall-text);
-  line-height: 1.2;
+  color: var(--quaternary-color);
+  font-style: italic;
+  font-size: var(--tiny-text);
   flex: 1;
 }
 
-/* Unselected skills container styling */
-.skill-unselected-container {
+.skill-label-container {
   display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: var(--space-0);
 }
 
-.unselected-title {
+/* Unselected skills styling */
+.skill-item.unselected {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-0);
+}
+
+.skill-item.unselected .skill-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-0);
+}
+
+.skill-item.unselected .skill-name-text {
+  font-weight: 600;
   color: var(--primary-color);
-  font-weight: 500;
   font-size: var(--sm-title);
-  margin-bottom: var(--space-1);
-  border-bottom: 1px solid var(--divider-color);
-  padding-bottom: var(--space-1);
 }
 
 .unselected-skills-list {
   display: flex;
   flex-direction: column;
-  gap: var(--space-2);
-}
-
-.unselected-skill-item {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-1);
-}
-
-.unselected-skill-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-1);
-}
-
-.unselected-skill-name {
-  font-weight: 500;
-  color: var(--primary-color);
-  font-size: var(--sm-title);
+  gap: var(--space-0);
 }
 
 /* Ultra Compact Skill Rating */
