@@ -339,6 +339,20 @@ p {
   align-items: start;
 }
 
+/* Project item has special layout - two columns for main content, full width for case studies */
+.project-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.project-main-content {
+  display: grid;
+  grid-template-columns: 7fr auto;
+  gap: var(--space-2);
+  align-items: start;
+}
+
 /* ==========================================================================
    TWO-COLUMN LAYOUT COMPONENTS
    ========================================================================== */
@@ -346,6 +360,7 @@ p {
 /* Left Column: Main content (degree, job title, publication title, etc.) */
 .education-left,
 .work-left,
+.project-left,
 .publication-left {
   display: flex;
   flex-direction: column;
@@ -355,6 +370,7 @@ p {
 /* Right Column: Metadata (location, time, period, etc.) */
 .education-right,
 .work-right,
+.project-right,
 .publication-right {
   display: flex;
   flex-direction: column;
@@ -375,9 +391,13 @@ p {
 }
 
 /* Right Column Classes */
-.education-period,
+
 .institution {
   color: var(--tertiary-color);
+}
+.education-period {
+  color: var(--accent-color);
+  font-weight: 500;
 }
 
 /* ==========================================================================
@@ -452,14 +472,12 @@ p {
   text-align: right;
 }
 
-.publication-type {
+.publication-time {
   color: var(--accent-color);
   font-size: var(--tiny-text);
-  font-weight: 600;
   padding: var(--space-1);
   background: var(--surface-color);
   border-radius: var(--md-radius-small);
-  text-transform: uppercase;
 }
 
 /* ==========================================================================
@@ -515,6 +533,7 @@ ul li::before {
 
 .skill-item.unselected {
   gap: var(--space-0);
+  padding: var(--space-0);
 }
 
 .skill-header,
@@ -558,7 +577,6 @@ ul li::before {
 
 .skill-subcategory {
   display: flex;
-  font-weight: 600;
   flex-direction: column;
   align-items: flex-start;
   gap: var(--space-0);
@@ -566,17 +584,18 @@ ul li::before {
 }
 
 .skill-label {
+  font-weight: 500;
   color: var(--primary-color);
   font-size: var(--small-text);
   flex-shrink: 0;
   text-align: left;
 }
 
-.skill-content {
+.tech-stack {
+  font-size: var(--tiny-text);
   color: var(--quaternary-color);
   font-style: italic;
-  font-size: var(--tiny-text);
-  flex: 1;
+  text-align: center;
 }
 
 .skill-label-container {
@@ -619,43 +638,38 @@ ul li::before {
 /* ==========================================================================
    PROJECTS SECTION
    ========================================================================== */
-.project-description {
-  font-size: var(--small-text);
-  margin-top: var(--space-1);
-  color: var(--secondary-color);
-  line-height: 1.1;
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: var(--space-2);
+
+/* Left Column Classes */
+.project-title {
+  font-weight: 600;
+  font-size: var(--sm-title);
+  color: var(--primary-color);
+  margin-bottom: var(--space-2);
 }
 
-.project-tech-stack {
-  font-size: var(--tiny-text);
-  color: var(--accent-color);
-  background: var(--surface-color);
-  border-radius: var(--md-radius-small);
-  padding: var(--space-1) var(--space-2);
-  flex-shrink: 0;
+.project-description {
+  font-size: var(--small-text);
+  margin-top: var(--space-2);
+  color: var(--secondary-color);
+  line-height: 1.1;
 }
 
 .project-case {
-  margin-top: var(--space-2);
-  padding: var(--space-1);
-  background: var(--background-color);
   border-radius: var(--md-radius-small);
 }
 
 .case-item {
-  margin-bottom: var(--space-1);
-  margin-left: var(--space-1);
+  border-radius: var(--md-radius-small);
+  background: var(--background-color);
+  padding: var(--space-1);
+  margin: var(--space-2);
 }
 
 .case-item h4 {
   font-size: var(--small-text);
   font-weight: 600;
   color: var(--primary-color);
-  margin: 0 0 var(--space-1) 0;
+  margin-bottom: var(--space-2);
 }
 
 /* ==========================================================================

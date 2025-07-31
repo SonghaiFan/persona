@@ -308,28 +308,28 @@
     {
       "title": "A Directed Graph Model and Experimental Framework for Design and Study of News Narrative Visualisation",
       "authors": "S Fan, T Dwyer, S Goodwin, H Purchase",
-      "venue": "IEEE VIS 2025",
+      "venue": "IEEE VIS",
       "year": "2025",
-      "type": "Full Paper (Under Review)"
+      "type": "Full Paper"
     },
     {
       "title": "ACCESS: A Benchmark for Abstract Causal Event Discovery and Reasoning",
       "authors": "G Haffari, V Vo, L Qu, T Feng, Y Hua, X Kang, S Fan, T Dwyer, L Soon",
-      "venue": "NAACL 2025",
+      "venue": "NAACL",
       "year": "2025",
       "type": "Paper"
     },
     {
       "title": "Discourse lines: visualising current policy and media storylines of opportunity and disadvantage with narrative exploration maps",
       "authors": "S Angus, S Borgohain, S Fan, S Goodwin, A Kristanto, L O'Neill",
-      "venue": "NLVIZ 2024",
+      "venue": "NLVIZ",
       "year": "2024",
       "type": "Workshop Paper"
     },
     {
       "title": "Understanding the Narrative: An Exploration of Narrative Structure and Visualisation Techniques in News Media",
       "authors": "S Fan, Y Ying, S Goodwin, S Angus, H Purchase, T Dwyer",
-      "venue": "IEEE VIS 2023",
+      "venue": "IEEE VIS",
       "year": "2023",
       "type": "Poster"
     }

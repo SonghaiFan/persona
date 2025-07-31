@@ -573,7 +573,7 @@ function renderTechnicalSkills(
           coreSkillDiv.appendChild(labelContainer);
 
           const coreSkillContent = document.createElement("span");
-          coreSkillContent.className = "skill-content";
+          coreSkillContent.className = "tech-stack";
           coreSkillContent.textContent = coreSkillData.tech_stack.join(", ");
           coreSkillDiv.appendChild(coreSkillContent);
 
@@ -661,7 +661,7 @@ function renderTechnicalSkills(
           coreSkillDiv.appendChild(labelContainer);
 
           const coreSkillContent = document.createElement("span");
-          coreSkillContent.className = "skill-content";
+          coreSkillContent.className = "tech-stack";
           coreSkillContent.textContent = coreSkillData.tech_stack.join(", ");
           coreSkillDiv.appendChild(coreSkillContent);
 
@@ -688,9 +688,18 @@ function renderProjects(projects, container, projectFocus = null) {
     const projectItem = document.createElement("div");
     projectItem.className = "project-item";
 
-    const title = document.createElement("h3");
+    // Main content area with two columns
+    const mainContent = document.createElement("div");
+    mainContent.className = "project-main-content";
+
+    // Left column
+    const leftColumn = document.createElement("div");
+    leftColumn.className = "project-left";
+
+    const title = document.createElement("div");
+    title.className = "project-title";
     title.textContent = project.title;
-    projectItem.appendChild(title);
+    leftColumn.appendChild(title);
 
     // Use version-specific project focus if available, otherwise use original description
     const descriptionText =
@@ -698,24 +707,11 @@ function renderProjects(projects, container, projectFocus = null) {
         ? projectFocus[project.id]
         : project.description;
 
-    if (descriptionText || project.tech_stack) {
-      const description = document.createElement("p");
+    if (descriptionText) {
+      const description = document.createElement("div");
       description.className = "project-description";
-
-      if (descriptionText) {
-        const descriptionTextSpan = document.createElement("span");
-        descriptionTextSpan.textContent = descriptionText;
-        description.appendChild(descriptionTextSpan);
-      }
-
-      if (project.tech_stack) {
-        const techStack = document.createElement("span");
-        techStack.className = "project-tech-stack";
-        techStack.textContent = project.tech_stack;
-        description.appendChild(techStack);
-      }
-
-      projectItem.appendChild(description);
+      description.textContent = descriptionText;
+      leftColumn.appendChild(description);
     }
 
     if (project.features && project.features.length > 0) {
@@ -726,9 +722,26 @@ function renderProjects(projects, container, projectFocus = null) {
         li.textContent = feature;
         featuresUl.appendChild(li);
       });
-      projectItem.appendChild(featuresUl);
+      leftColumn.appendChild(featuresUl);
     }
 
+    // Right column
+    const rightColumn = document.createElement("div");
+    rightColumn.className = "project-right";
+
+    if (project.tech_stack) {
+      const techStack = document.createElement("div");
+      techStack.className = "tech-stack";
+      techStack.textContent = project.tech_stack;
+      rightColumn.appendChild(techStack);
+    }
+
+    // Add columns to main content
+    mainContent.appendChild(leftColumn);
+    mainContent.appendChild(rightColumn);
+    projectItem.appendChild(mainContent);
+
+    // Case studies span full width below the two-column layout
     if (project.items && project.items.length > 0) {
       const caseStudiesDiv = document.createElement("div");
       caseStudiesDiv.className = "project-case";
@@ -795,12 +808,12 @@ function renderPublications(publications, container) {
 
     const venue = document.createElement("div");
     venue.className = "publication-venue";
-    venue.textContent = `${pub.venue} (${pub.year})`;
+    venue.textContent = `${pub.venue} (${pub.type})`;
     rightColumn.appendChild(venue);
 
     const typeSpan = document.createElement("div");
-    typeSpan.className = "publication-type";
-    typeSpan.textContent = pub.type;
+    typeSpan.className = "publication-time";
+    typeSpan.textContent = pub.year;
     rightColumn.appendChild(typeSpan);
 
     pubItem.appendChild(leftColumn);
