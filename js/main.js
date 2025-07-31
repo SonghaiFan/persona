@@ -3,6 +3,72 @@ let resumeData = null;
 let versionsData = null;
 let currentVersion = "data-viz";
 
+// ==========================================================================
+// HELPER FUNCTIONS FOR DOM ELEMENT CREATION
+// ==========================================================================
+
+/**
+ * Creates a div element with specified class name
+ * @param {string} className - CSS class name
+ * @returns {HTMLElement} - Created div element
+ */
+function createDiv(className) {
+  const div = document.createElement("div");
+  if (className) {
+    div.className = className;
+  }
+  return div;
+}
+
+/**
+ * Creates a span element with specified class name and text content
+ * @param {string} className - CSS class name
+ * @param {string} text - Text content
+ * @returns {HTMLElement} - Created span element
+ */
+function createSpan(className, text) {
+  const span = document.createElement("span");
+  if (className) {
+    span.className = className;
+  }
+  if (text) {
+    span.textContent = text;
+  }
+  return span;
+}
+
+/**
+ * Creates a list item with specified text content
+ * @param {string} text - Text content
+ * @returns {HTMLElement} - Created li element
+ */
+function createListItem(text) {
+  const li = document.createElement("li");
+  li.textContent = text;
+  return li;
+}
+
+/**
+ * Creates a list with specified items
+ * @param {string[]} items - Array of text items
+ * @param {string} className - Optional CSS class name
+ * @returns {HTMLElement} - Created ul element
+ */
+function createList(items, className = "") {
+  const ul = document.createElement("ul");
+  if (className) {
+    ul.className = className;
+  }
+  items.forEach((item) => {
+    ul.appendChild(createListItem(item));
+  });
+  return ul;
+}
+
+// ==========================================================================
+// MAIN APPLICATION CODE
+// ==========================================================================
+
 document.addEventListener("DOMContentLoaded", async () => {
   try {
     // Load both data files
@@ -352,52 +418,39 @@ function renderEducation(education, container) {
   );
 
   education.forEach((edu) => {
-    const eduItem = document.createElement("div");
-    eduItem.className = "education-item";
+    const eduItem = createDiv("education-item");
 
     // Left column
-    const leftColumn = document.createElement("div");
-    leftColumn.className = "education-left";
-
-    const title = document.createElement("div");
-    title.className = "education-title";
+    const leftColumn = createDiv("education-left");
+    const title = createDiv("education-title");
     title.textContent = edu.degree;
     leftColumn.appendChild(title);
 
     // Right column
-    const rightColumn = document.createElement("div");
-    rightColumn.className = "education-right";
-
-    const institution = document.createElement("div");
-    institution.className = "institution";
+    const rightColumn = createDiv("education-right");
+    const institution = createDiv("institution");
     institution.textContent = edu.institution;
     rightColumn.appendChild(institution);
 
-    const period = document.createElement("div");
-    period.className = "education-period";
+    const period = createDiv("education-period");
     period.textContent = edu.period;
     rightColumn.appendChild(period);
 
     // Add additional content to left column
     if (edu.research) {
-      const research = document.createElement("div");
+      const research = createDiv();
       research.textContent = edu.research;
       leftColumn.appendChild(research);
     }
 
     if (edu.gpa) {
-      const gpa = document.createElement("div");
+      const gpa = createDiv();
       gpa.textContent = edu.gpa;
       leftColumn.appendChild(gpa);
     }
 
     if (edu.highlights && edu.highlights.length > 0) {
-      const ul = document.createElement("ul");
-      edu.highlights.forEach((highlight) => {
-        const li = document.createElement("li");
-        li.textContent = highlight;
-        ul.appendChild(li);
-      });
+      const ul = createList(edu.highlights);
       leftColumn.appendChild(ul);
     }
 
@@ -424,8 +477,7 @@ function renderPhDResearch(research, container) {
 
     const ul = document.createElement("ul");
     researchSection.items.forEach((item) => {
-      const li = document.createElement("li");
-      li.textContent = item.point;
+      const li = createListItem(item.point);
 
       if (item.detail) {
         const detail = document.createElement("p");
@@ -710,19 +762,14 @@ function renderProjects(projects, container, projectFocus = null) {
   const section = createSection("projects", "Projects", "fas fa-star");
 
   projects.forEach((project) => {
-    const projectItem = document.createElement("div");
-    projectItem.className = "project-item";
+    const projectItem = createDiv("project-item");
 
     // Main content area with two columns
-    const mainContent = document.createElement("div");
-    mainContent.className = "project-main-content";
+    const mainContent = createDiv("project-main-content");
 
     // Left column
-    const leftColumn = document.createElement("div");
-    leftColumn.className = "project-left";
-
-    const title = document.createElement("div");
-    title.className = "project-title";
+    const leftColumn = createDiv("project-left");
+    const title = createDiv("project-title");
     title.textContent = project.title;
     leftColumn.appendChild(title);
 
@@ -733,30 +780,21 @@ function renderProjects(projects, container, projectFocus = null) {
         : project.description;
 
     if (descriptionText) {
-      const description = document.createElement("div");
-      description.className = "project-description";
+      const description = createDiv("project-description");
       description.textContent = descriptionText;
       leftColumn.appendChild(description);
     }
 
     if (project.features && project.features.length > 0) {
-      const featuresUl = document.createElement("ul");
-      featuresUl.className = "project-features";
-      project.features.forEach((feature) => {
-        const li = document.createElement("li");
-        li.textContent = feature;
-        featuresUl.appendChild(li);
-      });
+      const featuresUl = createList(project.features, "project-features");
       leftColumn.appendChild(featuresUl);
     }
 
     // Right column
-    const rightColumn = document.createElement("div");
-    rightColumn.className = "project-right";
+    const rightColumn = createDiv("project-right");
 
     if (project.tech_stack) {
-      const techStack = document.createElement("div");
-      techStack.className = "tech-stack";
+      const techStack = createDiv("tech-stack");
       techStack.textContent = project.tech_stack;
       rightColumn.appendChild(techStack);
     }
@@ -768,23 +806,16 @@ function renderProjects(projects, container, projectFocus = null) {
 
     // Case studies span full width below the two-column layout
     if (project.items && project.items.length > 0) {
-      const caseStudiesDiv = document.createElement("div");
-      caseStudiesDiv.className = "project-case";
+      const caseStudiesDiv = createDiv("project-case");
 
       project.items.forEach((caseStudy) => {
-        const caseStudyItem = document.createElement("div");
-        caseStudyItem.className = "case-item";
+        const caseStudyItem = createDiv("case-item");
 
         const caseTitle = document.createElement("h4");
         caseTitle.textContent = caseStudy.title;
         caseStudyItem.appendChild(caseTitle);
 
-        const caseUl = document.createElement("ul");
-        caseStudy.details.forEach((detail) => {
-          const li = document.createElement("li");
-          li.textContent = detail;
-          caseUl.appendChild(li);
-        });
+        const caseUl = createList(caseStudy.details);
         caseStudyItem.appendChild(caseUl);
         caseStudiesDiv.appendChild(caseStudyItem);
       });
@@ -810,34 +841,25 @@ function renderPublications(publications, container) {
   });
 
   sortedPublications.forEach((pub) => {
-    const pubItem = document.createElement("div");
-    pubItem.className = "publication-item";
+    const pubItem = createDiv("publication-item");
 
     // Left column
-    const leftColumn = document.createElement("div");
-    leftColumn.className = "publication-left";
-
-    const title = document.createElement("div");
-    title.className = "publication-title";
+    const leftColumn = createDiv("publication-left");
+    const title = createDiv("publication-title");
     title.textContent = pub.title;
     leftColumn.appendChild(title);
 
-    const authors = document.createElement("div");
-    authors.className = "publication-authors";
+    const authors = createDiv("publication-authors");
     authors.textContent = pub.authors;
     leftColumn.appendChild(authors);
 
     // Right column
-    const rightColumn = document.createElement("div");
-    rightColumn.className = "publication-right";
-
-    const venue = document.createElement("div");
-    venue.className = "publication-venue";
+    const rightColumn = createDiv("publication-right");
+    const venue = createDiv("publication-venue");
     venue.textContent = `${pub.venue} (${pub.type})`;
     rightColumn.appendChild(venue);
 
-    const typeSpan = document.createElement("div");
-    typeSpan.className = "publication-time";
+    const typeSpan = createDiv("publication-time");
     typeSpan.textContent = pub.year;
     rightColumn.appendChild(typeSpan);
 
@@ -855,13 +877,7 @@ function renderCertifications(certifications, container) {
     "Certifications",
     "fas fa-certificate"
   );
-  const ul = document.createElement("ul");
-
-  certifications.forEach((cert) => {
-    const li = document.createElement("li");
-    li.textContent = cert;
-    ul.appendChild(li);
-  });
+  const ul = createList(certifications);
 
   section.appendChild(ul);
   container.appendChild(section);
@@ -871,60 +887,40 @@ function renderWorkExperience(workExperience, container) {
   const section = createSection("work-experience", "Work", "fas fa-briefcase");
 
   workExperience.forEach((job) => {
-    const jobItem = document.createElement("div");
-    jobItem.className = "work-experience-item";
+    const jobItem = createDiv("work-experience-item");
 
     // Left column
-    const leftColumn = document.createElement("div");
-    leftColumn.className = "work-left";
-
-    const jobTitle = document.createElement("div");
-    jobTitle.className = "job-title";
+    const leftColumn = createDiv("work-left");
+    const jobTitle = createDiv("job-title");
     jobTitle.textContent = job.title;
     leftColumn.appendChild(jobTitle);
 
     // Right column
-    const rightColumn = document.createElement("div");
-    rightColumn.className = "work-right";
-
-    const companyLocation = document.createElement("div");
-    companyLocation.className = "company-location";
+    const rightColumn = createDiv("work-right");
+    const companyLocation = createDiv("company-location");
     companyLocation.textContent = `${job.company}, ${job.location}`;
     rightColumn.appendChild(companyLocation);
 
-    const periodType = document.createElement("div");
-    periodType.className = "period-type";
+    const periodType = createDiv("period-type");
     periodType.textContent = `${job.period}${job.type ? ` • ${job.type}` : ""}`;
     rightColumn.appendChild(periodType);
 
     // Add responsibilities and achievements to left column
     if (job.responsibilities && job.responsibilities.length > 0) {
-      const responsibilitiesUl = document.createElement("ul");
-      responsibilitiesUl.className = "job-responsibilities";
-      job.responsibilities.forEach((responsibility) => {
-        const li = document.createElement("li");
-        li.textContent = responsibility;
-        responsibilitiesUl.appendChild(li);
-      });
+      const responsibilitiesUl = createList(
+        job.responsibilities,
+        "job-responsibilities"
+      );
       leftColumn.appendChild(responsibilitiesUl);
     }
 
     if (job.achievements && job.achievements.length > 0) {
-      const achievementsDiv = document.createElement("div");
-      achievementsDiv.className = "job-achievements";
-
-      const achievementsTitle = document.createElement("div");
-      achievementsTitle.className = "achievements-title";
+      const achievementsDiv = createDiv("job-achievements");
+      const achievementsTitle = createDiv("achievements-title");
       achievementsTitle.textContent = "Key Achievements:";
       achievementsDiv.appendChild(achievementsTitle);
 
-      const achievementsUl = document.createElement("ul");
-      achievementsUl.className = "achievements-list";
-      job.achievements.forEach((achievement) => {
-        const li = document.createElement("li");
-        li.textContent = achievement;
-        achievementsUl.appendChild(li);
-      });
+      const achievementsUl = createList(job.achievements, "achievements-list");
       achievementsDiv.appendChild(achievementsUl);
       leftColumn.appendChild(achievementsDiv);
     }

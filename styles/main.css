@@ -168,37 +168,6 @@ body.loaded {
   }
 }
 
-/* Apply theme color to specific elements - colors loaded dynamically from JSON */
-body[class*="theme-"] h1 {
-  color: var(--theme-color);
-}
-
-body[class*="theme-"] h2 {
-  color: var(--theme-color);
-  border-bottom: 1px solid var(--divider-color);
-}
-
-body[class*="theme-"] h2 i {
-  color: var(--theme-color);
-}
-
-body[class*="theme-"] .skill-dot.filled {
-  background-color: var(--theme-color);
-}
-
-body[class*="theme-"] .contact-link {
-  color: var(--secondary-color);
-}
-
-body[class*="theme-"] .version-select {
-  border-color: var(--theme-color);
-}
-
-body[class*="theme-"] .version-select:focus {
-  border-color: var(--theme-color);
-  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
-}
-
 /* ==========================================================================
    LOADING INDICATOR
    ========================================================================== */
@@ -429,10 +398,10 @@ p {
 }
 
 /* Right Column Classes */
-
 .institution {
   color: var(--tertiary-color);
 }
+
 .education-period {
   color: var(--accent-color);
   font-weight: 500;
@@ -634,8 +603,7 @@ ul li::before {
 
 .tech-stack {
   font-size: var(--tiny-text);
-  color: var(--quaternary-color);
-  font-style: italic;
+  color: var(--tertiary-color);
   text-align: center;
 }
 
@@ -719,12 +687,10 @@ ul li::before {
   font-weight: 600;
   font-size: var(--sm-title);
   color: var(--primary-color);
-  margin-bottom: var(--space-2);
 }
 
 .project-description {
   font-size: var(--small-text);
-  margin-top: var(--space-2);
   color: var(--secondary-color);
   line-height: 1.1;
 }
@@ -858,12 +824,15 @@ body[class*="theme-"] .version-select:focus {
   h1 {
     font-size: var(--xl-title);
   }
+
   h2 {
     font-size: var(--lg-title);
   }
+
   h3 {
     font-size: var(--sm-title);
   }
+
   p {
     font-size: var(--body-text);
   }
@@ -871,6 +840,7 @@ body[class*="theme-"] .version-select:focus {
   .contact-item {
     font-size: var(--small-text);
   }
+
   ul li {
     font-size: var(--small-text);
   }

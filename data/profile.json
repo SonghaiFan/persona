@@ -122,7 +122,7 @@
       "core_skill": [
         "Feature Engineering",
         "Model Development & Evaluation",
-        "Prompt Engineering (LLMs)"
+        "Prompt Engineering"
       ],
       "methodology": [
         "Regression & Classification",
@@ -130,7 +130,7 @@
         "Fine-Tuning"
       ],
       "use_scenario": [
-        "Demand Forecasting",
+        "Forecasting",
         "Recommendation Systems",
         "Text Classification",
         "Intelligent Q&A"
@@ -241,7 +241,6 @@
           "title": "Climate Change Awareness",
           "details": [
             "With the Monash Climate Change Communication Research Hub (MCCCRH), created a climate visualization platform.",
-            "Mapped extreme temperature events across 100+ years of data from 45 locations.",
             "Developed a location-aware, interactive scrolling narrative with custom threshold controls and historical comparisons."
           ]
         }
