@@ -897,7 +897,7 @@ function renderCoverLetter(container, versionConfig) {
   header.appendChild(contactInfo);
   container.appendChild(header);
 
-  // Date
+  // Date - auto-detect today's date
   const today = new Date();
   const dateString = today.toLocaleDateString("en-US", {
     year: "numeric",
@@ -942,7 +942,7 @@ function renderCoverLetter(container, versionConfig) {
   // Closing
   const closingDiv = createDiv("cover-letter-closing");
   closingDiv.innerHTML = `
-    <div class="closing-text">${coverLetterData.closing}</div>
+    <div class="closing-text">${coverLetterData.closing} :)</div>
     <div class="signature">${coverLetterData.signature}</div>
   `;
   container.appendChild(closingDiv);
