@@ -145,6 +145,42 @@ body.loaded {
   min-width: 0;
 }
 
+/* Brand logo container */
+.brand-logo-container {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.brand-logo {
+  height: 32px;
+  width: auto;
+  flex-shrink: 0;
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.brand-text h1 {
+  font-size: var(--lg-title);
+  font-weight: 700;
+  color: var(--primary-color);
+  margin: 0;
+  line-height: 1;
+  letter-spacing: -0.5px;
+}
+
+.brand-text p {
+  font-size: var(--tiny-text);
+  color: var(--secondary-color);
+  margin: 0;
+  line-height: 1.2;
+  max-width: 300px;
+}
+
 .app-controls {
   display: flex;
   align-items: center;
@@ -191,6 +227,25 @@ body.loaded {
   transform: translateY(-50%);
   font-size: 0.75rem;
   color: #888;
+}
+
+/* Responsive styles for mobile */
+@media (max-width: 768px) {
+  .brand-logo-container {
+    gap: var(--space-2);
+  }
+
+  .brand-logo {
+    height: 24px;
+  }
+
+  .brand-text h1 {
+    font-size: var(--md-title);
+  }
+
+  .brand-text p {
+    display: none;
+  }
 }
 
 /* Hide version switcher in print */
