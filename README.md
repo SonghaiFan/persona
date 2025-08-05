@@ -1,89 +1,294 @@
-# Songhai Fan (Frank)
+# Frankie Résumé 📄
 
-**Location:** Melbourne, Australia | **Phone:** +61 0434 780 632 | **Email:** songhai.fan2025@gmail.com  
-**GitHub:** [github.com/SonghaiFan](https://github.com/SonghaiFan) | **Website:** [songhai.one](https://songhai.one) | **LinkedIn:** [linkedin.com/in/songhaifan](https://www.linkedin.com/in/songhaifan)
+> **Super Simple Yet Powerful Resume Template**  
+> The minimalist approach to professional resumes - just HTML, CSS, and JavaScript. No frameworks, no dependencies, no complexity.
 
-## Summary
+## ✨ Why Frankie Résumé?
 
-PhD Researcher in Human-Centered Computing passionate about leveraging LLMs and AI for enhanced human-data interaction. Expertise in narrative visualization, immersive analytics, and data storytelling, with a focus on developing AI-augmented frameworks that bridge human understanding with complex data systems. Skilled in Python, React, D3.js, and advanced NLP techniques, combining technical proficiency with a deep interest in human-AI collaborative systems.
+**Pure Simplicity** - Built with the fundamental web trio:
 
-## Education
+- 📄 **HTML** - Clean, semantic structure
+- 🎨 **CSS** - Beautiful Material Design styling
+- ⚡ **JavaScript** - Dynamic content rendering
+- 🚫 **Zero Dependencies** - No frameworks, no build tools, no package managers
 
-### PhD in Human-Centered Computing
+**One Template, Multiple Versions** - Easily switch between different resume versions for different roles or industries.
 
-**Monash University, Australia** (Oct 2021 – Jul 2025 Expected)  
-Research: Narrative Visualization and Immersive Analytics
+**Edit Once, Deploy Anywhere** - Just modify the JSON data file and you're ready to go!
 
-- Key milestones: Research Plan (May 2022), Confirmation (Feb 2023), Progress Review (Apr 2024)
+---
 
-### Master of Data Science
+## 🚀 Quick Start
 
-**Monash University, Australia** (June 2019 – Present)  
-GPA: 3.7/4.0
+### The 3-Step Resume Revolution
 
-- Key courses: Business Intelligence Modelling, Data Exploration & Visualisation, Statistical Data Modelling
-- Advanced topics: Big Data Processing, Data Wrangling, Applied Data Analysis, Data Warehousing
+```bash
+# 1. Fork this repository to your GitHub account
+# 2. Edit data/profile.json with your information
+# 3. Print the page - you get your resume done! 🎉
+```
 
-### Bachelor of Engineering (Honors)
+### Detailed Steps
 
-**Monash University, Australia** (March 2016 – Dec 2018)
+### 1. Clone & Customize
 
-## PhD Research
+```bash
+git clone https://github.com/SonghaiFan/persona.git
+cd persona
+```
 
-### Time-Track Narrative Graph Model
+### 2. Edit Your Data
 
-- Developed TTNG to visualize narrative transitions in temporal data
-- Created a Graph-to-Text pipeline using LLMs to generate synthetic datasets
-- Conducted user studies to align algorithmic models with human narrative understanding
-- Applied NLP techniques: topic modeling, sentiment analysis, and text summarization
+Open `data/profile.json` and replace with your information:
 
-### Scrollytelling and Immersive Analytics
+```json
+{
+  "personal_info": {
+    "first_name": "Your",
+    "last_name": "Name",
+    "first_name_pronounce": "your-pronunciation",
+    "last_name_pronounce": "name-pronunciation",
+    "nickname": "Nickname"
+    // ... rest of your data
+  }
+}
+```
 
-- Researched scrollytelling methods to enhance user engagement with data narratives
-- Published findings on improving narrative coherence and interaction in visualization
+### 3. Add More Versions
 
-## Skills
+Create additional JSON files in the `data/` folder:
 
-- **Programming:** Python, JavaScript, R, SQL
-- **Visualization:** D3.js, React, Tableau, Power BI
-- **NLP Techniques:** Topic Modeling, Sentiment Analysis
-- **Frontend:** React, Redux, HTML/CSS
-- **Tools:** PySpark, Scikit-learn, MySQL
+- `data/tech-focused.json` - For tech roles
+- `data/business-focused.json` - For business roles
+- `data/creative-focused.json` - For creative roles
 
-## Projects
+### 4. Launch & Print
 
-### GPT Storytale
+Open `index.html` in any web browser, select your preferred version, and hit **Ctrl+P** (or **Cmd+P** on Mac) to print. That's it! 🎉
 
-- Developed a Python-based system using transformer models for generating coherent story sequences
-- Integrated evaluation metrics and narrative parameters for text-to-visualization pipelines
+**Real Example**: Check out how the current `profile.json` creates a complete PhD researcher resume with multiple specialized versions - just by editing JSON data!
 
-### Causal Relationship Network Visualization
+---
 
-- Built a React/TypeScript visualization tool for complex causal graphs using Sigma.js
-- Implemented features for node categorization, centrality analysis, and advanced filtering
+## 🎯 Unlimited Versions for Your Job Hunt
 
-### Perspectiva - P-CLD Analysis Tool
+**Create as many resume versions as you need!** The beauty of Frank Résumé lies in its flexibility:
 
-- Created a tool for documenting and visualizing Participatory Causal Loop Diagrams
-- Enhanced transparency in urban data governance decision-making processes
+### 📊 **Built-in Example Versions**
 
-### Interactive Data Storytelling Platform
+The template comes with 5 professionally crafted versions:
 
-- Developed scrollytelling visualizations for COVID-19 trends and climate change impacts on disadvantaged communities
-- Built interactive narrative tools using D3.js and Python to enhance public understanding of complex social issues
+- 🔬 **Data Scientist/Analyst** - Statistical modeling & analytics focus
+- 🤖 **NLP/AI Engineer** - Machine learning & language processing
+- 👥 **UX Researcher** - Human-centered design & research
+- 📈 **Data Viz Developer** - Interactive visualization & web development
+- 🗄️ **Data Engineer** - Big data infrastructure & pipelines
 
-## Certifications
+### 🚀 **Your Custom Versions**
 
-- Data Storytelling for Business – Tableau (2023)
-- Machine Learning Specialist – Scikit-learn & PyTorch (2022)
-- Advanced JavaScript – CodeAcademy (2021)
+Create unlimited versions for any role or industry:
 
-## Languages
+```
+data/
+├── profile.json           # Your master data
+├── versions.json          # Version configurations
+├── frontend-developer.json
+├── product-manager.json
+├── marketing-analyst.json
+├── startup-founder.json
+├── consultant.json
+└── academic-researcher.json
+```
 
-- Chinese: Native
-- English: Fluent
+### 🎨 **Each Version Can Have:**
 
-## Interests
+- **Different summaries** - Tailored to specific role requirements
+- **Reordered sections** - Highlight what matters most for each job
+- **Selected skills** - Show relevant expertise for the position
+- **Custom project descriptions** - Frame your work for different audiences
+- **Unique color themes** - Match company branding or personal preference
+- **Focused content** - Emphasize publications for academia, metrics for business
 
-- Music: Guitarist in a local band, participant in Melbourne Chinese Music Festival
-- Mentorship: Guiding students in data science and analytics projects
+### 💡 **Smart Strategy Examples:**
+
+- **Startup Role**: Emphasize innovation, full-stack skills, rapid prototyping
+- **Enterprise Role**: Highlight scalability, teamwork, process optimization
+- **Academic Position**: Focus on research, publications, methodology
+- **Consulting**: Emphasize problem-solving, diverse industry experience
+- **Remote Work**: Showcase communication, self-direction, digital collaboration
+
+**One profile data → Infinite targeted resumes!** 🎯
+
+---
+
+## 📁 Project Structure
+
+```
+persona/
+├── index.html          # Main resume page
+├── main.css           # All styling (Material Design)
+├── main.js            # Dynamic content rendering
+├── data/
+│   ├── profile.json   # Your main resume data
+│   └── versions.json  # Available resume versions
+└── README.md          # You are here
+```
+
+**That's literally it.** Three core files, two data files. No `node_modules`, no build process, no configuration hell.
+
+---
+
+## 🎯 Features
+
+### 📱 **Print-Ready & Responsive**
+
+- Perfectly formatted for A4 printing
+- Responsive design for all screen sizes
+- Professional typography and spacing
+
+### 🎨 **Beautiful Design**
+
+- Material Design inspired
+- Clean, minimalist aesthetic
+- Multiple color themes
+- Elegant typography with custom fonts
+
+### 🔄 **Multi-Version Support**
+
+- Switch between resume versions instantly
+- Tailor content for different job applications
+- Maintain multiple specializations
+
+### 📊 **Smart Content Organization**
+
+- Automatic pagination
+- Skill rating system
+- Project showcases with case studies
+- Publication listings
+- Work experience with achievements
+
+### 🔧 **Developer Friendly**
+
+- Pure HTML/CSS/JS - edit with any text editor
+- No build process required
+- Host anywhere (GitHub Pages, Netlify, etc.)
+- Easy to customize and extend
+
+---
+
+## 🎨 Customization
+
+### Color Themes
+
+The template includes multiple built-in themes. Colors are defined using CSS custom properties:
+
+```css
+:root {
+  --primary-color: #000000;
+  --secondary-color: #616161;
+  --accent-color: #1e1e1e;
+  /* Easy to customize! */
+}
+```
+
+### Typography
+
+Uses Google Fonts with fallbacks:
+
+- **Inter** - Clean, professional sans-serif
+- **Nothing You Could Do** - Handwritten app title
+- Perfect print optimization
+
+### Layout
+
+Responsive grid system that works everywhere:
+
+- Desktop: Full-width professional layout
+- Print: Optimized A4 format
+- Mobile: Stacked, touch-friendly design
+
+---
+
+## 🚀 Deployment
+
+### GitHub Pages (Recommended)
+
+1. Push your customized resume to GitHub
+2. Enable GitHub Pages in repository settings
+3. Your resume is live at `https://yourusername.github.io/persona`
+
+### Other Options
+
+- **Netlify**: Drag and drop the folder
+- **Vercel**: Connect your GitHub repo
+- **Any Web Server**: Upload the files
+
+---
+
+## 📋 Data Structure
+
+Your resume data lives in `data/profile.json`. Here's the structure:
+
+```json
+{
+  "personal_info": {
+    "first_name": "Songhai",
+    "last_name": "Fan",
+    "nickname": "Frank",
+    "email": "your.email@domain.com",
+    "phone": "+1-xxx-xxx-xxxx",
+    "location": "City, Country",
+    "linkedin": "linkedin.com/in/yourprofile",
+    "github": "github.com/yourusername",
+    "website": "yourwebsite.com"
+  },
+  "education": [...],
+  "work_experience": [...],
+  "skills": [...],
+  "projects": [...],
+  "publications": [...]
+}
+```
+
+See the existing `profile.json` for complete examples.
+
+---
+
+## 🎯 Perfect For
+
+- **Job Seekers** - Multiple targeted resumes
+- **Freelancers** - Professional project showcases
+- **Academics** - Publication and research listings
+- **Developers** - Technical skill demonstrations
+- **Anyone** - Who wants a beautiful, simple resume
+
+---
+
+## 🤝 Contributing
+
+This project thrives on simplicity. If you have ideas that maintain the "zero-dependency" philosophy:
+
+1. Fork the repository
+2. Create your feature branch
+3. Keep it simple and lightweight
+4. Submit a pull request
+
+---
+
+## 📄 License
+
+MIT License - Use it, modify it, share it!
+
+---
+
+## 💡 Philosophy
+
+> "The best tools are the ones you can understand completely."
+
+Frankie Résumé believes in the power of simplicity. In a world of complex frameworks and overwhelming build processes, sometimes the best solution is the simplest one. Three files, zero dependencies, infinite possibilities.
+
+**Why complicate when you can create?**
+
+---
+
+_Made with ❤️ for job seekers who value simplicity and effectiveness._

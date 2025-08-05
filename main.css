@@ -33,8 +33,8 @@
 
   /* Typography Scale */
   --xl-title: 36px; /* Name only */
-  --lg-title: 13px; /* Section headers */
-  --md-title: 11px; /* Subsection titles */
+  --lg-title: 20px; /* Section headers */
+  --md-title: 13px; /* Subsection titles */
   --sm-title: 10px; /* Item titles */
   --body-text: 9px; /* Main content */
   --small-text: 8px; /* Details/meta */
@@ -99,6 +99,22 @@ body.loaded {
 }
 
 /* ==========================================================================
+   GITHUB FORK RIBBON
+   ========================================================================== */
+.github-fork-ribbon {
+  position: fixed !important;
+  z-index: 200 !important;
+}
+
+.github-fork-ribbon:before {
+  background-color: var(--theme-color);
+}
+
+.github-fork-ribbon:hover:before {
+  background-color: var(--accent-color);
+}
+
+/* ==========================================================================
    APP HEADER
    ========================================================================== */
 .app-header {
@@ -137,31 +153,14 @@ body.loaded {
   align-items: center;
   gap: var(--space-3);
 }
+
 .brand-logo {
-  height: 32px;
-  width: auto;
-  flex-shrink: 0;
+  font-family: "Nothing You Could Do", cursive;
 }
 
 .brand-text {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-1);
-  font-family: "Nothing You Could Do", cursive;
-}
-.brand-text h1 {
+  font-size: var(--lg-title);
   font-weight: 700;
-  color: var(--primary-color);
-  margin: 0;
-  line-height: 1;
-  letter-spacing: -0.5px;
-}
-.brand-text p {
-  font-size: var(--tiny-text);
-  color: var(--secondary-color);
-  margin: 0;
-  line-height: 1.2;
-  max-width: 300px;
 }
 
 .app-controls {
@@ -373,7 +372,7 @@ section {
 }
 
 h2 {
-  font-size: var(--lg-title);
+  font-size: var(--md-title);
   font-weight: 600;
   color: var(--primary-color);
   margin: 0 0 var(--space-2) 0;
@@ -817,7 +816,8 @@ body[class*="theme-"] .version-select:focus {
   /* Hide non-print UI */
   .version-switcher,
   .app-header,
-  .loading-indicator {
+  .loading-indicator,
+  .github-fork-ribbon {
     display: none !important;
   }
 

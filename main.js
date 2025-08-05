@@ -137,17 +137,6 @@ body.theme-${key} {
   --theme-color: ${themeColor};
   --theme-rgba: ${rgba};
 }
-
-body.theme-${key} :is(h1, h2 i, .contact-link) { color: var(--theme-color); }
-body.theme-${key} h2 { color: var(--theme-color); border-bottom: 1px solid var(--divider-color); }
-body.theme-${key} .skill-rating { color: var(--theme-color); }
-body.theme-${key} .version-select { 
-  border-color: var(--theme-color);
-}
-body.theme-${key} .version-select:focus { 
-  border-color: var(--theme-color); 
-  box-shadow: 0 0 0 2px var(--theme-rgba); 
-}
 `;
   });
 
@@ -217,7 +206,7 @@ function renderHeaderInPage(container) {
   const personal = resumeData.personal_info;
 
   // Create header section inside the page
-  const headerSection = createElement("div", { className: "page-header" });
+  const headerSection = createElement("header", { className: "page-header" });
 
   const headerContent = createDiv("header-content");
 
