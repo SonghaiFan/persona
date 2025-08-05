@@ -7,7 +7,7 @@ let versionsData = null;
 let currentVersion = "data-viz";
 
 // =============================================================================
-// UTILITY FUNCTIONS - Essential helpers only
+// UTILITY FUNCTIONS
 // =============================================================================
 
 // Simple debounce function
@@ -44,7 +44,7 @@ const createSection = (id, title, icon) => {
 };
 
 // =============================================================================
-// DATA LOADING - Simplified data loading with fallback
+// DATA LOADING
 // =============================================================================
 
 async function loadData() {
@@ -122,7 +122,7 @@ function validateData() {
 }
 
 // =============================================================================
-// THEME MANAGEMENT - Simplified theme handling
+// THEME MANAGEMENT
 // =============================================================================
 
 function generateThemeCSS() {
@@ -176,19 +176,19 @@ function applyTheme(version) {
 }
 
 // =============================================================================
-// PAGINATION - Simplified auto-pagination
+// PAGINATION
 // =============================================================================
 
 function autoPaginate() {
-  const book = document.getElementById("book");
-  const pages = book.querySelectorAll(".page");
+  const resume = document.getElementById("resume");
+  const pages = resume.querySelectorAll(".page");
 
   // Reset - keep only first page
   for (let i = 1; i < pages.length; i++) {
     pages[i].remove();
   }
 
-  const firstPage = book.querySelector(".page");
+  const firstPage = resume.querySelector(".page");
   const pageHeight = firstPage.clientHeight;
 
   splitPage(firstPage);

@@ -1,5 +1,5 @@
 /* ==========================================================================
-   RESUME STYLESHEET - ORGANIZED STRUCTURE
+   RESUME STYLESHEET
    ========================================================================== */
 
 /* ==========================================================================
@@ -115,55 +115,95 @@ body.loaded {
 }
 
 /* ==========================================================================
-   VERSION SWITCHER COMPONENT
+   APP HEADER
    ========================================================================== */
-.version-switcher {
-  position: fixed;
-  top: 15px;
-  right: 15px;
+
+.app-header {
   background: var(--background-color);
-  border: 1px solid var(--divider-color);
-  border-radius: 6px;
-  padding: var(--space-2);
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
-  z-index: 1000;
+  border-bottom: 1px solid var(--divider-color);
+  padding: var(--space-4) var(--space-6);
+  margin-bottom: var(--space-6);
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  font-size: var(--small-text);
+}
+
+.app-header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-6);
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  min-height: 40px;
+}
+
+.app-branding {
   display: flex;
   flex-direction: column;
-  align-items: stretch;
   gap: var(--space-1);
-  font-size: var(--tiny-text);
-  min-width: 80px;
-  max-width: 100px;
+  flex: 1;
+  min-width: 0;
 }
 
-.switcher-label {
-  color: var(--secondary-color);
-  font-weight: 500;
-  font-size: var(--tiny-text);
-  text-align: center;
-  margin-bottom: var(--space-1);
+.app-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex-wrap: nowrap;
+  flex-shrink: 0;
 }
 
-.version-select {
-  background: var(--background-color);
-  border: 1px solid var(--divider-color);
-  border-radius: 3px;
-  padding: var(--space-1) var(--space-2);
-  font-size: var(--tiny-text);
-  color: var(--primary-color);
-  cursor: pointer;
+.md-form-field {
+  display: flex;
+  flex-direction: column;
+  font-family: "Inter", sans-serif;
+  font-size: var(--body-text);
+  min-width: 200px;
+}
+
+.md-select-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.md-select {
   width: 100%;
+  padding: 8px 36px 8px 12px;
+  font-size: var(--body-text);
+  border: 1px solid #ccc;
+  border-radius: var(--md-radius-small);
+  background-color: white;
+  appearance: none;
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.version-select:focus {
+.md-select:focus {
   outline: none;
-  border-color: var(--accent-color);
-  box-shadow: 0 0 0 2px rgba(66, 66, 66, 0.1);
+  border-color: var(--theme-color);
+}
+
+.md-arrow {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  pointer-events: none;
+  transform: translateY(-50%);
+  font-size: 0.75rem;
+  color: #888;
 }
 
 /* Hide version switcher in print */
 @media print {
   .version-switcher {
+    display: none !important;
+  }
+
+  .app-header {
     display: none !important;
   }
 }
