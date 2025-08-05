@@ -632,8 +632,8 @@ function createSkillDetails(skill, showAll = true) {
       label: key.toUpperCase().replace(/_/g, " "),
     }));
 
-  // Show all categories or just the first two
-  const categoriesToShow = showAll ? allCategories : allCategories.slice(0, 2);
+  // Show all categories or just the first one
+  const categoriesToShow = showAll ? allCategories : allCategories.slice(0, 1);
 
   categoriesToShow.forEach(({ key, label }) => {
     const subcategory = createDiv("skill-subcategory");
