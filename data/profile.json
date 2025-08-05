@@ -323,7 +323,7 @@
         "I would welcome the opportunity to discuss how my background in data science research and practical experience with analytics tools can contribute to [Company Name]'s success. Thank you for considering my application."
       ],
       "closing": "Sincerely,",
-      "signature": "Songhai (Frank) Fan"
+      "signature": "Frank"
     },
     "nlp-ai-engineer": {
       "recipient": {
@@ -339,7 +339,7 @@
         "I am eager to discuss how my expertise in NLP, machine learning, and human-AI interaction can help [Company Name] build innovative AI solutions. Thank you for your consideration."
       ],
       "closing": "Best regards,",
-      "signature": "Songhai (Frank) Fan"
+      "signature": "Frank"
     },
     "ux-researcher": {
       "recipient": {
@@ -355,7 +355,7 @@
         "I would be thrilled to discuss how my research expertise and passion for human-centered design can contribute to creating exceptional user experiences at [Company Name]. Thank you for considering my application."
       ],
       "closing": "Warm regards,",
-      "signature": "Songhai (Frank) Fan"
+      "signature": "Frank"
     },
     "data-viz-developer": {
       "recipient": {
@@ -371,7 +371,7 @@
         "I would love to discuss how my unique combination of visualization research, technical development skills, and user experience expertise can help [Company Name] create impactful data experiences. Thank you for your time and consideration."
       ],
       "closing": "Kind regards,",
-      "signature": "Songhai (Frank) Fan"
+      "signature": "Frank"
     },
     "data-engineer": {
       "recipient": {
@@ -387,7 +387,7 @@
         "I would welcome the chance to discuss how my experience in data processing, system architecture, and analytical thinking can contribute to [Company Name]'s data engineering initiatives. Thank you for considering my application."
       ],
       "closing": "Sincerely,",
-      "signature": "Songhai (Frank) Fan"
+      "signature": "Frank"
     }
   }
 }

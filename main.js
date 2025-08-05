@@ -19,6 +19,35 @@ function debounce(func, delay) {
   };
 }
 
+// Replace placeholders in cover letter text
+function replaceCoverLetterPlaceholders(text, recipient) {
+  if (!text || !recipient) return text;
+
+  return text
+    .replace(/\[Company Name\]/g, recipient.company || "[Company Name]")
+    .replace(/\[Position Title\]/g, recipient.position || "[Position Title]")
+    .replace(
+      /\[Department\/Team\]/g,
+      recipient.department || "[Department/Team]"
+    )
+    .replace(
+      /\[AI\/Engineering Team\]/g,
+      recipient.department || "[AI/Engineering Team]"
+    )
+    .replace(
+      /\[UX\/Research Team\]/g,
+      recipient.department || "[UX/Research Team]"
+    )
+    .replace(
+      /\[Development\/Design Team\]/g,
+      recipient.department || "[Development/Design Team]"
+    )
+    .replace(
+      /\[Engineering\/Data Team\]/g,
+      recipient.department || "[Engineering/Data Team]"
+    );
+}
+
 // DOM element creation helper
 function createElement(tag, options = {}) {
   const element = document.createElement(tag);
@@ -174,9 +203,9 @@ function autoPaginate() {
 
   // Don't reset pages - we want to preserve existing page structure
   // Only split pages that are too tall
-  pages.forEach(page => {
+  pages.forEach((page) => {
     const pageHeight = page.clientHeight;
-    
+
     // If this page is already within height limits, skip it
     if (page.scrollHeight <= pageHeight) {
       return;
@@ -188,7 +217,7 @@ function autoPaginate() {
 
   function splitPage(page) {
     const pageHeight = page.clientHeight;
-    
+
     while (page.scrollHeight > pageHeight) {
       const newPage = page.cloneNode(false);
       page.after(newPage);
@@ -341,7 +370,8 @@ function initCoverLetterToggle() {
 
   // Set initial state based on current version config
   const versionConfig = versionsData.versions[currentVersion];
-  const includeCoverLetter = versionConfig.content_config?.include_cover_letter || false;
+  const includeCoverLetter =
+    versionConfig.content_config?.include_cover_letter || false;
   coverLetterToggle.checked = includeCoverLetter;
 
   // Add event listener for toggle changes
@@ -360,11 +390,11 @@ function toggleCoverLetter(enabled) {
 
   // Re-render the resume
   document.body.style.opacity = "0.8";
-  
+
   // Clear all pages and re-render from scratch
   const resume = document.getElementById("resume");
   resume.innerHTML = "";
-  
+
   // Create a new first page
   const newPage = createElement("section", { className: "page" });
   resume.appendChild(newPage);
@@ -386,7 +416,7 @@ function switchVersion(version) {
   // Clear all pages and re-render from scratch
   const resume = document.getElementById("resume");
   resume.innerHTML = "";
-  
+
   // Create a new first page
   const newPage = createElement("section", { className: "page" });
   resume.appendChild(newPage);
@@ -395,7 +425,8 @@ function switchVersion(version) {
   const coverLetterToggle = document.getElementById("coverLetterToggle");
   if (coverLetterToggle) {
     const versionConfig = versionsData.versions[currentVersion];
-    const includeCoverLetter = versionConfig.content_config?.include_cover_letter || false;
+    const includeCoverLetter =
+      versionConfig.content_config?.include_cover_letter || false;
     coverLetterToggle.checked = includeCoverLetter;
   }
 
@@ -418,7 +449,7 @@ function renderResume() {
 
   // Check if cover letter should be rendered
   const includeCoverLetter = versionConfig.content_config?.include_cover_letter;
-  
+
   if (includeCoverLetter) {
     // Render cover letter as the first page
     renderCoverLetter(page, versionConfig);
@@ -435,7 +466,8 @@ function renderResume() {
           if (versionConfig.summary) renderSummary(versionConfig.summary, page);
           break;
         case "technical_skills":
-          if (resumeData.skills_pool) renderTechnicalSkills(page, versionConfig);
+          if (resumeData.skills_pool)
+            renderTechnicalSkills(page, versionConfig);
           break;
         case "education":
           if (resumeData.education) renderEducation(resumeData.education, page);
@@ -822,11 +854,18 @@ function renderCertifications(certifications, container) {
 
 function renderCoverLetter(container, versionConfig) {
   const coverLetterData = resumeData.cover_letters?.[currentVersion];
-  
+
   if (!coverLetterData) {
     console.warn(`No cover letter data found for version: ${currentVersion}`);
     return;
   }
+
+  // Use recipient data from JSON configuration
+  const recipient = coverLetterData.recipient || {
+    company: "[Company Name]",
+    position: "[Position Title]",
+    department: "[Department/Team]",
+  };
 
   // Clear the container for cover letter
   container.innerHTML = "";
@@ -835,10 +874,12 @@ function renderCoverLetter(container, versionConfig) {
   // Header with contact info (simplified for cover letter)
   const header = createElement("header", { className: "cover-letter-header" });
   const personal = resumeData.personal_info;
-  
+
   const contactInfo = createDiv("cover-letter-contact");
   contactInfo.innerHTML = `
-    <div class="cover-letter-name">${personal.first_name} ${personal.last_name}</div>
+    <div class="cover-letter-name">${personal.first_name} ${
+    personal.last_name
+  }</div>
     <div class="cover-letter-contact-details">
       <span>${personal.email}</span> • 
       <span>${personal.phone}</span> • 
@@ -846,43 +887,54 @@ function renderCoverLetter(container, versionConfig) {
     </div>
     <div class="cover-letter-links">
       <span>${personal.links.github.replace("https://", "")}</span> • 
-      <span>${personal.links.linkedin.replace("https://www.linkedin.com/in/", "linkedin.com/in/")}</span>
+      <span>${personal.links.linkedin.replace(
+        "https://www.linkedin.com/in/",
+        "linkedin.com/in/"
+      )}</span>
     </div>
   `;
-  
+
   header.appendChild(contactInfo);
   container.appendChild(header);
 
   // Date
   const today = new Date();
-  const dateString = today.toLocaleDateString('en-US', { 
-    year: 'numeric', 
-    month: 'long', 
-    day: 'numeric' 
+  const dateString = today.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
   });
-  
+
   const dateDiv = createDiv("cover-letter-date", dateString);
   container.appendChild(dateDiv);
 
   // Recipient information
-  if (coverLetterData.recipient) {
+  if (recipient) {
     const recipientDiv = createDiv("cover-letter-recipient");
     recipientDiv.innerHTML = `
-      <div>${coverLetterData.recipient.company}</div>
-      <div>${coverLetterData.recipient.department}</div>
-      <div>Re: ${coverLetterData.recipient.position}</div>
+      <div>${recipient.company}</div>
+      <div>${recipient.department}</div>
+      <div>Re: ${recipient.position}</div>
     `;
     container.appendChild(recipientDiv);
   }
 
   // Opening
-  const openingDiv = createDiv("cover-letter-opening", coverLetterData.opening);
+  const openingText = replaceCoverLetterPlaceholders(
+    coverLetterData.opening,
+    recipient
+  );
+  const openingDiv = createDiv("cover-letter-opening", openingText);
   container.appendChild(openingDiv);
 
   // Body paragraphs
   const bodyDiv = createDiv("cover-letter-body");
-  coverLetterData.body.forEach(paragraph => {
-    const p = createElement("p", { textContent: paragraph });
+  coverLetterData.body.forEach((paragraph) => {
+    const processedParagraph = replaceCoverLetterPlaceholders(
+      paragraph,
+      recipient
+    );
+    const p = createElement("p", { textContent: processedParagraph });
     bodyDiv.appendChild(p);
   });
   container.appendChild(bodyDiv);
@@ -898,10 +950,10 @@ function renderCoverLetter(container, versionConfig) {
   // After cover letter, create a new page for resume
   const resumePage = createElement("section", { className: "page" });
   container.parentNode.appendChild(resumePage);
-  
+
   // Render regular resume on the second page
   renderHeaderInPage(resumePage);
-  
+
   const sectionsOrder = versionConfig.content_config?.sections_order || [];
   sectionsOrder.forEach((sectionName) => {
     switch (sectionName) {
@@ -909,13 +961,16 @@ function renderCoverLetter(container, versionConfig) {
         // Skip cover letter section on resume page
         break;
       case "summary":
-        if (versionConfig.summary) renderSummary(versionConfig.summary, resumePage);
+        if (versionConfig.summary)
+          renderSummary(versionConfig.summary, resumePage);
         break;
       case "technical_skills":
-        if (resumeData.skills_pool) renderTechnicalSkills(resumePage, versionConfig);
+        if (resumeData.skills_pool)
+          renderTechnicalSkills(resumePage, versionConfig);
         break;
       case "education":
-        if (resumeData.education) renderEducation(resumeData.education, resumePage);
+        if (resumeData.education)
+          renderEducation(resumeData.education, resumePage);
         break;
       case "projects":
         if (resumeData.projects) renderProjects(resumePage, versionConfig);
@@ -938,7 +993,7 @@ function renderCoverLetter(container, versionConfig) {
         break;
     }
   });
-  
+
   // Return the resume page so it can be used for pagination
   return resumePage;
 }
@@ -977,14 +1032,14 @@ window.addEventListener(
   "resize",
   debounce(() => {
     document.body.style.opacity = "0.7";
-    
+
     // Only run pagination if we have pages to paginate
     const resume = document.getElementById("resume");
     const pages = resume.querySelectorAll(".page");
     if (pages.length > 0) {
       autoPaginate();
     }
-    
+
     setTimeout(() => (document.body.style.opacity = "1"), 100);
   }, 300)
 );

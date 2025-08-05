@@ -875,7 +875,9 @@ body[class*="theme-"] .version-select:focus {
 /* Cover letter header */
 .cover-letter-header {
   margin-bottom: var(--space-8);
+  padding-bottom: var(--space-8);
   text-align: left;
+  border-bottom: 1px solid var(--divider-color);
 }
 
 .cover-letter-name {
@@ -943,6 +945,7 @@ body[class*="theme-"] .version-select:focus {
 /* Closing */
 .cover-letter-closing {
   margin-top: auto;
+  border-bottom: 1px solid var(--divider-color);
 }
 
 .closing-text {
