@@ -498,19 +498,21 @@ function createSkillDetails(skill, showAll = true) {
 
   categoriesToShow.forEach(({ key, label }) => {
     const subcategory = createDiv("skill-subcategory");
-    
+
     // Create a container for individual skill items
     const skillItemsContainer = createElement("span", {
-      className: "skill-content skill-items-container"
+      className: "skill-content skill-items-container",
     });
-    
+
     // Split skills and wrap each in a span to prevent breaking
-    const skillItems = skill[key].map(skillItem => 
-      `<span class="skill-item-wrapper">${skillItem}</span>`
-    ).join(', ');
-    
+    const skillItems = skill[key]
+      .map(
+        (skillItem) => `<span class="skill-item-wrapper">${skillItem}</span>`
+      )
+      .join(", ");
+
     skillItemsContainer.innerHTML = skillItems;
-    
+
     subcategory.appendChild(skillItemsContainer);
     subcategory.appendChild(
       createElement("span", {
