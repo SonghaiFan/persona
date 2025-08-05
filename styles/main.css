@@ -7,7 +7,7 @@
    ========================================================================== */
 @page {
   size: A4 portrait;
-  margin: 0;
+  margin: 8mm;
   padding: 0;
 }
 
@@ -58,7 +58,7 @@
 
   /* Compact MD Spacing */
   --space-0: 0px;
-  --space-1: 2px;
+  --space-1: 1px;
   --space-2: 4px;
   --space-3: 6px;
   --space-4: 8px;
@@ -764,95 +764,84 @@ body[class*="theme-"] .version-select:focus {
 @media print {
   @page {
     size: A4 portrait;
-    margin: var(--page-margin);
+    margin: 8mm;
+    padding: 0;
   }
 
   body {
     margin: 0;
     padding: 0;
-    background: white;
+    background: white !important;
     font-size: var(--body-text);
-    line-height: 1.1;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    line-height: 1.2;
   }
 
   .page {
     margin: 0;
+    padding: 0;
     box-shadow: none;
     break-after: page;
-    padding: var(--page-margin);
     border-radius: 0;
+    width: 100%;
+    height: auto;
+    max-width: none;
+    background: white !important;
   }
 
-  .version-switcher {
+  .version-switcher,
+  .loading-indicator {
     display: none !important;
   }
 
-  header {
-    margin-bottom: var(--space-2);
-  }
-
-  .header-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-4);
-    align-items: end;
-  }
-
-  .contact-info {
-    justify-self: end;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, auto);
-    gap: var(--space-1) var(--space-2);
-    text-align: right;
-  }
-
-  .contact-info-row {
-    display: contents;
+  /* Ensure consistent spacing in print */
+  section {
+    margin-bottom: var(--space-3);
+    page-break-inside: avoid;
   }
 
   .education-item,
   .work-experience-item,
   .project-item,
-  .publication-item,
-  .skill-item {
+  .publication-item {
+    page-break-inside: avoid;
     break-inside: avoid;
-    background-color: transparent;
-    box-shadow: none;
   }
 
-  h1 {
-    font-size: var(--xl-title);
-  }
-
-  h2 {
-    font-size: var(--lg-title);
-  }
-
-  h3 {
-    font-size: var(--sm-title);
-  }
-
-  p {
-    font-size: var(--body-text);
-  }
-
-  .contact-item {
-    font-size: var(--small-text);
-  }
-
-  ul li {
-    font-size: var(--small-text);
-  }
-
-  p,
-  ul,
-  li,
+  /* Preserve colors for branding */
   h1,
+  h2 {
+    color: var(--primary-color) !important;
+  }
+
+  body[class*="theme-"] h1,
+  body[class*="theme-"] h2 {
+    color: var(--theme-color) !important;
+  }
+
+  /* Ensure proper text rendering */
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Optimize spacing for print */
+  header {
+    margin-bottom: var(--space-3);
+  }
+
+  /* Prevent orphaned content */
   h2,
   h3,
   h4 {
-    orphans: 2;
-    widows: 2;
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+
+  /* Ensure list items stay together */
+  ul li {
+    page-break-inside: avoid;
+    break-inside: avoid;
   }
 }

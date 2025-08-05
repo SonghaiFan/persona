@@ -211,13 +211,6 @@ function applyTheme(version) {
   const versionConfig = versionsData.versions[version];
   const themeColor = versionConfig.theme_color;
 
-  // Remove all existing theme classes
-  document.body.classList.remove(
-    "theme-data-viz",
-    "theme-ux-research",
-    "theme-ai-consultant"
-  );
-
   // Add the new theme class
   document.body.classList.add(`theme-${version}`);
 
