@@ -1,4 +1,4 @@
-// Data Loader - Handle loading and merging multiple data files
+// Data Loader - Elegant data loading and merging
 class DataLoader {
   constructor() {
     this.profileData = null;
@@ -7,316 +7,284 @@ class DataLoader {
   }
 
   /**
-   * Load all data files
-   * @returns {Promise<Object>} Merged data object
+   * Load all data files with elegant error handling
    */
   async loadData() {
     try {
-      // Load both files in parallel
-      const [profileResponse, versionsResponse] = await Promise.all([
-        fetch('data/profile.json'),
-        fetch('data/versions.json')
+      const [profile, versions] = await this._loadFiles([
+        "profile.json",
+        "versions.json",
       ]);
+      this.profileData = profile;
+      this.versionsData = versions;
+      this.mergedData = this._mergeData(profile, versions);
 
-      // Check if responses are ok
-      if (!profileResponse.ok) {
-        throw new Error(`Failed to load profile.json: ${profileResponse.status} ${profileResponse.statusText}`);
-      }
-      if (!versionsResponse.ok) {
-        throw new Error(`Failed to load versions.json: ${versionsResponse.status} ${versionsResponse.statusText}`);
-      }
-
-      // Parse JSON data
-      this.profileData = await profileResponse.json();
-      this.versionsData = await versionsResponse.json();
-
-      // Merge and validate data
-      this.mergedData = this.mergeData(this.profileData, this.versionsData);
-      
-      console.log('✅ Successfully loaded and merged data files');
+      console.log("✅ Successfully loaded and merged data files");
       return this.mergedData;
-
     } catch (error) {
-      console.error('❌ Failed to load data:', error.message);
-      
-      // Try fallback to legacy data.json
-      return await this.loadLegacyData();
+      console.error("❌ Failed to load data:", error.message);
+      return await this._loadLegacyFallback();
     }
   }
 
   /**
-   * Fallback to legacy data.json if new structure fails
-   * @returns {Promise<Object>} Legacy data object
+   * Load multiple files in parallel
+   * @private
    */
-  async loadLegacyData() {
-    try {
-      console.warn('⚠️ Falling back to legacy data.json structure');
-      const response = await fetch('data/data.json');
-      
+  async _loadFiles(filenames) {
+    const responses = await Promise.all(
+      filenames.map((filename) => fetch(`data/${filename}`))
+    );
+
+    // Check all responses are ok
+    responses.forEach((response, index) => {
       if (!response.ok) {
-        throw new Error(`Failed to load data.json: ${response.status} ${response.statusText}`);
+        throw new Error(
+          `Failed to load ${filenames[index]}: ${response.status}`
+        );
       }
-      
-      const legacyData = await response.json();
-      console.log('✅ Successfully loaded legacy data.json');
-      return legacyData;
-
-    } catch (error) {
-      console.error('❌ Failed to load legacy data:', error.message);
-      throw new Error('Could not load any data files. Please check your data structure.');
-    }
-  }
-
-  /**
-   * Merge profile and versions data
-   * @param {Object} profile - Profile data
-   * @param {Object} versions - Versions configuration
-   * @returns {Object} Merged data object
-   */
-  mergeData(profile, versions) {
-    // Validate input data
-    if (!profile || typeof profile !== 'object') {
-      throw new Error('Invalid profile data structure');
-    }
-    if (!versions || typeof versions !== 'object' || !versions.versions) {
-      throw new Error('Invalid versions data structure');
-    }
-
-    // Create merged data structure
-    const merged = {
-      // Version configuration (legacy compatibility)
-      version_config: versions.config || {
-        default_version: Object.keys(versions.versions)[0],
-        theme_base: 'theme-',
-        available_sections: ['summary', 'technical_skills', 'projects', 'phd_research', 'education', 'publications', 'certifications'],
-        skill_categories: this.getAvailableSkillCategories(profile)
-      },
-
-      // Version definitions with merged content
-      versions: this.mergeVersionsWithProfile(versions.versions, profile),
-
-      // Base profile data (for legacy compatibility and direct access)
-      ...profile
-    };
-
-    return merged;
-  }
-
-  /**
-   * Merge version configurations with profile data
-   * @param {Object} versions - Version configurations
-   * @param {Object} profile - Profile data
-   * @returns {Object} Merged versions object
-   */
-  mergeVersionsWithProfile(versions, profile) {
-    const mergedVersions = {};
-
-    Object.entries(versions).forEach(([versionKey, versionConfig]) => {
-      mergedVersions[versionKey] = {
-        // Basic version info
-        display_name: versionConfig.display_name,
-        theme_color: versionConfig.theme_color,
-        icon: versionConfig.icon,
-        summary: versionConfig.summary,
-
-        // Content configuration (legacy compatibility) - validate skills exist
-        skills_focus: this.validateSkillsFocus(versionConfig.content_config?.skills_focus, profile),
-        sections_order: versionConfig.content_config?.sections_order || ['summary', 'technical_skills', 'projects', 'education'],
-        projects_limit: versionConfig.content_config?.projects_limit || 5,
-
-        // Project focus (legacy compatibility)
-        project_focus: this.generateProjectFocus(versionConfig, profile),
-
-        // New structured content config
-        content_config: versionConfig.content_config,
-        content_overrides: versionConfig.content_overrides
-      };
     });
 
-    return mergedVersions;
+    return Promise.all(responses.map((response) => response.json()));
   }
 
   /**
-   * Generate project focus mapping for legacy compatibility
-   * @param {Object} versionConfig - Version configuration
-   * @param {Object} profile - Profile data
-   * @returns {Object} Project focus mapping
+   * Elegant fallback to legacy structure
+   * @private
    */
-  generateProjectFocus(versionConfig, profile) {
-    const projectFocus = {};
-    
-    if (versionConfig.content_overrides?.project_descriptions) {
-      // Map project IDs to titles for legacy compatibility
-      const projectIdToTitle = {};
-      if (profile.projects) {
-        profile.projects.forEach(project => {
-          projectIdToTitle[project.id] = project.title;
-        });
-      }
-
-      // Convert ID-based overrides to title-based for legacy system
-      Object.entries(versionConfig.content_overrides.project_descriptions).forEach(([projectId, description]) => {
-        const projectTitle = projectIdToTitle[projectId];
-        if (projectTitle) {
-          projectFocus[projectTitle] = description;
-        }
-      });
+  async _loadLegacyFallback() {
+    console.warn("⚠️ Falling back to legacy data.json structure");
+    try {
+      const [legacyData] = await this._loadFiles(["data.json"]);
+      console.log("✅ Successfully loaded legacy data.json");
+      return legacyData;
+    } catch {
+      throw new Error(
+        "Could not load any data files. Please check your data structure."
+      );
     }
-
-    return projectFocus;
   }
 
   /**
-   * Get filtered projects for a specific version
-   * @param {string} versionKey - Version identifier
-   * @returns {Array} Filtered projects array
+   * Merge profile and versions data elegantly
+   * @private
+   */
+  _mergeData(profile, versions) {
+    this._validateInputData(profile, versions);
+
+    return {
+      version_config: versions.config || this._createDefaultConfig(profile),
+      versions: this._mergeVersionsWithProfile(versions.versions, profile),
+      ...profile, // Spread profile data for legacy compatibility
+    };
+  }
+
+  /**
+   * Validate input data structure
+   * @private
+   */
+  _validateInputData(profile, versions) {
+    if (!profile?.constructor === Object) {
+      throw new Error("Invalid profile data structure");
+    }
+    if (!versions?.versions) {
+      throw new Error("Invalid versions data structure");
+    }
+  }
+
+  /**
+   * Create default configuration
+   * @private
+   */
+  _createDefaultConfig(profile) {
+    return {
+      default_version: Object.keys(this.versionsData.versions)[0],
+      theme_base: "theme-",
+      available_sections: [
+        "summary",
+        "technical_skills",
+        "projects",
+        "phd_research",
+        "education",
+        "publications",
+        "certifications",
+      ],
+      skill_categories: Object.keys(profile.technical_skills || {}),
+    };
+  }
+
+  /**
+   * Merge versions with profile data using modern techniques
+   * @private
+   */
+  _mergeVersionsWithProfile(versions, profile) {
+    return Object.fromEntries(
+      Object.entries(versions).map(([key, config]) => [
+        key,
+        {
+          display_name: config.display_name,
+          theme_color: config.theme_color,
+          icon: config.icon,
+          summary: config.summary,
+          skills_focus: this._validateSkillsFocus(
+            config.content_config?.skills_focus,
+            profile
+          ),
+          sections_order: config.content_config?.sections_order || [
+            "summary",
+            "technical_skills",
+            "projects",
+            "education",
+          ],
+          projects_limit: config.content_config?.projects_limit || 5,
+          project_focus: this._generateProjectFocus(config, profile),
+          content_config: config.content_config,
+          content_overrides: config.content_overrides,
+        },
+      ])
+    );
+  }
+
+  /**
+   * Generate project focus mapping with modern destructuring
+   * @private
+   */
+  _generateProjectFocus(versionConfig, profile) {
+    const projectOverrides =
+      versionConfig.content_overrides?.project_descriptions;
+    if (!projectOverrides) return {};
+
+    const projectIdToTitle = Object.fromEntries(
+      (profile.projects || []).map(({ id, title }) => [id, title])
+    );
+
+    return Object.fromEntries(
+      Object.entries(projectOverrides)
+        .map(([id, description]) => [projectIdToTitle[id], description])
+        .filter(([title]) => title) // Filter out undefined titles
+    );
+  }
+
+  // ==========================================================================
+  // PUBLIC API - Data Access Methods
+  // ==========================================================================
+
+  /**
+   * Get filtered projects for specific version
    */
   getVersionProjects(versionKey) {
-    if (!this.mergedData || !this.profileData) {
-      return [];
-    }
+    if (!this.mergedData?.profileData) return [];
 
-    const versionConfig = this.versionsData.versions[versionKey];
-    if (!versionConfig) {
-      return this.profileData.projects || [];
-    }
+    const { content_config, content_overrides } =
+      this.versionsData.versions[versionKey] || {};
+    const { include_projects, projects_limit = Infinity } =
+      content_config || {};
 
-    const includeProjects = versionConfig.content_config?.include_projects;
-    if (!includeProjects) {
-      return this.profileData.projects || [];
-    }
-
-    // Filter projects by ID and apply overrides
-    const filteredProjects = this.profileData.projects
-      .filter(project => includeProjects.includes(project.id))
-      .map(project => {
-        const override = versionConfig.content_overrides?.project_descriptions?.[project.id];
-        if (override) {
-          return { ...project, description: override };
-        }
-        return project;
-      });
-
-    // Limit number of projects
-    const limit = versionConfig.content_config?.projects_limit || filteredProjects.length;
-    return filteredProjects.slice(0, limit);
+    return (this.profileData.projects || [])
+      .filter(
+        (project) => !include_projects || include_projects.includes(project.id)
+      )
+      .map((project) => ({
+        ...project,
+        description:
+          content_overrides?.project_descriptions?.[project.id] ||
+          project.description,
+      }))
+      .slice(0, projects_limit);
   }
 
   /**
    * Get version-specific skill categories
-   * @param {string} versionKey - Version identifier
-   * @returns {Array} Ordered skill categories
    */
   getVersionSkillCategories(versionKey) {
-    if (!this.versionsData) {
-      return [];
-    }
-
-    const versionConfig = this.versionsData.versions[versionKey];
-    return versionConfig?.content_config?.skills_focus || [];
+    return (
+      this.versionsData?.versions[versionKey]?.content_config?.skills_focus ||
+      []
+    );
   }
 
   /**
    * Get version-specific sections order
-   * @param {string} versionKey - Version identifier
-   * @returns {Array} Ordered sections array
    */
   getVersionSectionsOrder(versionKey) {
-    if (!this.versionsData) {
-      return [];
-    }
-
-    const versionConfig = this.versionsData.versions[versionKey];
-    return versionConfig?.content_config?.sections_order || [];
+    return (
+      this.versionsData?.versions[versionKey]?.content_config?.sections_order ||
+      []
+    );
   }
+
+  // ==========================================================================
+  // VALIDATION & UTILITIES
+  // ==========================================================================
 
   /**
    * Validate data structure after loading
-   * @returns {Object} Validation result
    */
   validateData() {
-    if (!this.mergedData) {
-      return { isValid: false, error: 'No data loaded' };
-    }
+    if (!this.mergedData) return { isValid: false, error: "No data loaded" };
 
-    // Basic structure validation
-    if (!this.mergedData.versions || Object.keys(this.mergedData.versions).length === 0) {
-      return { isValid: false, error: 'No versions configured' };
-    }
-
-    return { isValid: true };
+    const hasVersions =
+      this.mergedData.versions &&
+      Object.keys(this.mergedData.versions).length > 0;
+    return hasVersions
+      ? { isValid: true }
+      : { isValid: false, error: "No versions configured" };
   }
 
   /**
-   * Get data loading statistics
-   * @returns {Object} Statistics about loaded data
+   * Get comprehensive data loading statistics
    */
   getLoadingStats() {
-    if (!this.mergedData) {
-      return { loaded: false };
-    }
+    if (!this.mergedData) return { loaded: false };
 
     return {
       loaded: true,
-      structure: 'separated', // or 'legacy'
+      structure: "separated",
       versions: Object.keys(this.mergedData.versions).length,
       projects: this.profileData?.projects?.length || 0,
       publications: this.profileData?.publications?.length || 0,
-      skills: this.profileData?.technical_skills ? Object.keys(this.profileData.technical_skills).length : 0,
-      sections: this.mergedData.version_config?.available_sections?.length || 0
+      skills: Object.keys(this.profileData?.technical_skills || {}).length,
+      sections: this.mergedData.version_config?.available_sections?.length || 0,
     };
   }
 
   /**
-   * Get available skill categories from profile data
-   * @param {Object} profile - Profile data
-   * @returns {Array} Available skill category keys
+   * Validate skills focus with intelligent fallbacks
+   * @private
    */
-  getAvailableSkillCategories(profile) {
-    if (!profile || !profile.technical_skills) {
-      return [];
-    }
-    return Object.keys(profile.technical_skills);
-  }
-
-  /**
-   * Validate that skills focus references exist in profile
-   * @param {Array} skillsFocus - Skills focus array from version
-   * @param {Object} profile - Profile data
-   * @returns {Array} Valid skill categories only
-   */
-  validateSkillsFocus(skillsFocus, profile) {
-    if (!skillsFocus || !Array.isArray(skillsFocus)) {
-      return this.getAvailableSkillCategories(profile);
+  _validateSkillsFocus(skillsFocus, profile) {
+    if (!Array.isArray(skillsFocus)) {
+      return Object.keys(profile.technical_skills || {});
     }
 
-    const availableCategories = this.getAvailableSkillCategories(profile);
-    const validCategories = skillsFocus.filter(category => 
+    const availableCategories = Object.keys(profile.technical_skills || {});
+    const validCategories = skillsFocus.filter((category) =>
       availableCategories.includes(category)
     );
-
-    // Warn about invalid categories
-    const invalidCategories = skillsFocus.filter(category => 
-      !availableCategories.includes(category)
+    const invalidCategories = skillsFocus.filter(
+      (category) => !availableCategories.includes(category)
     );
-    
-    if (invalidCategories.length > 0) {
-      console.warn(`⚠️ Invalid skill categories found: ${invalidCategories.join(', ')}`);
-      console.warn(`📋 Available categories: ${availableCategories.join(', ')}`);
+
+    if (invalidCategories.length) {
+      console.warn(
+        `⚠️ Invalid skill categories: ${invalidCategories.join(", ")}`
+      );
+      console.warn(`📋 Available: ${availableCategories.join(", ")}`);
     }
 
-    return validCategories.length > 0 ? validCategories : availableCategories;
+    return validCategories.length ? validCategories : availableCategories;
   }
 
   /**
-   * Reload data (useful for development)
-   * @returns {Promise<Object>} Reloaded data
+   * Reload data for development
    */
   async reload() {
-    console.log('🔄 Reloading data...');
-    this.profileData = null;
-    this.versionsData = null;
-    this.mergedData = null;
+    console.log("🔄 Reloading data...");
+    Object.assign(this, {
+      profileData: null,
+      versionsData: null,
+      mergedData: null,
+    });
     return await this.loadData();
   }
 }

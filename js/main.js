@@ -1,119 +1,101 @@
-// Main JavaScript file for resume rendering
+// Main JavaScript - Elegant resume rendering with modern patterns
 let resumeData = null;
 let versionsData = null;
 let currentVersion = "data-viz";
 
 // ==========================================================================
-// HELPER FUNCTIONS FOR DOM ELEMENT CREATION
+// ELEGANT DOM HELPERS - Modern and Concise
 // ==========================================================================
 
 /**
- * Creates a div element with specified class name
- * @param {string} className - CSS class name
- * @returns {HTMLElement} - Created div element
+ * Create DOM element with elegant chaining
+ * @param {string} tag - Element tag name
+ * @param {Object} options - Element options
  */
-function createDiv(className) {
-  const div = document.createElement("div");
-  if (className) {
-    div.className = className;
-  }
-  return div;
-}
-
-/**
- * Creates a span element with specified class name and text content
- * @param {string} className - CSS class name
- * @param {string} text - Text content
- * @returns {HTMLElement} - Created span element
- */
-function createSpan(className, text) {
-  const span = document.createElement("span");
-  if (className) {
-    span.className = className;
-  }
-  if (text) {
-    span.textContent = text;
-  }
-  return span;
-}
-
-/**
- * Creates a list item with specified text content
- * @param {string} text - Text content
- * @returns {HTMLElement} - Created li element
- */
-function createListItem(text) {
-  const li = document.createElement("li");
-  li.textContent = text;
-  return li;
-}
-
-/**
- * Creates a list with specified items
- * @param {string[]} items - Array of text items
- * @param {string} className - Optional CSS class name
- * @returns {HTMLElement} - Created ul element
- */
-function createList(items, className = "") {
-  const ul = document.createElement("ul");
-  if (className) {
-    ul.className = className;
-  }
-  items.forEach((item) => {
-    ul.appendChild(createListItem(item));
+const createElement = (tag, { className, textContent, children = [] } = {}) => {
+  const element = Object.assign(document.createElement(tag), {
+    ...(className && { className }),
+    ...(textContent && { textContent }),
   });
-  return ul;
-}
+  children.forEach((child) => element.appendChild(child));
+  return element;
+};
+
+/**
+ * Modern DOM creation shortcuts
+ */
+const createDiv = (className, textContent) =>
+  createElement("div", { className, textContent });
+const createSpan = (className, textContent) =>
+  createElement("span", { className, textContent });
+const createListItem = (text) => createElement("li", { textContent: text });
+const createList = (items, className = "") =>
+  createElement("ul", {
+    className,
+    children: items.map(createListItem),
+  });
 
 // ==========================================================================
-// MAIN APPLICATION CODE
+// MODERN APPLICATION INITIALIZATION
 // ==========================================================================
 
 document.addEventListener("DOMContentLoaded", async () => {
   try {
-    // Load both data files
-    const [resumeResponse, versionsResponse] = await Promise.all([
-      fetch("data/profile.json"),
-      fetch("data/versions.json"),
-    ]);
-
-    resumeData = await resumeResponse.json();
-    versionsData = await versionsResponse.json();
-
-    // Set default version from config
-    currentVersion = versionsData.config.default_version;
-
-    // Render header from profile data
-    renderHeader(resumeData);
-
-    // Initialize version switcher
-    initVersionSwitcher();
-
-    // Apply initial theme with dynamic colors
-    applyTheme(currentVersion);
-
-    // Render initial version
-    renderResume(resumeData, versionsData, currentVersion);
-
-    // 确保内容渲染完成后再执行分页
-    setTimeout(() => {
-      if (typeof autoPaginate === "function") {
-        autoPaginate();
-      }
-
-      // 分页完成后显示页面，消除闪动
-      setTimeout(() => {
-        document.body.classList.remove("loading");
-        document.body.classList.add("loaded");
-      }, 50);
-    }, 100);
+    await initializeApplication();
   } catch (error) {
-    console.error("Error loading resume data:", error);
-    // 即使出错也要显示页面
-    document.body.classList.remove("loading");
-    document.body.classList.add("loaded");
+    console.error("Application initialization failed:", error);
+    displayErrorMessage("Failed to load resume data. Please refresh the page.");
   }
 });
+
+/**
+ * Initialize application with elegant async pattern
+ */
+async function initializeApplication() {
+  // Load data with parallel fetch
+  const [resumeResponse, versionsResponse] = await Promise.all([
+    fetch("data/profile.json"),
+    fetch("data/versions.json"),
+  ]);
+
+  [resumeData, versionsData] = await Promise.all([
+    resumeResponse.json(),
+    versionsResponse.json(),
+  ]);
+
+  // Initialize application state
+  currentVersion = versionsData.config.default_version;
+
+  // Render UI components
+  renderHeader(resumeData);
+  initVersionSwitcher();
+  applyTheme(currentVersion);
+  renderResume(resumeData, versionsData, currentVersion);
+
+  // Initialize pagination after DOM rendering
+  setTimeout(() => {
+    if (typeof autoPaginate === "function") {
+      autoPaginate();
+    }
+
+    // Mark application as loaded
+    setTimeout(() => {
+      document.body.classList.remove("loading");
+      document.body.classList.add("loaded");
+    }, 50);
+  }, 100);
+}
+
+/**
+ * Display error message to user
+ */
+function displayErrorMessage(message) {
+  const errorDiv = createElement("div", {
+    className: "error-message",
+    textContent: message,
+  });
+  document.body.appendChild(errorDiv);
+}
 
 function renderHeader(profileData) {
   const personal = profileData.personal_info;

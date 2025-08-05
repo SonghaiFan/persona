@@ -8,139 +8,187 @@ class VersionManager {
   }
 
   /**
-   * Initialize version manager with data
+   * Initialize version manager with data validation and setup
    * @param {Object} data - Complete resume data including versions
    */
   initialize(data) {
-    // Validate data using ConfigValidator
-    const validator = new ConfigValidator();
-    const validationResult = validator.validateResumeData(data);
-    
-    if (!validationResult.isValid) {
-      console.error('❌ Resume data validation failed:');
-      validationResult.errors.forEach(error => console.error(`  - ${error}`));
-      
-      // Still try to continue with warnings
-      if (validationResult.errors.some(error => error.includes('versions'))) {
-        throw new Error('Critical validation errors found. Cannot initialize version manager.');
+    this._validateAndLogResults(data);
+    this._setupConfiguration(data);
+    this._initializeUI();
+  }
+
+  /**
+   * Validate data and log results
+   * @private
+   */
+  _validateAndLogResults(data) {
+    const { isValid, errors, warnings } =
+      new ConfigValidator().validateResumeData(data);
+
+    const logMessages = (messages, type, icon) =>
+      messages.forEach((msg) => console[type](`  - ${msg}`));
+
+    if (!isValid) {
+      console.error("❌ Resume data validation failed:");
+      logMessages(errors, "error");
+
+      if (errors.some((error) => error.includes("versions"))) {
+        throw new Error(
+          "Critical validation errors found. Cannot initialize version manager."
+        );
       }
     }
-    
-    if (validationResult.warnings.length > 0) {
-      console.warn('⚠️ Resume data validation warnings:');
-      validationResult.warnings.forEach(warning => console.warn(`  - ${warning}`));
+
+    if (warnings.length) {
+      console.warn("⚠️ Resume data validation warnings:");
+      logMessages(warnings, "warn");
     }
-    
-    if (validationResult.isValid) {
-      console.log('✅ Resume data validation passed');
-    }
-    
+
+    if (isValid) console.log("✅ Resume data validation passed");
+  }
+
+  /**
+   * Setup configuration from data
+   * @private
+   */
+  _setupConfiguration(data) {
     this.versions = data.versions;
     this.versionConfig = data.version_config || this.getDefaultConfig();
-    this.currentVersion = this.versionConfig.default_version || Object.keys(this.versions)[0];
-    
-    // Generate dynamic themes
-    this.themeManager.generateThemeCSS(this.versions, this.versionConfig.theme_base);
-    
-    // Initialize version selector
+    this.currentVersion =
+      this.versionConfig.default_version || Object.keys(this.versions)[0];
+  }
+
+  /**
+   * Initialize UI components
+   * @private
+   */
+  _initializeUI() {
+    this.themeManager.generateThemeCSS(
+      this.versions,
+      this.versionConfig.theme_base
+    );
     this.initializeVersionSelector();
   }
 
   /**
-   * Get default configuration if not provided
+   * Get default configuration with modern defaults
    */
   getDefaultConfig() {
     return {
-      default_version: Object.keys(this.versions)[0],
-      theme_base: 'theme-',
-      available_sections: ['summary', 'technical_skills', 'projects', 'phd_research', 'education', 'publications', 'certifications'],
-      skill_categories: ['ai_ml', 'data_science', 'web_technologies', 'research_skills']
+      default_version: Object.keys(this.versions)?.[0],
+      theme_base: "theme-",
+      available_sections: [
+        "summary",
+        "technical_skills",
+        "projects",
+        "phd_research",
+        "education",
+        "publications",
+        "certifications",
+      ],
+      skill_categories: [
+        "ai_ml",
+        "data_science",
+        "web_technologies",
+        "research_skills",
+      ],
     };
   }
 
   /**
-   * Validate data structure
+   * Validate data structure with comprehensive checks
    * @param {Object} data - Resume data to validate
    */
   validateDataStructure(data) {
-    if (!data.versions || typeof data.versions !== 'object') {
-      throw new Error('Invalid data structure: versions object is required');
+    const { versions } = data;
+
+    if (!versions || typeof versions !== "object") {
+      throw new Error("Invalid data structure: versions object is required");
     }
 
-    if (Object.keys(data.versions).length === 0) {
-      throw new Error('At least one version configuration is required');
+    const versionKeys = Object.keys(versions);
+    if (!versionKeys.length) {
+      throw new Error("At least one version configuration is required");
     }
 
-    // Validate each version
-    Object.entries(data.versions).forEach(([key, version]) => {
-      this.validateVersionConfig(key, version);
-    });
+    // Validate each version with better error context
+    versionKeys.forEach((key) =>
+      this.validateVersionConfig(key, versions[key])
+    );
   }
 
   /**
-   * Validate individual version configuration
+   * Validate individual version configuration with smart defaults
    * @param {string} key - Version key
    * @param {Object} version - Version configuration
    */
   validateVersionConfig(key, version) {
-    const requiredFields = ['display_name', 'summary', 'skills_focus', 'sections_order'];
-    const missingFields = requiredFields.filter(field => !version[field]);
-    
-    if (missingFields.length > 0) {
-      throw new Error(`Version "${key}" is missing required fields: ${missingFields.join(', ')}`);
+    const requiredFields = [
+      "display_name",
+      "summary",
+      "skills_focus",
+      "sections_order",
+    ];
+    const missingFields = requiredFields.filter((field) => !version[field]);
+
+    if (missingFields.length) {
+      throw new Error(
+        `Version "${key}" is missing required fields: ${missingFields.join(
+          ", "
+        )}`
+      );
     }
 
-    // Validate theme color if provided
-    if (version.theme_color && !this.themeManager.isValidHexColor(version.theme_color)) {
-      console.warn(`Version "${key}" has invalid theme_color: ${version.theme_color}. Using default.`);
-      version.theme_color = '#666666'; // Default color
+    // Validate and set theme color with fallback
+    if (
+      version.theme_color &&
+      !this.themeManager.isValidHexColor(version.theme_color)
+    ) {
+      console.warn(
+        `Version "${key}" has invalid theme_color: ${version.theme_color}. Using default.`
+      );
     }
 
-    // Set defaults for optional fields
-    version.theme_color = version.theme_color || '#666666';
-    version.icon = version.icon || 'fas fa-file-alt';
-    version.projects_limit = version.projects_limit || 5;
-    version.project_focus = version.project_focus || {};
+    // Apply smart defaults
+    Object.assign(version, {
+      theme_color: version.theme_color || "#666666",
+      icon: version.icon || "fas fa-file-alt",
+      projects_limit: version.projects_limit || 5,
+      project_focus: version.project_focus || {},
+    });
   }
 
   /**
-   * Initialize version selector dropdown
+   * Initialize version selector dropdown with modern DOM manipulation
    */
   initializeVersionSelector() {
-    const versionSelect = document.getElementById('versionSelect');
+    const versionSelect = document.getElementById("versionSelect");
     if (!versionSelect) {
-      console.error('Version selector element not found');
+      console.error("Version selector element not found");
       return;
     }
 
-    // Clear existing options
-    versionSelect.innerHTML = '';
+    // Clear and populate options efficiently
+    versionSelect.innerHTML = "";
+    const fragment = document.createDocumentFragment();
 
-    // Generate options from versions
     Object.entries(this.versions).forEach(([key, version]) => {
-      const option = document.createElement('option');
-      option.value = key;
-      option.textContent = version.display_name;
-      
-      // Add icon if available
-      if (version.icon) {
-        option.setAttribute('data-icon', version.icon);
-      }
-      
-      versionSelect.appendChild(option);
+      const option = new Option(version.display_name, key);
+      if (version.icon) option.setAttribute("data-icon", version.icon);
+      fragment.appendChild(option);
     });
 
-    // Set current version
+    versionSelect.appendChild(fragment);
     versionSelect.value = this.currentVersion;
 
-    // Add event listener
-    versionSelect.addEventListener('change', (e) => {
-      this.switchVersion(e.target.value);
-    });
+    // Single event listener with arrow function
+    versionSelect.addEventListener("change", (e) =>
+      this.switchVersion(e.target.value)
+    );
   }
 
   /**
-   * Switch to a different version
+   * Switch to different version with validation and event dispatch
    * @param {string} versionKey - Version to switch to
    */
   switchVersion(versionKey) {
@@ -150,31 +198,31 @@ class VersionManager {
     }
 
     this.currentVersion = versionKey;
-    
-    // Apply theme
     this.themeManager.applyTheme(versionKey, this.versionConfig.theme_base);
-    
-    // Trigger version change event
-    this.dispatchVersionChangeEvent(versionKey);
+    this._dispatchVersionChangeEvent(versionKey);
   }
 
   /**
-   * Dispatch custom event for version change
-   * @param {string} versionKey - New version key
+   * Dispatch custom version change event
+   * @private
    */
-  dispatchVersionChangeEvent(versionKey) {
-    const event = new CustomEvent('versionChanged', {
-      detail: {
-        version: versionKey,
-        config: this.versions[versionKey]
-      }
-    });
-    document.dispatchEvent(event);
+  _dispatchVersionChangeEvent(versionKey) {
+    document.dispatchEvent(
+      new CustomEvent("versionChanged", {
+        detail: {
+          version: versionKey,
+          config: this.versions[versionKey],
+        },
+      })
+    );
   }
+
+  // ==========================================================================
+  // PUBLIC API METHODS - Getters and Data Access
+  // ==========================================================================
 
   /**
    * Get current version configuration
-   * @returns {Object} Current version configuration
    */
   getCurrentVersionConfig() {
     return this.versions[this.currentVersion];
@@ -182,14 +230,17 @@ class VersionManager {
 
   /**
    * Get all available versions
-   * @returns {Object} All version configurations
    */
   getAllVersions() {
     return this.versions;
   }
 
+  // ==========================================================================
+  // VERSION MANAGEMENT - Add, Remove, Import/Export
+  // ==========================================================================
+
   /**
-   * Add a new version dynamically
+   * Add new version with validation and UI refresh
    * @param {string} key - Version key
    * @param {Object} config - Version configuration
    */
@@ -197,13 +248,7 @@ class VersionManager {
     try {
       this.validateVersionConfig(key, config);
       this.versions[key] = config;
-      
-      // Regenerate themes
-      this.themeManager.generateThemeCSS(this.versions, this.versionConfig.theme_base);
-      
-      // Refresh version selector
-      this.initializeVersionSelector();
-      
+      this._refreshVersionUI();
       console.log(`Version "${key}" added successfully`);
     } catch (error) {
       console.error(`Failed to add version "${key}":`, error.message);
@@ -211,35 +256,45 @@ class VersionManager {
   }
 
   /**
-   * Remove a version
+   * Remove version with safety checks
    * @param {string} key - Version key to remove
    */
   removeVersion(key) {
     if (Object.keys(this.versions).length <= 1) {
-      console.error('Cannot remove the last remaining version');
+      console.error("Cannot remove the last remaining version");
       return;
     }
 
     if (this.currentVersion === key) {
-      // Switch to first available version
-      const remainingVersions = Object.keys(this.versions).filter(v => v !== key);
+      const remainingVersions = Object.keys(this.versions).filter(
+        (v) => v !== key
+      );
       this.switchVersion(remainingVersions[0]);
     }
 
     delete this.versions[key];
-    
-    // Regenerate themes
-    this.themeManager.generateThemeCSS(this.versions, this.versionConfig.theme_base);
-    
-    // Refresh version selector
-    this.initializeVersionSelector();
-    
+    this._refreshVersionUI();
     console.log(`Version "${key}" removed successfully`);
   }
 
   /**
-   * Get version statistics
-   * @returns {Object} Statistics about versions
+   * Refresh version-related UI components
+   * @private
+   */
+  _refreshVersionUI() {
+    this.themeManager.generateThemeCSS(
+      this.versions,
+      this.versionConfig.theme_base
+    );
+    this.initializeVersionSelector();
+  }
+
+  // ==========================================================================
+  // ANALYTICS & UTILITIES - Statistics and Configuration Management
+  // ==========================================================================
+
+  /**
+   * Get comprehensive version statistics
    */
   getVersionStats() {
     const versions = Object.entries(this.versions);
@@ -249,46 +304,56 @@ class VersionManager {
       themes: versions.map(([key, config]) => ({
         key,
         name: config.display_name,
-        color: config.theme_color
+        color: config.theme_color,
       })),
-      sections: [...new Set(versions.flatMap(([_, config]) => config.sections_order))],
-      skills: [...new Set(versions.flatMap(([_, config]) => config.skills_focus))]
+      sections: [
+        ...new Set(versions.flatMap(([_, config]) => config.sections_order)),
+      ],
+      skills: [
+        ...new Set(versions.flatMap(([_, config]) => config.skills_focus)),
+      ],
     };
   }
 
   /**
-   * Export version configuration for backup
-   * @returns {Object} Exportable version configuration
+   * Export configuration for backup with metadata
    */
   exportConfiguration() {
     return {
       version_config: this.versionConfig,
       versions: this.versions,
       current_version: this.currentVersion,
-      exported_at: new Date().toISOString()
+      exported_at: new Date().toISOString(),
     };
   }
 
   /**
-   * Import version configuration
+   * Import configuration with validation and error handling
    * @param {Object} config - Configuration to import
    */
   importConfiguration(config) {
     try {
-      if (config.versions) {
-        this.validateDataStructure(config);
-        this.versions = config.versions;
-        this.versionConfig = config.version_config || this.versionConfig;
-        this.currentVersion = config.current_version || Object.keys(this.versions)[0];
-        
-        this.themeManager.generateThemeCSS(this.versions, this.versionConfig.theme_base);
-        this.initializeVersionSelector();
-        this.switchVersion(this.currentVersion);
-        
-        console.log('Configuration imported successfully');
+      if (!config.versions) {
+        throw new Error("Invalid configuration: missing versions");
       }
+
+      this.validateDataStructure(config);
+
+      // Update configuration
+      Object.assign(this, {
+        versions: config.versions,
+        versionConfig: config.version_config || this.versionConfig,
+        currentVersion:
+          config.current_version || Object.keys(config.versions)[0],
+      });
+
+      // Refresh UI
+      this._refreshVersionUI();
+      this.switchVersion(this.currentVersion);
+
+      console.log("Configuration imported successfully");
     } catch (error) {
-      console.error('Failed to import configuration:', error.message);
+      console.error("Failed to import configuration:", error.message);
     }
   }
 }

@@ -1,162 +1,119 @@
-// Theme Manager - Dynamic theme generation and management
+// Theme Manager - Elegant dynamic theme generation
 class ThemeManager {
   constructor() {
-    this.themeStyleElement = null;
-    this.initializeThemeStyles();
+    this.themeStyleElement = this._getOrCreateStyleElement();
   }
 
   /**
-   * Initialize dynamic theme styles
+   * Get or create dynamic theme style element
+   * @private
    */
-  initializeThemeStyles() {
-    // Create or get existing style element for dynamic themes
-    this.themeStyleElement = document.getElementById('dynamic-themes') || this.createThemeStyleElement();
-  }
+  _getOrCreateStyleElement() {
+    const existing = document.getElementById("dynamic-themes");
+    if (existing) return existing;
 
-  /**
-   * Create a style element for dynamic themes
-   */
-  createThemeStyleElement() {
-    const styleElement = document.createElement('style');
-    styleElement.id = 'dynamic-themes';
-    styleElement.type = 'text/css';
+    const styleElement = Object.assign(document.createElement("style"), {
+      id: "dynamic-themes",
+      type: "text/css",
+    });
     document.head.appendChild(styleElement);
     return styleElement;
   }
 
   /**
-   * Generate CSS for all versions dynamically
-   * @param {Object} versions - Version configuration from data.json
-   * @param {string} themeBase - Theme class prefix (e.g., 'theme-')
+   * Generate CSS for all versions with modern template literals
+   * @param {Object} versions - Version configurations
+   * @param {string} themeBase - Theme class prefix
    */
-  generateThemeCSS(versions, themeBase = 'theme-') {
-    let css = '';
-    
-    Object.entries(versions).forEach(([versionKey, versionConfig]) => {
-      const themeClass = `${themeBase}${versionKey}`;
-      const themeColor = versionConfig.theme_color;
-      
-      css += this.generateVersionThemeCSS(themeClass, themeColor);
-    });
-
-    // Apply the generated CSS
-    this.themeStyleElement.textContent = css;
+  generateThemeCSS(versions, themeBase = "theme-") {
+    this.themeStyleElement.textContent = Object.entries(versions)
+      .map(([key, config]) =>
+        this._generateVersionCSS(`${themeBase}${key}`, config.theme_color)
+      )
+      .join("\n");
   }
 
   /**
-   * Generate CSS for a specific version theme
-   * @param {string} themeClass - CSS class name
-   * @param {string} themeColor - Hex color code
+   * Generate elegant CSS for specific version theme
+   * @private
    */
-  generateVersionThemeCSS(themeClass, themeColor) {
-    // Convert hex to RGB for rgba usage
-    const rgb = this.hexToRgb(themeColor);
-    const rgbaColor = rgb ? `${rgb.r}, ${rgb.g}, ${rgb.b}` : '0, 0, 0';
+  _generateVersionCSS(themeClass, themeColor) {
+    const rgba = this._hexToRgba(themeColor, 0.1);
 
     return `
 /* ${themeClass} Theme */
 body.${themeClass} {
   --theme-color: ${themeColor};
+  --theme-rgba: ${rgba};
 }
 
-body.${themeClass} h1 {
-  color: var(--theme-color);
-}
-
-body.${themeClass} h2 {
-  color: var(--theme-color);
-  border-bottom: 1px solid var(--divider-color);
-}
-
-body.${themeClass} h2 i {
-  color: var(--theme-color);
-}
-
-body.${themeClass} .skill-dot.filled {
-  background-color: var(--theme-color);
-}
-
-body.${themeClass} .contact-link {
-  color: var(--theme-color);
-}
-
-body.${themeClass} .version-select {
+body.${themeClass} :is(h1, h2 i, .contact-link) { color: var(--theme-color); }
+body.${themeClass} h2 { color: var(--theme-color); border-bottom: 1px solid var(--divider-color); }
+body.${themeClass} .skill-dot.filled { background-color: var(--theme-color); }
+body.${themeClass} .version-select { 
   border-color: var(--theme-color);
-}
-
-body.${themeClass} .version-select:focus {
-  border-color: var(--theme-color);
-  box-shadow: 0 0 0 2px rgba(${rgbaColor}, 0.1);
-}
-
-`;
+  &:focus { border-color: var(--theme-color); box-shadow: 0 0 0 2px var(--theme-rgba); }
+}`;
   }
 
   /**
-   * Convert hex color to RGB
-   * @param {string} hex - Hex color code
-   * @returns {Object|null} RGB object or null if invalid
+   * Convert hex to RGBA with specified alpha
+   * @private
    */
-  hexToRgb(hex) {
-    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-    return result ? {
-      r: parseInt(result[1], 16),
-      g: parseInt(result[2], 16),
-      b: parseInt(result[3], 16)
-    } : null;
+  _hexToRgba(hex, alpha = 1) {
+    const rgb = hex.match(/\w\w/g)?.map((x) => parseInt(x, 16));
+    return rgb
+      ? `rgba(${rgb.join(", ")}, ${alpha})`
+      : `rgba(0, 0, 0, ${alpha})`;
   }
 
   /**
-   * Apply theme to body element
+   * Apply theme with elegant class management
    * @param {string} versionKey - Version identifier
    * @param {string} themeBase - Theme class prefix
    */
-  applyTheme(versionKey, themeBase = 'theme-') {
-    // Remove all existing theme classes
-    const bodyClasses = document.body.classList;
-    const existingThemeClasses = Array.from(bodyClasses).filter(cls => cls.startsWith(themeBase));
-    existingThemeClasses.forEach(cls => bodyClasses.remove(cls));
+  applyTheme(versionKey, themeBase = "theme-") {
+    const { classList } = document.body;
+    const newTheme = `${themeBase}${versionKey}`;
 
-    // Add new theme class
-    bodyClasses.add(`${themeBase}${versionKey}`);
+    // Remove existing themes and add new one
+    [...classList]
+      .filter((cls) => cls.startsWith(themeBase))
+      .forEach((cls) => classList.remove(cls));
+    classList.add(newTheme);
   }
 
   /**
-   * Get all available theme classes from versions
-   * @param {Object} versions - Version configuration
-   * @param {string} themeBase - Theme class prefix
-   * @returns {Array} Array of theme class names
-   */
-  getAvailableThemeClasses(versions, themeBase = 'theme-') {
-    return Object.keys(versions).map(versionKey => `${themeBase}${versionKey}`);
-  }
-
-  /**
-   * Validate theme color format
+   * Validate hex color with modern regex
    * @param {string} color - Color value to validate
-   * @returns {boolean} True if valid hex color
    */
   isValidHexColor(color) {
-    return /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test(color);
+    return /^#[A-Fa-f0-9]{3,6}$/.test(color);
   }
 
   /**
-   * Generate theme preview for version switcher
+   * Get available theme classes
+   * @param {Object} versions - Version configurations
+   * @param {string} themeBase - Theme prefix
+   */
+  getAvailableThemeClasses(versions, themeBase = "theme-") {
+    return Object.keys(versions).map((key) => `${themeBase}${key}`);
+  }
+
+  /**
+   * Generate theme preview CSS
    * @param {string} themeColor - Hex color code
-   * @returns {string} CSS for theme preview
    */
   generateThemePreview(themeColor) {
-    return `
-      .theme-preview {
-        display: inline-block;
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-        background-color: ${themeColor};
-        margin-right: 6px;
-        border: 1px solid var(--divider-color);
-      }
-    `;
+    return `.theme-preview {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: ${themeColor};
+      margin-right: 6px;
+      border: 1px solid var(--divider-color);
+    }`;
   }
 }
 
