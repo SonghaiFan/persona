@@ -154,7 +154,7 @@ body.loaded {
   gap: var(--space-3);
 }
 
-.brand-logo {
+.brand-logo-text {
   font-family: "Nothing You Could Do", cursive;
 }
 
@@ -212,7 +212,7 @@ body.loaded {
   .brand-logo-container {
     gap: var(--space-2);
   }
-  .brand-logo {
+  .brand-logo-text {
     height: 24px;
   }
   .brand-text h1 {
