@@ -1,13 +1,4 @@
 /* ==========================================================================
-   PRINT SETTINGS
-   ========================================================================== */
-@page {
-  size: A4 portrait;
-  margin: 8mm;
-  padding: 0;
-}
-
-/* ==========================================================================
    CSS VARIABLES & ROOT SETTINGS
    ========================================================================== */
 :root {
@@ -30,7 +21,7 @@
   --md-white: #ffffff;
   --md-black: #000000;
 
-  /* Semantic Color Variables */
+  /* Semantic Colors */
   --primary-color: var(--md-black);
   --secondary-color: var(--md-grey-600);
   --tertiary-color: var(--md-grey-400);
@@ -38,12 +29,10 @@
   --surface-color: var(--md-grey-50);
   --divider-color: var(--md-grey-200);
   --accent-color: var(--md-grey-800);
-  --theme-color: var(
-    --md-grey-800
-  ); /* Dynamic theme color - set by JavaScript */
+  --theme-color: var(--md-grey-800); /* can be updated by JS */
 
   /* Typography Scale */
-  --xl-title: 26px; /* Name only */
+  --xl-title: 36px; /* Name only */
   --lg-title: 13px; /* Section headers */
   --md-title: 11px; /* Subsection titles */
   --sm-title: 10px; /* Item titles */
@@ -52,7 +41,7 @@
   --xsmall-text: 7px; /* Details/meta */
   --tiny-text: 6px; /* Labels/tags */
 
-  /* Compact MD Spacing */
+  /* Spacing */
   --space-0: 0px;
   --space-1: 1px;
   --space-2: 4px;
@@ -61,7 +50,7 @@
   --space-6: 12px;
   --space-8: 16px;
 
-  /* Material Design Elevation Shadows */
+  /* Elevation */
   --md-elevation-1: 0px 1px 3px rgba(0, 0, 0, 0.12),
     0px 1px 2px rgba(0, 0, 0, 0.24);
   --md-elevation-2: 0px 3px 6px rgba(0, 0, 0, 0.16),
@@ -69,7 +58,7 @@
   --md-elevation-3: 0px 10px 20px rgba(0, 0, 0, 0.19),
     0px 6px 6px rgba(0, 0, 0, 0.23);
 
-  /* Material Design Border Radius */
+  /* Radius */
   --md-radius-small: 4px;
   --md-radius-medium: 8px;
   --md-radius-large: 12px;
@@ -92,7 +81,7 @@ body {
   background-color: var(--surface-color);
   font-size: var(--body-text);
   margin: 0;
-  padding: var(--space-4) 0;
+  padding: 0;
   -webkit-print-color-adjust: exact;
   print-color-adjust: exact;
   font-weight: 400;
@@ -100,12 +89,11 @@ body {
   transition: opacity 0.2s ease-in-out;
 }
 
-/* Loading States */
+/* Loading State */
 body.loading {
   opacity: 0;
   transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
-
 body.loaded {
   opacity: 1;
 }
@@ -113,7 +101,6 @@ body.loaded {
 /* ==========================================================================
    APP HEADER
    ========================================================================== */
-
 .app-header {
   background: var(--background-color);
   border-bottom: 1px solid var(--divider-color);
@@ -145,13 +132,11 @@ body.loaded {
   min-width: 0;
 }
 
-/* Brand logo container */
 .brand-logo-container {
   display: flex;
   align-items: center;
   gap: var(--space-3);
 }
-
 .brand-logo {
   height: 32px;
   width: auto;
@@ -162,17 +147,15 @@ body.loaded {
   display: flex;
   flex-direction: column;
   gap: var(--space-1);
+  font-family: "Nothing You Could Do", cursive;
 }
-
 .brand-text h1 {
-  font-size: var(--lg-title);
   font-weight: 700;
   color: var(--primary-color);
   margin: 0;
   line-height: 1;
   letter-spacing: -0.5px;
 }
-
 .brand-text p {
   font-size: var(--tiny-text);
   color: var(--secondary-color);
@@ -192,16 +175,14 @@ body.loaded {
 .md-form-field {
   display: flex;
   flex-direction: column;
-  font-family: "Inter", sans-serif;
   font-size: var(--body-text);
   min-width: 200px;
+  font-family: "Inter", sans-serif;
 }
-
 .md-select-wrapper {
   position: relative;
   display: inline-block;
 }
-
 .md-select {
   width: 100%;
   padding: 8px 36px 8px 12px;
@@ -213,12 +194,10 @@ body.loaded {
   cursor: pointer;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
-
 .md-select:focus {
   outline: none;
   border-color: var(--theme-color);
 }
-
 .md-arrow {
   position: absolute;
   top: 50%;
@@ -229,33 +208,19 @@ body.loaded {
   color: #888;
 }
 
-/* Responsive styles for mobile */
+/* Responsive header */
 @media (max-width: 768px) {
   .brand-logo-container {
     gap: var(--space-2);
   }
-
   .brand-logo {
     height: 24px;
   }
-
   .brand-text h1 {
     font-size: var(--md-title);
   }
-
   .brand-text p {
     display: none;
-  }
-}
-
-/* Hide version switcher in print */
-@media print {
-  .version-switcher {
-    display: none !important;
-  }
-
-  .app-header {
-    display: none !important;
   }
 }
 
@@ -275,7 +240,6 @@ body.loaded {
   font-size: var(--body-text);
   z-index: 1000;
 }
-
 .loading-spinner {
   width: 40px;
   height: 40px;
@@ -284,7 +248,6 @@ body.loaded {
   border-radius: 50%;
   animation: md-spin 1s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
-
 @keyframes md-spin {
   0% {
     transform: rotate(0deg);
@@ -293,7 +256,6 @@ body.loaded {
     transform: rotate(360deg);
   }
 }
-
 body.loaded .loading-indicator {
   display: none;
 }
@@ -309,7 +271,6 @@ body.loaded .loading-indicator {
   background: var(--background-color);
   box-shadow: var(--md-elevation-2);
   overflow: hidden;
-  box-sizing: border-box;
   border-radius: var(--md-radius-small);
 }
 
@@ -332,6 +293,7 @@ header {
 .header-text {
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 h1 {
@@ -342,6 +304,39 @@ h1 {
   line-height: 1;
 }
 
+/* Name block */
+.name-container {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  position: relative;
+}
+.name-group {
+  position: relative;
+  display: inline-block;
+}
+.name-part {
+  font-size: var(--xl-title);
+  font-weight: 700;
+  color: var(--primary-color);
+  line-height: 1;
+  display: inline;
+}
+.name-part.nickname {
+  font-weight: 400;
+  color: var(--secondary-color);
+}
+.pronunciation {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: var(--small-text);
+  font-style: italic;
+  white-space: nowrap;
+}
+
+/* Contact grid */
 .contact-info {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -350,11 +345,9 @@ h1 {
   justify-self: end;
   text-align: right;
 }
-
 .contact-info-row {
   display: contents;
 }
-
 .contact-item {
   display: flex;
   align-items: center;
@@ -363,13 +356,11 @@ h1 {
   font-size: var(--small-text);
   font-weight: 400;
 }
-
 .contact-item i {
   font-size: 8px;
   color: var(--theme-color);
   width: 10px;
 }
-
 .contact-link {
   color: var(--secondary-color);
   text-decoration: none;
@@ -394,7 +385,6 @@ h2 {
   align-items: center;
   gap: var(--space-2);
 }
-
 h2 i {
   font-size: 10px;
   color: var(--accent-color);
@@ -403,10 +393,9 @@ h2 i {
 h3 {
   font-size: var(--sm-title);
   font-weight: 600;
-  margin: var(--space-2) 0 var(--space-1) 0;
+  margin: var(--space-2) 0 var(--space-1);
   color: var(--primary-color);
 }
-
 p {
   font-size: var(--body-text);
   line-height: 1.2;
@@ -415,7 +404,7 @@ p {
 }
 
 /* ==========================================================================
-   CARD COMPONENTS
+   CARD COMPONENTS (merged)
    ========================================================================== */
 .education-item,
 .work-experience-item,
@@ -427,23 +416,10 @@ p {
   margin-bottom: var(--space-2);
 }
 
-/* Two-Column Grid Layout */
+/* Two-column grids */
 .education-item,
 .work-experience-item,
-.publication-item {
-  display: grid;
-  grid-template-columns: 7fr auto;
-  gap: var(--space-2);
-  align-items: start;
-}
-
-/* Project item has special layout - two columns for main content, full width for case studies */
-.project-item {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-}
-
+.publication-item,
 .project-main-content {
   display: grid;
   grid-template-columns: 7fr auto;
@@ -451,11 +427,14 @@ p {
   align-items: start;
 }
 
-/* ==========================================================================
-   TWO-COLUMN LAYOUT COMPONENTS
-   ========================================================================== */
+/* Project wrapper stays column for cases */
+.project-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
 
-/* Left Column: Main content (degree, job title, publication title, etc.) */
+/* Left/Right common columns */
 .education-left,
 .work-left,
 .project-left,
@@ -465,7 +444,6 @@ p {
   gap: var(--space-1);
 }
 
-/* Right Column: Metadata (location, time, period, etc.) */
 .education-right,
 .work-right,
 .project-right,
@@ -478,42 +456,33 @@ p {
 }
 
 /* ==========================================================================
-   EDUCATION SECTION
+   EDUCATION
    ========================================================================== */
-
-/* Left Column Classes */
 .education-title {
   font-weight: 600;
   color: var(--primary-color);
   margin-bottom: var(--space-1);
 }
-
-/* Right Column Classes */
 .institution {
   color: var(--tertiary-color);
 }
-
 .education-period {
   color: var(--accent-color);
   font-weight: 500;
 }
 
 /* ==========================================================================
-   WORK EXPERIENCE SECTION
+   WORK EXPERIENCE
    ========================================================================== */
-
-/* Left Column Classes */
 .job-title {
   font-weight: 600;
   font-size: var(--sm-title);
   color: var(--primary-color);
   flex: 1;
 }
-
 .job-responsibilities {
   margin-bottom: var(--space-2);
 }
-
 .job-achievements {
   margin-top: var(--space-2);
 }
@@ -524,32 +493,26 @@ p {
   color: var(--primary-color);
   margin-bottom: var(--space-1);
 }
-
 .achievements-list {
   margin: 0;
 }
-
 .achievements-list li {
   color: var(--accent-color);
   font-weight: 500;
 }
 
-/* Right Column Classes */
 .company-location {
   color: var(--tertiary-color);
   margin-bottom: var(--space-1);
 }
-
 .period-type {
   color: var(--accent-color);
   font-weight: 500;
 }
 
 /* ==========================================================================
-   PUBLICATIONS SECTION
+   PUBLICATIONS
    ========================================================================== */
-
-/* Left Column Classes */
 .publication-title {
   font-weight: 500;
   font-size: var(--body-text);
@@ -557,19 +520,15 @@ p {
   margin-bottom: var(--space-1);
   line-height: 1.1;
 }
-
 .publication-authors {
   font-style: italic;
   color: var(--secondary-color);
   flex: 1;
 }
-
-/* Right Column Classes */
 .publication-venue {
   color: var(--tertiary-color);
   text-align: right;
 }
-
 .publication-time {
   color: var(--accent-color);
   font-size: var(--tiny-text);
@@ -586,7 +545,6 @@ ul {
   padding-left: 0;
   margin: var(--space-1) 0;
 }
-
 ul li {
   position: relative;
   margin-bottom: var(--space-1);
@@ -595,7 +553,6 @@ ul li {
   color: var(--secondary-color);
   padding-left: var(--space-3);
 }
-
 ul li::before {
   content: "-";
   color: var(--accent-color);
@@ -606,7 +563,7 @@ ul li::before {
 }
 
 /* ==========================================================================
-   SKILLS SECTION
+   SKILLS
    ========================================================================== */
 .skills-grid {
   display: grid;
@@ -623,12 +580,10 @@ ul li::before {
   border-radius: var(--md-radius-small);
   margin-bottom: var(--space-2);
 }
-
 .skill-item {
   gap: var(--space-1);
   padding: var(--space-2);
 }
-
 .skill-item.unselected {
   gap: var(--space-0);
   padding: var(--space-0);
@@ -640,11 +595,9 @@ ul li::before {
   align-items: center;
   justify-content: space-between;
 }
-
 .skill-header {
   gap: var(--space-1);
 }
-
 .skill-item.unselected .skill-header {
   gap: var(--space-0);
 }
@@ -653,12 +606,10 @@ ul li::before {
   flex: 1;
   min-width: 0;
 }
-
 .skill-name {
   display: flex;
   flex-direction: column;
 }
-
 .skill-name-text {
   font-weight: 700;
   color: var(--primary-color);
@@ -680,7 +631,6 @@ ul li::before {
   margin-bottom: var(--space-1);
   justify-content: space-between;
 }
-
 .skill-label {
   color: var(--divider-color);
   font-weight: 300;
@@ -691,7 +641,6 @@ ul li::before {
   min-width: 60px;
   text-align: right;
 }
-
 .tech-stack {
   font-size: var(--tiny-text);
   color: var(--tertiary-color);
@@ -708,23 +657,19 @@ ul li::before {
   hyphens: none;
 }
 
-/* Skill items container and wrapper for better wrapping control */
 .skill-items-container {
   display: inline;
 }
-
 .skill-item-wrapper {
   white-space: nowrap;
   display: inline;
 }
 
-/* Unselected skills container styling */
 .skill-unselected-container {
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
 }
-
 .unselected-title {
   color: var(--primary-color);
   font-weight: 500;
@@ -733,39 +678,34 @@ ul li::before {
   border-bottom: 1px solid var(--divider-color);
   padding-bottom: var(--space-1);
 }
-
 .unselected-skills-list {
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
 }
-
 .unselected-skill-item {
   display: flex;
   flex-direction: column;
   gap: var(--space-1);
 }
-
 .unselected-skill-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: var(--space-1);
 }
-
 .unselected-skill-name {
   font-weight: 500;
   color: var(--primary-color);
   font-size: var(--sm-title);
 }
 
-/* Skill Rating */
+/* Rating */
 .skill-level {
   display: flex;
   align-items: center;
   flex-shrink: 0;
 }
-
 .skill-rating {
   font-size: var(--tiny-text);
   letter-spacing: 1px;
@@ -774,16 +714,13 @@ ul li::before {
 }
 
 /* ==========================================================================
-   PROJECTS SECTION
+   PROJECTS
    ========================================================================== */
-
-/* Left Column Classes */
 .project-title {
   font-weight: 600;
   font-size: var(--sm-title);
   color: var(--primary-color);
 }
-
 .project-description {
   font-size: var(--small-text);
   color: var(--secondary-color);
@@ -793,14 +730,12 @@ ul li::before {
 .project-case {
   border-radius: var(--md-radius-small);
 }
-
 .case-item {
   border-radius: var(--md-radius-small);
   background: var(--background-color);
   padding: var(--space-1);
   margin: var(--space-2);
 }
-
 .case-item h4 {
   font-size: var(--small-text);
   font-weight: 600;
@@ -809,7 +744,7 @@ ul li::before {
 }
 
 /* ==========================================================================
-   RESEARCH SECTION
+   RESEARCH
    ========================================================================== */
 .research-item-detail {
   font-size: var(--tiny-text);
@@ -826,35 +761,29 @@ ul li::before {
 body[class*="theme-"] h1 {
   color: var(--theme-color);
 }
-
 body[class*="theme-"] h2 {
   color: var(--theme-color);
   border-bottom: 1px solid var(--divider-color);
 }
-
 body[class*="theme-"] h2 i {
   color: var(--theme-color);
 }
-
 body[class*="theme-"] .skill-rating {
   color: var(--theme-color);
 }
-
 body[class*="theme-"] .contact-link {
   color: var(--secondary-color);
 }
-
 body[class*="theme-"] .version-select {
   border-color: var(--theme-color);
 }
-
 body[class*="theme-"] .version-select:focus {
   border-color: var(--theme-color);
   box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
 }
 
 /* ==========================================================================
-   PRINT STYLES
+   PRINT SETTINGS (single source of truth)
    ========================================================================== */
 @media print {
   @page {
@@ -863,13 +792,16 @@ body[class*="theme-"] .version-select:focus {
     padding: 0;
   }
 
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
   body {
     margin: 0;
     padding: 0;
     background: white !important;
     font-size: var(--body-text);
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
     line-height: 1.2;
   }
 
@@ -877,20 +809,21 @@ body[class*="theme-"] .version-select:focus {
     margin: 0;
     padding: 0;
     box-shadow: none;
-    break-after: page;
     border-radius: 0;
     width: 100%;
     height: auto;
-    max-width: none;
     background: white !important;
+    break-after: page;
   }
 
+  /* Hide non-print UI */
   .version-switcher,
+  .app-header,
   .loading-indicator {
     display: none !important;
   }
 
-  /* Ensure consistent spacing in print */
+  /* Spacing & break control */
   section {
     margin-bottom: var(--space-3);
     page-break-inside: avoid;
@@ -899,34 +832,12 @@ body[class*="theme-"] .version-select:focus {
   .education-item,
   .work-experience-item,
   .project-item,
-  .publication-item {
+  .publication-item,
+  ul li {
     page-break-inside: avoid;
     break-inside: avoid;
   }
 
-  /* Preserve colors for branding */
-  h1,
-  h2 {
-    color: var(--primary-color) !important;
-  }
-
-  body[class*="theme-"] h1,
-  body[class*="theme-"] h2 {
-    color: var(--theme-color) !important;
-  }
-
-  /* Ensure proper text rendering */
-  * {
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
-  }
-
-  /* Optimize spacing for print */
-  header {
-    margin-bottom: var(--space-3);
-  }
-
-  /* Prevent orphaned content */
   h2,
   h3,
   h4 {
@@ -934,9 +845,13 @@ body[class*="theme-"] .version-select:focus {
     break-after: avoid;
   }
 
-  /* Ensure list items stay together */
-  ul li {
-    page-break-inside: avoid;
-    break-inside: avoid;
+  /* Preserve heading colors; honor theme if applied */
+  h1,
+  h2 {
+    color: var(--primary-color) !important;
+  }
+  body[class*="theme-"] h1,
+  body[class*="theme-"] h2 {
+    color: var(--theme-color) !important;
   }
 }

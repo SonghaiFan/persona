@@ -221,10 +221,60 @@ function renderHeaderInPage(container) {
 
   const headerContent = createDiv("header-content");
 
-  // Name
+  // Name with individual pronunciations
   const headerText = createDiv("header-text");
-  const name = createElement("h1", { textContent: personal.name });
-  headerText.appendChild(name);
+
+  // Create name container with precise pronunciation placement
+  const nameContainer = createDiv("name-container");
+
+  // First name with pronunciation
+  const firstNameGroup = createDiv("name-group");
+  const firstName = createElement("span", {
+    className: "name-part",
+    textContent: personal.first_name,
+  });
+  firstNameGroup.appendChild(firstName);
+
+  if (personal.first_name_pronounce) {
+    const firstPronunciation = createElement("div", {
+      className: "pronunciation",
+      textContent: personal.first_name_pronounce,
+    });
+    firstNameGroup.appendChild(firstPronunciation);
+  }
+
+  // Nickname (no pronunciation needed)
+  const nicknameGroup = createDiv("name-group");
+  const nickname = createElement("span", {
+    className: "name-part nickname",
+    textContent: `(${personal.nickname})`,
+  });
+  nicknameGroup.appendChild(nickname);
+
+  // Last name with pronunciation
+  const lastNameGroup = createDiv("name-group");
+  const lastName = createElement("span", {
+    className: "name-part",
+    textContent: personal.last_name,
+  });
+  lastNameGroup.appendChild(lastName);
+
+  if (personal.last_name_pronounce) {
+    const lastPronunciation = createElement("div", {
+      className: "pronunciation",
+      textContent: personal.last_name_pronounce,
+    });
+    lastNameGroup.appendChild(lastPronunciation);
+  }
+
+  // Wrap everything in h1
+  const nameHeader = createElement("h1");
+  nameHeader.appendChild(nameContainer);
+  nameContainer.appendChild(firstNameGroup);
+  nameContainer.appendChild(nicknameGroup);
+  nameContainer.appendChild(lastNameGroup);
+
+  headerText.appendChild(nameHeader);
 
   // Contact info
   const contactInfo = createDiv("contact-info");
