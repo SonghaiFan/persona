@@ -277,9 +277,8 @@ body.loaded .loading-indicator {
 /* ==========================================================================
    HEADER SECTION
    ========================================================================== */
-header {
-  margin-bottom: var(--space-3);
-  padding-bottom: var(--space-2);
+.page-header {
+  padding-bottom: var(--space-6);
   border-bottom: 1px solid var(--divider-color);
 }
 
@@ -328,11 +327,10 @@ h1 {
 }
 .pronunciation {
   position: absolute;
-  bottom: 100%;
-  left: 50%;
+  top: 100%;
+  left: 80%;
   transform: translateX(-50%);
-  font-size: var(--small-text);
-  font-style: italic;
+  font-size: var(--body-text);
   white-space: nowrap;
 }
 
@@ -788,7 +786,7 @@ body[class*="theme-"] .version-select:focus {
 @media print {
   @page {
     size: A4 portrait;
-    margin: 8mm;
+    margin: var(--page-margin);
     padding: 0;
   }
 

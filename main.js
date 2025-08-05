@@ -217,7 +217,7 @@ function renderHeaderInPage(container) {
   const personal = resumeData.personal_info;
 
   // Create header section inside the page
-  const headerSection = createElement("header", { className: "page-header" });
+  const headerSection = createElement("div", { className: "page-header" });
 
   const headerContent = createDiv("header-content");
 
