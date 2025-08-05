@@ -140,7 +140,7 @@ body.theme-${key} {
 
 body.theme-${key} :is(h1, h2 i, .contact-link) { color: var(--theme-color); }
 body.theme-${key} h2 { color: var(--theme-color); border-bottom: 1px solid var(--divider-color); }
-body.theme-${key} .skill-dot.filled { background-color: var(--theme-color); }
+body.theme-${key} .skill-rating { color: var(--theme-color); }
 body.theme-${key} .version-select { 
   border-color: var(--theme-color);
 }
@@ -466,13 +466,10 @@ function createSkillHeader(skill, isUnselected = false) {
   nameGroup.appendChild(name);
 
   const level = createDiv("skill-level");
-  const rating = createDiv("skill-rating");
-
-  for (let i = 1; i <= 5; i++) {
-    const dot = createDiv("skill-dot");
-    if (i <= skill.level) dot.classList.add("filled");
-    rating.appendChild(dot);
-  }
+  const rating = createElement("span", {
+    className: "skill-rating",
+    textContent: "●".repeat(skill.level) + "○".repeat(5 - skill.level),
+  });
 
   level.appendChild(rating);
   header.appendChild(nameGroup);

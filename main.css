@@ -1,8 +1,4 @@
 /* ==========================================================================
-   RESUME STYLESHEET
-   ========================================================================== */
-
-/* ==========================================================================
    PRINT SETTINGS
    ========================================================================== */
 @page {
@@ -716,19 +712,10 @@ ul li::before {
 }
 
 .skill-rating {
-  display: flex;
-  gap: 1px;
-}
-
-.skill-dot {
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background-color: var(--divider-color);
-}
-
-.skill-dot.filled {
-  background-color: var(--accent-color);
+  font-size: var(--tiny-text);
+  letter-spacing: 1px;
+  color: var(--accent-color);
+  font-family: monospace;
 }
 
 /* ==========================================================================
@@ -794,8 +781,8 @@ body[class*="theme-"] h2 i {
   color: var(--theme-color);
 }
 
-body[class*="theme-"] .skill-dot.filled {
-  background-color: var(--theme-color);
+body[class*="theme-"] .skill-rating {
+  color: var(--theme-color);
 }
 
 body[class*="theme-"] .contact-link {
