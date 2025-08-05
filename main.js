@@ -485,35 +485,32 @@ function createSkillDetails(skill, showAll = true) {
     showAll ? "skill-details" : "unselected-skill-details"
   );
 
-  const categories = showAll
-    ? [
-        { key: "tech_stack", label: "TECH STACK" },
-        { key: "core_skill", label: "CORE SKILLS" },
-        { key: "methodology", label: "METHODOLOGY" },
-        { key: "use_scenario", label: "USE SCENARIOS" },
-      ]
-    : [
-        { key: "tech_stack", label: "TECH STACK" },
-        { key: "core_skill", label: "CORE SKILLS" },
-      ];
+  // Get all available categories from the skill object dynamically
+  const allCategories = Object.keys(skill)
+    .filter((key) => Array.isArray(skill[key]) && skill[key].length > 0)
+    .map((key) => ({
+      key,
+      label: key.toUpperCase().replace(/_/g, " "),
+    }));
 
-  categories.forEach(({ key, label }) => {
-    if (skill[key]?.length) {
-      const subcategory = createDiv("skill-subcategory");
-      subcategory.appendChild(
-        createElement("span", {
-          className: "skill-content",
-          textContent: skill[key].join(", "),
-        })
-      );
-      subcategory.appendChild(
-        createElement("span", {
-          className: "skill-label",
-          textContent: label,
-        })
-      );
-      details.appendChild(subcategory);
-    }
+  // Show all categories or just the first two
+  const categoriesToShow = showAll ? allCategories : allCategories.slice(0, 2);
+
+  categoriesToShow.forEach(({ key, label }) => {
+    const subcategory = createDiv("skill-subcategory");
+    subcategory.appendChild(
+      createElement("span", {
+        className: "skill-content",
+        textContent: skill[key].join(", "),
+      })
+    );
+    subcategory.appendChild(
+      createElement("span", {
+        className: "skill-label",
+        textContent: label,
+      })
+    );
+    details.appendChild(subcategory);
   });
 
   return details;
