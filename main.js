@@ -329,6 +329,52 @@ function initVersionSwitcher() {
   );
 }
 
+function initCoverLetterToggle() {
+  const coverLetterToggle = document.getElementById("coverLetterToggle");
+  if (!coverLetterToggle) return;
+
+  // Set initial state based on current version config
+  const versionConfig = versionsData.versions[currentVersion];
+  const includeCoverLetter = versionConfig.content_config?.include_cover_letter || false;
+  coverLetterToggle.checked = includeCoverLetter;
+
+  // Add event listener for toggle changes
+  coverLetterToggle.addEventListener("change", (e) => {
+    toggleCoverLetter(e.target.checked);
+  });
+}
+
+function toggleCoverLetter(enabled) {
+  // Update the current version's configuration
+  const versionConfig = versionsData.versions[currentVersion];
+  if (!versionConfig.content_config) {
+    versionConfig.content_config = {};
+  }
+  versionConfig.content_config.include_cover_letter = enabled;
+
+  // Re-render the resume
+  document.body.style.opacity = "0.8";
+  
+  // Clear content and re-render
+  const firstPage = document.querySelector(".page");
+  firstPage.innerHTML = "";
+  firstPage.classList.remove("cover-letter-page");
+  
+  // Remove any additional pages
+  const resume = document.getElementById("resume");
+  const pages = resume.querySelectorAll(".page");
+  for (let i = 1; i < pages.length; i++) {
+    pages[i].remove();
+  }
+
+  renderResume();
+
+  setTimeout(() => {
+    autoPaginate();
+    setTimeout(() => (document.body.style.opacity = "1"), 50);
+  }, 100);
+}
+
 function switchVersion(version) {
   if (!versionsData.versions[version]) return;
 
@@ -338,6 +384,22 @@ function switchVersion(version) {
   // Clear content and re-render
   const firstPage = document.querySelector(".page");
   firstPage.innerHTML = "";
+  firstPage.classList.remove("cover-letter-page");
+  
+  // Remove any additional pages
+  const resume = document.getElementById("resume");
+  const pages = resume.querySelectorAll(".page");
+  for (let i = 1; i < pages.length; i++) {
+    pages[i].remove();
+  }
+
+  // Update cover letter toggle state
+  const coverLetterToggle = document.getElementById("coverLetterToggle");
+  if (coverLetterToggle) {
+    const versionConfig = versionsData.versions[currentVersion];
+    const includeCoverLetter = versionConfig.content_config?.include_cover_letter || false;
+    coverLetterToggle.checked = includeCoverLetter;
+  }
 
   applyTheme(version);
   renderResume();
@@ -356,41 +418,52 @@ function renderResume() {
     versionConfig.sections_order ||
     [];
 
-  // First render the header inside the page
-  renderHeaderInPage(page);
+  // Check if cover letter should be rendered
+  const includeCoverLetter = versionConfig.content_config?.include_cover_letter;
+  
+  if (includeCoverLetter) {
+    // Render cover letter as the first page
+    renderCoverLetter(page, versionConfig);
+  } else {
+    // First render the header inside the page
+    renderHeaderInPage(page);
 
-  sectionsOrder.forEach((sectionName) => {
-    switch (sectionName) {
-      case "summary":
-        if (versionConfig.summary) renderSummary(versionConfig.summary, page);
-        break;
-      case "technical_skills":
-        if (resumeData.skills_pool) renderTechnicalSkills(page, versionConfig);
-        break;
-      case "education":
-        if (resumeData.education) renderEducation(resumeData.education, page);
-        break;
-      case "projects":
-        if (resumeData.projects) renderProjects(page, versionConfig);
-        break;
-      case "publications":
-        if (resumeData.publications)
-          renderPublications(resumeData.publications, page);
-        break;
-      case "work_experience":
-        if (resumeData.work_experience)
-          renderWorkExperience(resumeData.work_experience, page);
-        break;
-      case "phd_research":
-        if (resumeData.phd_research)
-          renderPhDResearch(resumeData.phd_research, page);
-        break;
-      case "certifications":
-        if (resumeData.certifications)
-          renderCertifications(resumeData.certifications, page);
-        break;
-    }
-  });
+    sectionsOrder.forEach((sectionName) => {
+      switch (sectionName) {
+        case "cover_letter":
+          // Skip cover letter section if not enabled
+          break;
+        case "summary":
+          if (versionConfig.summary) renderSummary(versionConfig.summary, page);
+          break;
+        case "technical_skills":
+          if (resumeData.skills_pool) renderTechnicalSkills(page, versionConfig);
+          break;
+        case "education":
+          if (resumeData.education) renderEducation(resumeData.education, page);
+          break;
+        case "projects":
+          if (resumeData.projects) renderProjects(page, versionConfig);
+          break;
+        case "publications":
+          if (resumeData.publications)
+            renderPublications(resumeData.publications, page);
+          break;
+        case "work_experience":
+          if (resumeData.work_experience)
+            renderWorkExperience(resumeData.work_experience, page);
+          break;
+        case "phd_research":
+          if (resumeData.phd_research)
+            renderPhDResearch(resumeData.phd_research, page);
+          break;
+        case "certifications":
+          if (resumeData.certifications)
+            renderCertifications(resumeData.certifications, page);
+          break;
+      }
+    });
+  }
 }
 
 // Section rendering functions
@@ -749,6 +822,126 @@ function renderCertifications(certifications, container) {
   container.appendChild(section);
 }
 
+function renderCoverLetter(container, versionConfig) {
+  const coverLetterData = resumeData.cover_letters?.[currentVersion];
+  
+  if (!coverLetterData) {
+    console.warn(`No cover letter data found for version: ${currentVersion}`);
+    return;
+  }
+
+  // Clear the container for cover letter
+  container.innerHTML = "";
+  container.classList.add("cover-letter-page");
+
+  // Header with contact info (simplified for cover letter)
+  const header = createElement("header", { className: "cover-letter-header" });
+  const personal = resumeData.personal_info;
+  
+  const contactInfo = createDiv("cover-letter-contact");
+  contactInfo.innerHTML = `
+    <div class="cover-letter-name">${personal.first_name} ${personal.last_name}</div>
+    <div class="cover-letter-contact-details">
+      <span>${personal.email}</span> • 
+      <span>${personal.phone}</span> • 
+      <span>${personal.location}</span>
+    </div>
+    <div class="cover-letter-links">
+      <span>${personal.links.github.replace("https://", "")}</span> • 
+      <span>${personal.links.linkedin.replace("https://www.linkedin.com/in/", "linkedin.com/in/")}</span>
+    </div>
+  `;
+  
+  header.appendChild(contactInfo);
+  container.appendChild(header);
+
+  // Date
+  const today = new Date();
+  const dateString = today.toLocaleDateString('en-US', { 
+    year: 'numeric', 
+    month: 'long', 
+    day: 'numeric' 
+  });
+  
+  const dateDiv = createDiv("cover-letter-date", dateString);
+  container.appendChild(dateDiv);
+
+  // Recipient information
+  if (coverLetterData.recipient) {
+    const recipientDiv = createDiv("cover-letter-recipient");
+    recipientDiv.innerHTML = `
+      <div>${coverLetterData.recipient.company}</div>
+      <div>${coverLetterData.recipient.department}</div>
+      <div>Re: ${coverLetterData.recipient.position}</div>
+    `;
+    container.appendChild(recipientDiv);
+  }
+
+  // Opening
+  const openingDiv = createDiv("cover-letter-opening", coverLetterData.opening);
+  container.appendChild(openingDiv);
+
+  // Body paragraphs
+  const bodyDiv = createDiv("cover-letter-body");
+  coverLetterData.body.forEach(paragraph => {
+    const p = createElement("p", { textContent: paragraph });
+    bodyDiv.appendChild(p);
+  });
+  container.appendChild(bodyDiv);
+
+  // Closing
+  const closingDiv = createDiv("cover-letter-closing");
+  closingDiv.innerHTML = `
+    <div class="closing-text">${coverLetterData.closing}</div>
+    <div class="signature">${coverLetterData.signature}</div>
+  `;
+  container.appendChild(closingDiv);
+
+  // After cover letter, create a new page for resume
+  const resumePage = createElement("section", { className: "page" });
+  container.parentNode.appendChild(resumePage);
+  
+  // Render regular resume on the second page
+  renderHeaderInPage(resumePage);
+  
+  const sectionsOrder = versionConfig.content_config?.sections_order || [];
+  sectionsOrder.forEach((sectionName) => {
+    switch (sectionName) {
+      case "cover_letter":
+        // Skip cover letter section on resume page
+        break;
+      case "summary":
+        if (versionConfig.summary) renderSummary(versionConfig.summary, resumePage);
+        break;
+      case "technical_skills":
+        if (resumeData.skills_pool) renderTechnicalSkills(resumePage, versionConfig);
+        break;
+      case "education":
+        if (resumeData.education) renderEducation(resumeData.education, resumePage);
+        break;
+      case "projects":
+        if (resumeData.projects) renderProjects(resumePage, versionConfig);
+        break;
+      case "publications":
+        if (resumeData.publications)
+          renderPublications(resumeData.publications, resumePage);
+        break;
+      case "work_experience":
+        if (resumeData.work_experience)
+          renderWorkExperience(resumeData.work_experience, resumePage);
+        break;
+      case "phd_research":
+        if (resumeData.phd_research)
+          renderPhDResearch(resumeData.phd_research, resumePage);
+        break;
+      case "certifications":
+        if (resumeData.certifications)
+          renderCertifications(resumeData.certifications, resumePage);
+        break;
+    }
+  });
+}
+
 // =============================================================================
 // APPLICATION INITIALIZATION
 // =============================================================================
@@ -760,6 +953,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     generateThemeCSS();
     initVersionSwitcher();
+    initCoverLetterToggle();
     applyTheme(currentVersion);
     renderResume();
 

@@ -306,5 +306,88 @@
   "interests": [
     "Music: Guitarist in a local band, participant in Melbourne Chinese Music Festival",
     "Mentorship: Guiding students in data science and analytics projects"
-  ]
+  ],
+
+  "cover_letters": {
+    "data-scientist": {
+      "recipient": {
+        "company": "[Company Name]",
+        "position": "[Position Title]",
+        "department": "[Department/Team]"
+      },
+      "opening": "Dear Hiring Manager,",
+      "body": [
+        "I am writing to express my strong interest in the Data Scientist position at [Company Name]. As a PhD researcher in Human-Centered Computing with extensive experience in data analysis, statistical modeling, and visualization, I am excited about the opportunity to contribute to your data-driven initiatives.",
+        "My research background has equipped me with deep expertise in Python, R, SQL, and advanced analytics tools like Tableau and Power BI. Through my work on narrative visualization frameworks and LLM text analysis, I have developed a unique ability to translate complex data insights into compelling stories that drive business decisions. My experience includes building interactive dashboards, conducting A/B testing, and developing predictive models for user behavior analysis.",
+        "What particularly attracts me to this role is the opportunity to apply my technical skills in a business context while continuing to bridge the gap between human understanding and data complexity. I am passionate about creating data solutions that are not only technically sound but also accessible and actionable for stakeholders across all levels of an organization.",
+        "I would welcome the opportunity to discuss how my background in data science research and practical experience with analytics tools can contribute to [Company Name]'s success. Thank you for considering my application."
+      ],
+      "closing": "Sincerely,",
+      "signature": "Songhai (Frank) Fan"
+    },
+    "nlp-ai-engineer": {
+      "recipient": {
+        "company": "[Company Name]",
+        "position": "[Position Title]",
+        "department": "[AI/Engineering Team]"
+      },
+      "opening": "Dear Hiring Manager,",
+      "body": [
+        "I am excited to apply for the NLP/AI Engineer position at [Company Name]. With my PhD research focused on leveraging LLMs and AI for enhanced human-data interaction, combined with hands-on experience in PyTorch, TensorFlow, and HuggingFace, I am well-positioned to contribute to your AI initiatives.",
+        "My research has involved developing Graph-to-Text pipelines using GPT models, implementing advanced NLP techniques including topic modeling and sentiment analysis, and creating AI-augmented frameworks for narrative comprehension. I have practical experience with prompt engineering, model fine-tuning, and building intelligent Q&A systems that bridge human understanding with complex language models.",
+        "What excites me most about this opportunity is the chance to apply cutting-edge NLP research in a production environment. My background in human-centered AI ensures that I not only focus on technical performance but also on creating AI systems that are interpretable, reliable, and aligned with human needs and expectations.",
+        "I am eager to discuss how my expertise in NLP, machine learning, and human-AI interaction can help [Company Name] build innovative AI solutions. Thank you for your consideration."
+      ],
+      "closing": "Best regards,",
+      "signature": "Songhai (Frank) Fan"
+    },
+    "ux-researcher": {
+      "recipient": {
+        "company": "[Company Name]",
+        "position": "[Position Title]",
+        "department": "[UX/Research Team]"
+      },
+      "opening": "Dear Hiring Team,",
+      "body": [
+        "I am writing to express my interest in the UX Research position at [Company Name]. As a PhD researcher in Human-Centered Computing with extensive experience in experimental design, usability testing, and mixed-methods research, I am passionate about creating user-centered solutions that bridge technology and human needs.",
+        "My research background has provided me with deep expertise in conducting controlled experiments, statistical testing, and translating complex user insights into actionable design recommendations. I have led user studies involving 200+ participants, developed innovative research methodologies for evaluating AI systems, and created frameworks that align algorithmic outputs with human understanding across cognitive tasks.",
+        "What draws me to this role is the opportunity to apply rigorous research methodologies in a product development context. My experience in both qualitative and quantitative research methods, combined with my technical background in data analysis and visualization, allows me to provide comprehensive insights that inform both strategic decisions and detailed design implementations.",
+        "I would be thrilled to discuss how my research expertise and passion for human-centered design can contribute to creating exceptional user experiences at [Company Name]. Thank you for considering my application."
+      ],
+      "closing": "Warm regards,",
+      "signature": "Songhai (Frank) Fan"
+    },
+    "data-viz-developer": {
+      "recipient": {
+        "company": "[Company Name]",
+        "position": "[Position Title]",
+        "department": "[Development/Design Team]"
+      },
+      "opening": "Dear Hiring Manager,",
+      "body": [
+        "I am excited to apply for the Data Visualization Developer position at [Company Name]. With my PhD research in narrative visualization and extensive hands-on experience with D3.js, React, and interactive design, I am passionate about creating compelling visual experiences that make complex data accessible and engaging.",
+        "My technical expertise includes building interactive web applications, developing custom scrollytelling frameworks, and creating dynamic dashboards using modern JavaScript technologies. Through projects like causal network visualizations and participatory modeling tools, I have demonstrated my ability to transform complex datasets into intuitive, user-friendly interfaces that drive understanding and decision-making.",
+        "What particularly excites me about this opportunity is the chance to combine my research background in human-centered design with practical web development skills. I understand not only how to create beautiful visualizations but also how to ensure they effectively communicate insights and support user goals through thoughtful interaction design and accessibility considerations.",
+        "I would love to discuss how my unique combination of visualization research, technical development skills, and user experience expertise can help [Company Name] create impactful data experiences. Thank you for your time and consideration."
+      ],
+      "closing": "Kind regards,",
+      "signature": "Songhai (Frank) Fan"
+    },
+    "data-engineer": {
+      "recipient": {
+        "company": "[Company Name]",
+        "position": "[Position Title]",
+        "department": "[Engineering/Data Team]"
+      },
+      "opening": "Dear Hiring Manager,",
+      "body": [
+        "I am writing to express my strong interest in the Data Engineer position at [Company Name]. With my background in building scalable data processing systems and expertise in Python, SQL, Hadoop, and Spark, I am excited about the opportunity to contribute to your data infrastructure and pipeline development.",
+        "Through my research and project work, I have gained experience in ETL pipeline development, real-time data processing, and building systems that handle large-scale data operations. My work on narrative visualization projects has required me to design robust data architectures that can efficiently process and transform complex datasets while maintaining data quality and reliability.",
+        "What attracts me to this role is the opportunity to apply my technical skills in building the foundational systems that enable data-driven decision making. I understand the importance of creating scalable, maintainable data infrastructure that can grow with business needs while ensuring data accuracy and accessibility for downstream analytics and applications.",
+        "I would welcome the chance to discuss how my experience in data processing, system architecture, and analytical thinking can contribute to [Company Name]'s data engineering initiatives. Thank you for considering my application."
+      ],
+      "closing": "Sincerely,",
+      "signature": "Songhai (Frank) Fan"
+    }
+  }
 }

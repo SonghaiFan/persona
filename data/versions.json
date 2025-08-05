@@ -3,6 +3,7 @@
     "default_version": "data-scientist",
     "theme_base": "theme-",
     "available_sections": [
+      "cover_letter",
       "summary",
       "work_experience",
       "technical_skills",
@@ -28,6 +29,7 @@
       "summary": "PhD Researcher in Human-Centered Computing passionate about data science and analytics for enhanced human-data interaction. Expertise in statistical modeling, data visualization, and A/B testing, with a focus on developing data-driven insights that bridge human understanding with complex datasets. Skilled in Python, R, SQL, and Tableau, combining technical proficiency with a deep interest in evidence-based decision making.",
 
       "content_config": {
+        "include_cover_letter": true,
         "selected_skills": [
           "data_analysis",
           "big_data_engineering",
@@ -67,6 +69,7 @@
       "summary": "PhD Researcher in Human-Centered Computing passionate about leveraging LLMs and AI for enhanced human-data interaction. Expertise in natural language processing, machine learning, and text analysis, with a focus on developing AI-augmented frameworks that bridge human understanding with complex language systems. Skilled in Python, PyTorch, and advanced NLP techniques, combining technical proficiency with a deep interest in human-AI collaborative systems.",
 
       "content_config": {
+        "include_cover_letter": false,
         "selected_skills": [
           "data_science_ai",
           "data_analysis",
@@ -106,6 +109,7 @@
       "summary": "PhD Researcher in Human-Centered Computing passionate about user experience research and human-computer interaction. Expertise in experimental design, usability testing, and mixed-methods research, with a focus on developing user-centered frameworks that bridge human needs with technology systems. Skilled in research methodologies and design thinking, combining academic rigor with a deep interest in creating intuitive human-computer interfaces.",
 
       "content_config": {
+        "include_cover_letter": false,
         "selected_skills": [
           "web_development_ux",
           "research_evaluation",
@@ -145,6 +149,7 @@
       "summary": "PhD Researcher in Human-Centered Computing passionate about data visualization and web development for enhanced human-data interaction. Expertise in narrative visualization, interactive design, and data storytelling, with a focus on developing visual frameworks that bridge human understanding with complex data systems. Skilled in JavaScript, React, D3.js, and visualization techniques, combining technical proficiency with a deep interest in immersive analytics.",
 
       "content_config": {
+        "include_cover_letter": false,
         "selected_skills": [
           "web_development_ux",
           "data_analysis",
@@ -184,6 +189,7 @@
       "summary": "PhD Researcher in Human-Centered Computing passionate about data engineering and infrastructure for enhanced human-data interaction. Expertise in data pipelines, ETL processes, and big data technologies, with a focus on developing scalable frameworks that bridge human understanding with complex data systems. Skilled in Python, SQL, and data infrastructure tools, combining technical proficiency with a deep interest in real-time data processing and analytics.",
 
       "content_config": {
+        "include_cover_letter": false,
         "selected_skills": [
           "big_data_engineering",
           "data_analysis",

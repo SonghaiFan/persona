@@ -852,4 +852,208 @@ body[class*="theme-"] .version-select:focus {
   body[class*="theme-"] h2 {
     color: var(--theme-color) !important;
   }
+
+  /* Cover letter print styles */
+  .cover-letter-page {
+    page-break-after: page;
+  }
+}
+
+/* ==========================================================================
+   COVER LETTER STYLES
+   ========================================================================== */
+
+/* Cover letter page layout */
+.cover-letter-page {
+  padding: var(--page-margin);
+  background: var(--background-color);
+  min-height: calc(var(--a4-h) - 2 * var(--page-margin));
+  display: flex;
+  flex-direction: column;
+}
+
+/* Cover letter header */
+.cover-letter-header {
+  margin-bottom: var(--space-8);
+  text-align: left;
+}
+
+.cover-letter-name {
+  font-size: var(--lg-title);
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-bottom: var(--space-2);
+}
+
+.cover-letter-contact-details,
+.cover-letter-links {
+  font-size: var(--body-text);
+  color: var(--secondary-color);
+  margin-bottom: var(--space-1);
+}
+
+.cover-letter-contact-details span,
+.cover-letter-links span {
+  margin: 0 var(--space-1);
+}
+
+/* Date */
+.cover-letter-date {
+  font-size: var(--body-text);
+  color: var(--secondary-color);
+  margin-bottom: var(--space-8);
+  text-align: right;
+}
+
+/* Recipient */
+.cover-letter-recipient {
+  font-size: var(--body-text);
+  color: var(--primary-color);
+  margin-bottom: var(--space-8);
+  line-height: 1.4;
+}
+
+.cover-letter-recipient div {
+  margin-bottom: var(--space-1);
+}
+
+/* Opening */
+.cover-letter-opening {
+  font-size: var(--body-text);
+  color: var(--primary-color);
+  margin-bottom: var(--space-6);
+  font-weight: 500;
+}
+
+/* Body */
+.cover-letter-body {
+  flex-grow: 1;
+  margin-bottom: var(--space-8);
+}
+
+.cover-letter-body p {
+  font-size: var(--body-text);
+  color: var(--primary-color);
+  line-height: 1.5;
+  margin-bottom: var(--space-6);
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+/* Closing */
+.cover-letter-closing {
+  margin-top: auto;
+}
+
+.closing-text {
+  font-size: var(--body-text);
+  color: var(--primary-color);
+  margin-bottom: var(--space-8);
+  font-weight: 500;
+}
+
+.signature {
+  font-family: "Nothing You Could Do", cursive;
+  font-size: calc(var(--body-text) * 1.4);
+  color: var(--primary-color);
+  font-weight: 400;
+  margin-top: var(--space-4);
+}
+
+/* Theme color integration for cover letter */
+body[class*="theme-"] .cover-letter-name {
+  color: var(--theme-color);
+}
+
+body[class*="theme-"] .cover-letter-opening,
+body[class*="theme-"] .closing-text,
+body[class*="theme-"] .signature {
+  color: var(--theme-color);
+}
+
+/* Print-specific cover letter styles */
+@media print {
+  .cover-letter-page {
+    padding: var(--page-margin);
+    margin: 0;
+    width: 100%;
+    height: auto;
+    min-height: calc(var(--a4-h) - 2 * var(--page-margin));
+    page-break-after: page;
+    background: white !important;
+  }
+
+  .cover-letter-body p {
+    text-align: justify;
+    line-height: 1.4;
+  }
+}
+
+/* ==========================================================================
+   COVER LETTER TOGGLE STYLES
+   ========================================================================== */
+
+.cover-letter-toggle {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  cursor: pointer;
+  font-size: var(--small-text);
+  color: var(--secondary-color);
+  user-select: none;
+}
+
+.toggle-checkbox {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 1px solid var(--tertiary-color);
+  border-radius: var(--md-radius-small);
+  background-color: var(--background-color);
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.toggle-checkbox:checked {
+  background-color: var(--theme-color);
+  border-color: var(--theme-color);
+}
+
+.toggle-checkbox:checked::after {
+  content: "✓";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.toggle-checkbox:hover {
+  border-color: var(--theme-color);
+}
+
+.toggle-label {
+  font-size: var(--small-text);
+  color: var(--secondary-color);
+  white-space: nowrap;
+}
+
+.cover-letter-toggle:hover .toggle-label {
+  color: var(--primary-color);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .app-controls {
+    flex-direction: column;
+    gap: var(--space-4);
+    align-items: stretch;
+  }
+  
+  .cover-letter-toggle {
+    justify-content: center;
+  }
 }
