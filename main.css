@@ -881,7 +881,7 @@ body[class*="theme-"] .version-select:focus {
 }
 
 .cover-letter-name {
-  font-size: var(--lg-title);
+  font-size: var(--xl-title);
   font-weight: 600;
   color: var(--primary-color);
   margin-bottom: var(--space-2);
