@@ -652,6 +652,19 @@ ul li::before {
   font-size: var(--xsmall-text);
   line-height: 1.2;
   flex: 1;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  hyphens: none;
+}
+
+/* Skill items container and wrapper for better wrapping control */
+.skill-items-container {
+  display: inline;
+}
+
+.skill-item-wrapper {
+  white-space: nowrap;
+  display: inline;
 }
 
 /* Unselected skills container styling */
