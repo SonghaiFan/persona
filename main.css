@@ -934,7 +934,7 @@ body[class*="theme-"] .version-select:focus {
 .cover-letter-body p {
   font-size: var(--body-text);
   color: var(--primary-color);
-  line-height: 1.5;
+  line-height: 2;
   margin-bottom: var(--space-6);
   text-align: justify;
   text-justify: inter-word;
@@ -954,7 +954,7 @@ body[class*="theme-"] .version-select:focus {
 
 .signature {
   font-family: "Nothing You Could Do", cursive;
-  font-size: calc(var(--body-text) * 1.4);
+  font-size: calc(var(--body-text) * 3);
   color: var(--primary-color);
   font-weight: 400;
   margin-top: var(--space-4);
@@ -1052,7 +1052,7 @@ body[class*="theme-"] .signature {
     gap: var(--space-4);
     align-items: stretch;
   }
-  
+
   .cover-letter-toggle {
     justify-content: center;
   }

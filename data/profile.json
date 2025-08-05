@@ -343,7 +343,7 @@
     },
     "ux-researcher": {
       "recipient": {
-        "company": "[Company Name]",
+        "company": "Canvas",
         "position": "[Position Title]",
         "department": "[UX/Research Team]"
       },

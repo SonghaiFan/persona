@@ -172,17 +172,23 @@ function autoPaginate() {
   const resume = document.getElementById("resume");
   const pages = resume.querySelectorAll(".page");
 
-  // Reset - keep only first page
-  for (let i = 1; i < pages.length; i++) {
-    pages[i].remove();
-  }
+  // Don't reset pages - we want to preserve existing page structure
+  // Only split pages that are too tall
+  pages.forEach(page => {
+    const pageHeight = page.clientHeight;
+    
+    // If this page is already within height limits, skip it
+    if (page.scrollHeight <= pageHeight) {
+      return;
+    }
 
-  const firstPage = resume.querySelector(".page");
-  const pageHeight = firstPage.clientHeight;
-
-  splitPage(firstPage);
+    // Split this page if it's too tall
+    splitPage(page);
+  });
 
   function splitPage(page) {
+    const pageHeight = page.clientHeight;
+    
     while (page.scrollHeight > pageHeight) {
       const newPage = page.cloneNode(false);
       page.after(newPage);
@@ -355,17 +361,13 @@ function toggleCoverLetter(enabled) {
   // Re-render the resume
   document.body.style.opacity = "0.8";
   
-  // Clear content and re-render
-  const firstPage = document.querySelector(".page");
-  firstPage.innerHTML = "";
-  firstPage.classList.remove("cover-letter-page");
-  
-  // Remove any additional pages
+  // Clear all pages and re-render from scratch
   const resume = document.getElementById("resume");
-  const pages = resume.querySelectorAll(".page");
-  for (let i = 1; i < pages.length; i++) {
-    pages[i].remove();
-  }
+  resume.innerHTML = "";
+  
+  // Create a new first page
+  const newPage = createElement("section", { className: "page" });
+  resume.appendChild(newPage);
 
   renderResume();
 
@@ -381,17 +383,13 @@ function switchVersion(version) {
   currentVersion = version;
   document.body.style.opacity = "0.8";
 
-  // Clear content and re-render
-  const firstPage = document.querySelector(".page");
-  firstPage.innerHTML = "";
-  firstPage.classList.remove("cover-letter-page");
-  
-  // Remove any additional pages
+  // Clear all pages and re-render from scratch
   const resume = document.getElementById("resume");
-  const pages = resume.querySelectorAll(".page");
-  for (let i = 1; i < pages.length; i++) {
-    pages[i].remove();
-  }
+  resume.innerHTML = "";
+  
+  // Create a new first page
+  const newPage = createElement("section", { className: "page" });
+  resume.appendChild(newPage);
 
   // Update cover letter toggle state
   const coverLetterToggle = document.getElementById("coverLetterToggle");
@@ -940,6 +938,9 @@ function renderCoverLetter(container, versionConfig) {
         break;
     }
   });
+  
+  // Return the resume page so it can be used for pagination
+  return resumePage;
 }
 
 // =============================================================================
@@ -976,7 +977,14 @@ window.addEventListener(
   "resize",
   debounce(() => {
     document.body.style.opacity = "0.7";
-    autoPaginate();
+    
+    // Only run pagination if we have pages to paginate
+    const resume = document.getElementById("resume");
+    const pages = resume.querySelectorAll(".page");
+    if (pages.length > 0) {
+      autoPaginate();
+    }
+    
     setTimeout(() => (document.body.style.opacity = "1"), 100);
   }, 300)
 );
