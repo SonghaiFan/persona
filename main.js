@@ -852,8 +852,16 @@ function renderCertifications(certifications, container) {
   container.appendChild(section);
 }
 
+function getCoverLetterData(version) {
+  // New structure: versionsData.versions[version].cover_letter
+  const versionBased = versionsData?.versions?.[version]?.cover_letter;
+  if (versionBased) return versionBased;
+  // Backward compatibility: old location in profile.json
+  return resumeData.cover_letters?.[version];
+}
+
 function renderCoverLetter(container, versionConfig) {
-  const coverLetterData = resumeData.cover_letters?.[currentVersion];
+  const coverLetterData = getCoverLetterData(currentVersion);
 
   if (!coverLetterData) {
     console.warn(`No cover letter data found for version: ${currentVersion}`);
