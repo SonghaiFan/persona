@@ -99,18 +99,11 @@
       ],
       "core_skill": [
         "Data Cleaning & Wrangling",
-        "EDA",
-        "Data Storytelling",
+        "Exploratory Data Analysis (EDA)",
         "Business Intelligence"
       ],
-      "methodology": [
-        "Statistical Modelling (Regression, ANOVA)",
-        "Time-Series Decomposition"
-      ],
-      "use_scenario": [
-        "User Behavior Analysis",
-        "Business Strategy Optimization"
-      ]
+      "methodology": ["Statistical Modelling", "Narrative Visualization"],
+      "use_scenario": ["Dashboard Development", "Data-rich Representation"]
     },
     "data_science_ai": {
       "name": "Data Science & AI",
@@ -159,8 +152,7 @@
       "use_scenario": [
         "User Behavior Investigation",
         "AI Product Evaluation",
-        "Design Pattern Derivation",
-        "Insight-to-Strategy Translation"
+        "Design Pattern Derivation"
       ]
     },
     "big_data_engineering": {
@@ -238,15 +230,13 @@
         {
           "title": "Disadvantage in the Media",
           "details": [
-            "With the Paul Ramsay Foundation, analyzed 200+ news articles to uncover media framing of disadvantaged communities.",
-            "Visualized multivariate coded data through scrollytelling, using waffle charts, force-directed graphs, and Alluvial plots."
+            "With the Paul Ramsay Foundation, analyzed 200+ news articles to uncover media framing of disadvantaged communities."
           ]
         },
         {
           "title": "Climate Change Awareness",
           "details": [
-            "With the Monash Climate Change Communication Research Hub (MCCCRH), created a climate visualization platform.",
-            "Developed a location-aware, interactive scrolling narrative with custom threshold controls and historical comparisons."
+            "With the Monash Climate Change Communication Research Hub (MCCCRH), created an interactive climate visualization web app with custom threshold controls and historical comparisons."
           ]
         }
       ]
@@ -259,7 +249,7 @@
       "authors": "S Fan, T Dwyer, S Goodwin, H Purchase",
       "venue": "IEEE VIS",
       "year": "2025",
-      "type": "Full Paper (under review)"
+      "type": "Full Paper under review"
     },
     {
       "title": "ACCESS: A Benchmark for Abstract Causal Event Discovery and Reasoning",
@@ -305,6 +295,6 @@
 
   "interests": [
     "Music: Guitarist in a local band, participant in Melbourne Chinese Music Festival",
-    "Mentorship: Guiding students in data science and analytics projects"
+    "Illustration: Digital art and character design"
   ]
 }

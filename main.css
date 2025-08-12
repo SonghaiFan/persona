@@ -771,10 +771,10 @@ body[class*="theme-"] .version-select:focus {
    PRINT SETTINGS (single source of truth)
    ========================================================================== */
 @media print {
+  /* Hard-code page size; set margin 0 and handle spacing via internal padding for Safari consistency */
   @page {
     size: A4 portrait;
-    margin: var(--page-margin);
-    padding: 0;
+    margin: 0; /* Avoid var() here; Safari sometimes ignores custom properties in @page */
   }
 
   * {
@@ -785,20 +785,29 @@ body[class*="theme-"] .version-select:focus {
   body {
     margin: 0;
     padding: 0;
-    background: white !important;
+    background: #ffffff !important;
     font-size: var(--body-text);
     line-height: 1.2;
   }
 
   .page {
-    margin: 0;
-    padding: 0;
+    /* Use physical units to avoid rounding differences */
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0 auto;
+    padding: 8mm; /* Mirrors --page-margin value; acts as visual margin even if @page margin fails */
+    box-sizing: border-box;
     box-shadow: none;
     border-radius: 0;
-    width: 100%;
-    height: auto;
-    background: white !important;
+    background: #ffffff !important;
     break-after: page;
+  }
+
+  /* Safari-specific tweak (optional redundancy): ensure padding retained */
+  @supports (-webkit-touch-callout: none) {
+    .page {
+      padding: 8mm !important;
+    }
   }
 
   /* Hide non-print UI */
@@ -965,13 +974,15 @@ body[class*="theme-"] .signature {
 /* Print-specific cover letter styles */
 @media print {
   .cover-letter-page {
-    padding: var(--page-margin);
+    /* Inherit same internal padding approach */
+    padding: 8mm;
     margin: 0;
-    width: 100%;
+    width: 210mm;
     height: auto;
-    min-height: calc(var(--a4-h) - 2 * var(--page-margin));
+    min-height: 297mm;
     page-break-after: page;
-    background: white !important;
+    background: #ffffff !important;
+    box-sizing: border-box;
   }
 
   .cover-letter-body p {

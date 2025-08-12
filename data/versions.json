@@ -1,24 +1,6 @@
 {
   "config": {
-    "default_version": "data-scientist",
-    "theme_base": "theme-",
-    "available_sections": [
-      "cover_letter",
-      "summary",
-      "work_experience",
-      "technical_skills",
-      "projects",
-      "phd_research",
-      "education",
-      "publications",
-      "certifications"
-    ],
-    "skill_categories": [
-      "artificial_intelligence",
-      "data_science",
-      "web_technologies",
-      "research_skills"
-    ]
+    "default_version": "nlp-researcher"
   },
 
   "versions": {
@@ -134,6 +116,61 @@
       }
     },
 
+    "nlp-researcher": {
+      "display_name": "NLP Research Scientist (Canva)",
+      "theme_color": "#3A69E7",
+      "icon": "fas fa-brain",
+      "summary": "PhD Researcher in Human-Centered Computing focusing on foundational and multimodal NLP. Experience translating cutting-edge LLM and graph-to-text research into scalable prototypes, designing rigorous experiments, and collaborating with engineers to productionize model improvements. Published work spans narrative structure modelling, causal reasoning, and user-aligned evaluation. Passionate about advancing model capability while ensuring real-world impact, reliability, and human-centered alignment.",
+      "cover_letter": {
+        "recipient": {
+          "company": "Canva",
+          "position": "Senior Research Scientist (NLP / Foundational Models)",
+          "department": "AI Research"
+        },
+        "opening": "Dear Canva AI Research Team,",
+        "body": [
+          "I'm genuinely excited about the Senior Research Scientist role at Canva—not just for the work, but for the people and the vibe. I first connected with Canva staff at the VIS conference, and it was clear your team cares about making design and data accessible, creative, and fun.",
+          "When I started my PhD, Canva had just acquired Flourish, and that move really inspired me. It showed me Canva was serious about data visualization and storytelling, and it’s been awesome to watch how you’ve blended interactive docs, AI, and visual tools since then.",
+          "I’ll be honest: I don’t have a ton of industry experience yet, but I’m always learning and growing. This isn’t the first time (and definitely won’t be the last) that I’ve applied to Canva—because it’s my dream company and I truly believe I belong here.",
+          "My research has always been about making data and text come alive—building narrative graphs, experimenting with LLMs, and creating prototypes that help people explore and understand information in new ways. I love the idea of bringing together text, visualization, and AI to create experiences that are not just smart, but genuinely engaging and useful.",
+          "I’m passionate about working with teams who value openness, playfulness, and impact. Canva’s mission to empower everyone to design and communicate fits perfectly with how I approach research and product work. I’d love to help push the boundaries of what’s possible with interactive, AI-powered storytelling at Canva.",
+          "Let’s chat about how my background in NLP, data viz, and human-centered design could help shape the next wave of creative tools at Canva!"
+        ],
+        "closing": "Kind regards,",
+        "signature": "Frank"
+      },
+      "content_config": {
+        "include_cover_letter": true,
+        "selected_skills": [
+          "data_science_ai",
+          "research_evaluation",
+          "data_analysis"
+        ],
+        "sections_order": [
+          "summary",
+          "phd_research",
+          "publications",
+          "technical_skills",
+          "projects",
+          "education",
+          "work_experience"
+        ],
+        "projects_limit": 3,
+        "include_projects": [
+          "causal-network-viz",
+          "data-storytelling-cases",
+          "perspectiva-tool"
+        ]
+      },
+      "content_overrides": {
+        "project_descriptions": {
+          "causal-network-viz": "Interactive causal relationship exploration combining NLP extraction, graph analytics, and usability-focused filtering—prototype for model comprehension and reasoning assessment.",
+          "perspectiva-tool": "Participatory causal modeling platform emphasizing collaborative knowledge capture and system reasoning—supports hypothesis formation for downstream AI tasks.",
+          "data-storytelling-cases": "Narrative visualization studies integrating topic modeling, sentiment analysis, and user evaluation—informing alignment between model output and human interpretation."
+        }
+      }
+    },
+
     "ux-researcher": {
       "display_name": "UX Research",
       "theme_color": "#000000",
@@ -242,62 +279,6 @@
           "causal-network-viz": "Built an interactive web app to visualize sentence-level causal networks using D3.js, React, and advanced interactive features for complex relationship analysis.",
           "perspectiva-tool": "Designed a system to document and visualize stakeholder-driven causal models for urban governance, featuring custom dashboard design and interactive data exploration.",
           "data-storytelling-cases": "Collaborative data visualization projects with research organizations focusing on narrative-driven insights using scrollytelling and interactive charts."
-        }
-      }
-    },
-
-    "data-engineer": {
-      "display_name": "Data Engineer",
-      "theme_color": "#331D38",
-      "icon": "fas fa-database",
-      "summary": "PhD Researcher in Human-Centered Computing passionate about data engineering and infrastructure for enhanced human-data interaction. Expertise in data pipelines, ETL processes, and big data technologies, with a focus on developing scalable frameworks that bridge human understanding with complex data systems. Skilled in Python, SQL, and data infrastructure tools, combining technical proficiency with a deep interest in real-time data processing and analytics.",
-      "cover_letter": {
-        "recipient": {
-          "company": "[Company Name]",
-          "position": "[Position Title]",
-          "department": "[Engineering/Data Team]"
-        },
-        "opening": "Dear Hiring Manager,",
-        "body": [
-          "I am writing to express my strong interest in the Data Engineer position at [Company Name]. With my background in building scalable data processing systems and expertise in Python, SQL, Hadoop, and Spark, I am excited about the opportunity to contribute to your data infrastructure and pipeline development.",
-          "Through my research and project work, I have gained experience in ETL pipeline development, real-time data processing, and building systems that handle large-scale data operations. My work on narrative visualization projects has required me to design robust data architectures that can efficiently process and transform complex datasets while maintaining data quality and reliability.",
-          "What attracts me to this role is the opportunity to apply my technical skills in building the foundational systems that enable data-driven decision making. I understand the importance of creating scalable, maintainable data infrastructure that can grow with business needs while ensuring data accuracy and accessibility for downstream analytics and applications.",
-          "I would welcome the chance to discuss how my experience in data processing, system architecture, and analytical thinking can contribute to [Company Name]'s data engineering initiatives. Thank you for considering my application."
-        ],
-        "closing": "Sincerely,",
-        "signature": "Frank"
-      },
-
-      "content_config": {
-        "include_cover_letter": true,
-        "selected_skills": [
-          "big_data_engineering",
-          "data_analysis",
-          "data_science_ai"
-        ],
-        "sections_order": [
-          "summary",
-          "technical_skills",
-          "projects",
-          "phd_research",
-          "education",
-          "publications",
-          "work_experience",
-          "certifications"
-        ],
-        "projects_limit": 3,
-        "include_projects": [
-          "causal-network-viz",
-          "perspectiva-tool",
-          "data-storytelling-cases"
-        ]
-      },
-
-      "content_overrides": {
-        "project_descriptions": {
-          "causal-network-viz": "Built an interactive web app to visualize sentence-level causal networks using NLP and network analysis, with data pipeline development for relationship processing.",
-          "perspectiva-tool": "Designed a system to document and visualize stakeholder-driven causal models for urban governance, incorporating scalable data infrastructure and ETL processes.",
-          "data-storytelling-cases": "Collaborative data visualization projects with research organizations focusing on narrative-driven insights and large-scale data processing."
         }
       }
     }
